@@ -733,7 +733,7 @@ const I18N = {
   sysH:'⚙️ ระบบ', nextQ:'เลขคิวถัดไป', set:'ตั้งค่า', nextQHint:'ใช้เมื่ออยากเริ่มนับคิวใหม่ เช่น ตั้งเป็น 1 ทุกต้นเดือน',
   chPw:'เปลี่ยนรหัสผ่านพนักงาน', newPw:'รหัสใหม่', change:'เปลี่ยน', pwOk:'เปลี่ยนรหัสผ่านแล้ว',
   askQ:'ตั้งเลขคิวถัดไปเป็น {q} ?', qOk:'ตั้งเลขคิวแล้ว', sheet:'📊 ข้อมูลทั้งหมดอยู่ใน', noQr:'ยังไม่มี QR',
-  e_CAUTH:'หมดเวลาเข้าสู่ระบบ กรุณาใส่ PIN อีกครั้ง', e_AUTH:'หมดเวลาเข้าสู่ระบบ กรุณาล็อกอินใหม่', e_EXISTS:'เบอร์นี้สมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
+  e_NETWORK:'เชื่อมต่อหลังบ้าน (Apps Script) ไม่ได้ — ตรวจว่า Deploy เป็น "ทุกคน" และเป็นเวอร์ชันล่าสุด', e_CAUTH:'หมดเวลาเข้าสู่ระบบ กรุณาใส่ PIN อีกครั้ง', e_AUTH:'หมดเวลาเข้าสู่ระบบ กรุณาล็อกอินใหม่', e_EXISTS:'เบอร์นี้สมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
   e_NOACCOUNT:'ยังไม่มีบัญชีของเบอร์นี้ กรุณาสมัครสมาชิก', e_BADPIN:'PIN ไม่ถูกต้อง', e_LOCKED:'ใส่ PIN ผิดหลายครั้ง กรุณารอ 10 นาที',
   e_BADPHONE:'กรุณาใส่เบอร์โทรให้ถูกต้อง', e_BADPINFMT:'กรุณาตั้ง PIN ให้ครบ 6 หลัก', e_STAFFPW:'รหัสผ่านไม่ถูกต้อง', e_BADAMOUNT:'กรุณาใส่ราคา',
   e_NOORDER:'ไม่พบคิวนี้', e_EMPTY:'กรุณาพิมพ์ข้อความ', e_BADIMG:'ไฟล์รูปไม่ถูกต้อง', e_BIGIMG:'รูปใหญ่เกินไป', e_PWSHORT:'รหัสผ่านต้องมีอย่างน้อย 4 ตัว', e_BADQ:'ใส่เลขคิวให้ถูกต้อง'
@@ -800,7 +800,7 @@ const I18N = {
   sysH:'⚙️ System', nextQ:'Next queue number', set:'Set', nextQHint:'Use this to restart numbering, e.g. set to 1 each month',
   chPw:'Change staff password', newPw:'New password', change:'Change', pwOk:'Password changed',
   askQ:'Set the next queue number to {q}?', qOk:'Queue number set', sheet:'📊 All data is in the', noQr:'No QR yet',
-  e_CAUTH:'Session expired — please enter your PIN again', e_AUTH:'Session expired, please log in again', e_EXISTS:'This number is already registered — please log in',
+  e_NETWORK:'Cannot reach the back end (Apps Script) — check it is deployed for "Anyone" and is the latest version', e_CAUTH:'Session expired — please enter your PIN again', e_AUTH:'Session expired, please log in again', e_EXISTS:'This number is already registered — please log in',
   e_NOACCOUNT:'No account for this number yet — please sign up', e_BADPIN:'Wrong PIN', e_LOCKED:'Too many wrong PINs — please wait 10 minutes',
   e_BADPHONE:'Please enter a valid phone number', e_BADPINFMT:'Please enter all 6 digits', e_STAFFPW:'Wrong password', e_BADAMOUNT:'Please enter a price',
   e_NOORDER:'Order not found', e_EMPTY:'Please type a message', e_BADIMG:'Invalid image', e_BIGIMG:'Image is too large', e_PWSHORT:'Password needs at least 4 characters', e_BADQ:'Enter a valid queue number'
@@ -942,7 +942,9 @@ const Mock = (() => {
 function api(fn, ...args) {
   if (IS_GAS) return new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej)[fn](...args));
   if (API_URL) return fetch(API_URL, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify({ fn, args }) })
-    .then(r => r.json()).then(j => { if (!j.ok) throw new Error(j.error); return j.data; });
+    .catch(() => { throw new Error('NETWORK'); })
+    .then(r => r.text()).then(txt => { let j; try { j = JSON.parse(txt); } catch (e) { throw new Error('NETWORK'); }
+      if (!j.ok) throw new Error(j.error); return j.data; });
   return Mock[fn](...args);
 }
 
@@ -953,7 +955,7 @@ const pad = q => String(q).padStart(3, '0');
 const fmtPhone = p => String(p||'').replace(/^(\d{3})(\d{3})(\d{3,4})$/, '$1-$2-$3');
 const money = n => Number(n||0).toLocaleString('en-US');
 function norm(s){ return String(s||'').toLowerCase().replace(/[\s\-_.\/]+/g,''); }
-const ERR_CODES = /\b(CAUTH|AUTH|EXISTS|NOACCOUNT|BADPIN|LOCKED|BADPHONE|BADPINFMT|STAFFPW|BADAMOUNT|NOORDER|EMPTY|BADIMG|BIGIMG|PWSHORT|BADQ)\b/;
+const ERR_CODES = /\b(NETWORK|CAUTH|AUTH|EXISTS|NOACCOUNT|BADPIN|LOCKED|BADPHONE|BADPINFMT|STAFFPW|BADAMOUNT|NOORDER|EMPTY|BADIMG|BIGIMG|PWSHORT|BADQ)\b/;
 function errMsg(e){ const s = String((e && e.message) || e || 'Error'); const m = s.match(ERR_CODES); return m ? t('e_'+m[1]) : s.replace(/^(Error|Exception):\s*/,''); }
 function isMobile(){ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); }
 let toastT;
@@ -999,7 +1001,8 @@ function go(v){
 /* ================= CONFIG / HOME ================= */
 let CFG = Object.assign({}, DEFAULT_CFG), cfgVer = -1;
 async function loadConfig(){
-  try { CFG = await api('getConfig'); cfgVer = CFG.ver || 0; } catch(e) {}
+  try { CFG = await api('getConfig'); cfgVer = CFG.ver || 0; if (LIVE) $('demoLine').style.display = 'none'; }
+  catch(e) { if (LIVE) { const d = $('demoLine'); d.textContent = '⛔ ' + errMsg(e); d.style.cssText = 'display:block;background:#b8241d;color:#fff;opacity:1;padding:6px 10px;border-radius:12px;font-size:13px'; } }
   applyConfig(); updExpress();
 }
 function applyConfig(){
