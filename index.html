@@ -2451,6 +2451,15 @@ async function changePw(){
 /* ================= PWA (GitHub Pages) ================= */
 if (!IS_GAS && 'serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 
+/* รูปจาก Google Drive: ถ้าลิงก์หลักโหลดไม่ขึ้น ลองลิงก์สำรองอัตโนมัติ */
+document.addEventListener('error', e => {
+  const im = e.target; if (!im || im.tagName !== 'IMG') return;
+  const m = String(im.src).match(/googleusercontent\.com\/d\/([\w-]+)|[?&]id=([\w-]+)/); if (!m) return;
+  const id = m[1] || m[2], n = Number(im.dataset.fb || 0);
+  const alt = [`https://drive.google.com/thumbnail?id=${id}&sz=w1000`, `https://drive.google.com/uc?export=view&id=${id}`];
+  if (n < alt.length) { im.dataset.fb = n + 1; im.src = alt[n]; }
+}, true);
+
 /* ================= START ================= */
 $('lPinBox').innerHTML = pinHTML('lPin', 'doLoginPin');
 $('rPinBox').innerHTML = pinHTML('rPin', 'regPin1');
