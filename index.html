@@ -1066,6 +1066,8 @@ Object.assign(I18N.th, {"btPrint": "🖨️ พิมพ์ตรงไป Phome
 Object.assign(I18N.en, {"btPrint": "🖨️ Print to Phomemo (Bluetooth)", "btPrintOn": "🖨️ Print · connected to {n}", "btDark": "Darkness", "btConnecting": "Connecting to printer…", "btPrinting": "Printing {a}/{b}…", "btDone": "Printed ✨", "btCancel": "No printer selected", "btFail": "Print failed:", "btIos": "📱 iPhone: Safari/Chrome cannot print over Bluetooth — open the shop app inside the free <b>Bluefy</b> app and the direct-print button will appear, or save the images below and print in Print Master", "btNo": "This browser cannot print over Bluetooth — use Chrome on Android, or save the images and print in Print Master", "lbHow": "First time: tap direct print → pick the M110 in the list (printer on, Print Master closed) · If it fails, save the images and print in Print Master", "lbPrint": "🖨️ Print from a computer"});
 Object.assign(I18N.th, {"lbModel": "รุ่นรองเท้า คู่ {i}", "lbPrice": "ราคา", "lbTotal": "ราคารวมทั้งคิว {x} ฿ — ใส่ราคาแยกต่อคู่ได้", "lbName": "ชื่อ", "lbTel": "โทร", "lbShoe": "รุ่น"});
 Object.assign(I18N.en, {"lbModel": "Shoe model, pair {i}", "lbPrice": "Price", "lbTotal": "Order total {x} ฿ — enter a price per pair if you like", "lbName": "Name", "lbTel": "Tel", "lbShoe": "Model"});
+Object.assign(I18N.th, {"btSwitch": "🔄 เปลี่ยน/เชื่อมเครื่องพิมพ์ใหม่", "btForgot": "ล้างการเชื่อมต่อแล้ว กดพิมพ์ตรงเพื่อเลือกเครื่องใหม่", "lbHow": "ครั้งแรก: ปิดแอป Print Master → กดพิมพ์ตรง → เลือก M110 ที่มี <b>ขีดสัญญาณ</b> (อันที่ไม่มีขีดสัญญาณเป็นรายการค้าง เชื่อมได้แต่พิมพ์ไม่ออก) · ถ้าไม่ออก ใช้ปุ่มบันทึกรูปแล้วพิมพ์ใน Print Master"});
+Object.assign(I18N.en, {"btSwitch": "🔄 Switch / reconnect printer", "btForgot": "Connection cleared — tap direct print to pick the printer again", "lbHow": "First time: close Print Master → tap direct print → pick the M110 entry that shows a <b>signal bar</b> (entries without one are stale and connect but won’t print) · If it fails, save the images and print in Print Master"});
 I18N.my = I18N_MY;
 let LANG = (()=>{ try { return localStorage.getItem('ps_lang') || 'th'; } catch(e) { return 'th'; } })();
 function t(k, v){ let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : (LANG === 'my' && I18N.en[k] != null) ? I18N.en[k] : (I18N.th[k] != null ? I18N.th[k] : k); if (v) for (const x in v) s = s.split('{'+x+'}').join(v[x]); return s; }
@@ -2091,25 +2093,36 @@ function renderBtBox(){
   $('btBox').innerHTML = ok
     ? `<button class="btn primary big" id="btBtn" onclick="btPrint()">${BT.ch ? t('btPrintOn',{n:BT.dev.name || 'M110'}) : t('btPrint')}</button>
        <div class="row2" style="align-items:center"><label class="muted" style="font-size:13px;flex:1">${t('btDark')}</label>
-       <input id="btDark" type="range" min="1" max="15" value="${store('btDark') || 8}" style="flex:1.4" onchange="store('btDark',+this.value)"></div>`
+       <input id="btDark" type="range" min="1" max="15" value="${store('btDark') || 10}" style="flex:1.4" onchange="store('btDark',+this.value)"></div>
+       ${BT.dev ? `<button class="link" onclick="btForget()">${t('btSwitch')}</button>` : ''}`
     : `<div class="g-note" style="text-align:left">${isIOS() ? t('btIos') : t('btNo')}</div>`;
 }
 async function btConnect(){
   if (BT.ch && BT.dev && BT.dev.gatt.connected) return BT.ch;
-  if (!BT.dev) BT.dev = await navigator.bluetooth.requestDevice({ acceptAllDevices:true, optionalServices:[0xff00] });
-  const srv = await (await BT.dev.gatt.connect()).getPrimaryService(0xff00);
+  if (!BT.dev) BT.dev = await navigator.bluetooth.requestDevice({ acceptAllDevices:true, optionalServices:[0xff00, 0xffe0, 0xae30] });
+  const gatt = await BT.dev.gatt.connect();
+  await sleep(150);
+  const srv = await gatt.getPrimaryService(0xff00);
   BT.ch = await srv.getCharacteristic(0xff02);
-  BT.dev.addEventListener('gattserverdisconnected', () => { BT.ch = null; });
+  const pr = BT.ch.properties || {};
+  BT.withResp = !pr.writeWithoutResponse && !!pr.write;          // บางเครื่องต้องเขียนแบบรอตอบกลับ
+  try { BT.nt = await srv.getCharacteristic(0xff03); await BT.nt.startNotifications(); } catch(e) { BT.nt = null; }   // เปิดการแจ้งสถานะจากเครื่องพิมพ์
+  if (!BT.listen) { BT.listen = true; BT.dev.addEventListener('gattserverdisconnected', () => { BT.ch = null; }); }
   return BT.ch;
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-async function btWrite(bytes){
-  let size = BT.chunk || 128;
+async function btSend(part){
+  const buf = new Uint8Array(part).buffer;
+  if (BT.withResp) return BT.ch.writeValue(buf);
+  try { await BT.ch.writeValueWithoutResponse(buf); }
+  catch(e) { BT.withResp = true; await BT.ch.writeValue(buf); }
+}
+async function btWrite(bytes, onProg){
+  const size = 128;
   for (let i = 0; i < bytes.length; i += size) {
-    const part = bytes.slice(i, i + size);
-    try { await (BT.ch.writeValueWithoutResponse ? BT.ch.writeValueWithoutResponse(part) : BT.ch.writeValue(part)); }
-    catch(e) { if (size > 20) { BT.chunk = size = 20; i -= size; await sleep(30); continue; } throw e; }
-    await sleep(size > 20 ? 25 : 12);
+    await btSend(bytes.slice(i, i + size));
+    await sleep(20);
+    if (onProg) onProg(Math.min(100, Math.round((i + size) / bytes.length * 100)));
   }
 }
 /* แปลงรูปป้ายเป็นจุดขาว/ดำ 384 จุด (หัวพิมพ์ 48 มม.) */
@@ -2132,25 +2145,28 @@ async function btPrint(){
   try {
     if (btn) btn.textContent = t('btConnecting');
     await btConnect();
-    const dark = Math.min(15, Math.max(1, Number(($('btDark') || {}).value) || 8));
+    const dark = Math.min(15, Math.max(1, Number(($('btDark') || {}).value) || 10));
     for (let i = 0; i < LBL_URLS.length; i++) {
-      if (btn) btn.textContent = t('btPrinting',{a:i+1,b:LBL_URLS.length});
       const { bpr, H, out } = await labelBitmap(LBL_URLS[i]);
-      await btWrite(new Uint8Array([0x1b,0x4e,0x0d,0x03, 0x1b,0x4e,0x04,dark, 0x1f,0x11,0x0a]));          // ความเร็ว, ความเข้ม, กระดาษแบบมีช่องว่าง (gap)
-      await sleep(60);
-      await btWrite(new Uint8Array([0x1d,0x76,0x30,0x00, bpr & 255, bpr >> 8, H & 255, H >> 8]));             // GS v 0 (ภาพ raster)
-      await btWrite(out);
-      await btWrite(new Uint8Array([0x1f,0xf0,0x05,0x00, 0x1f,0xf0,0x03,0x00]));                             // จบงาน / ป้อนไปป้ายถัดไป
-      await sleep(1500);
+      // ลำดับคำสั่ง M110 (phomemo-tools): ความเร็ว → ความเข้ม → ชนิดกระดาษ → ภาพ → จบงาน
+      await btSend([0x1b,0x4e,0x0d,0x05]); await sleep(30);          // speed 5
+      await btSend([0x1b,0x4e,0x04,dark]); await sleep(30);          // density
+      await btSend([0x1f,0x11,0x0a]); await sleep(30);               // กระดาษสติกเกอร์แบบมีช่องว่าง (gap)
+      await btSend([0x1d,0x76,0x30,0x00, bpr & 255, bpr >> 8, H & 255, H >> 8]);   // GS v 0
+      await btWrite(out, p => { if (btn) btn.textContent = t('btPrinting',{a:i+1,b:LBL_URLS.length}) + ' ' + p + '%'; });
+      await sleep(300);
+      await btSend([0x1f,0xf0,0x05,0x00, 0x1f,0xf0,0x03,0x00]);      // จบงาน
+      await sleep(i < LBL_URLS.length - 1 ? 1500 : 500);
     }
     toast(t('btDone')); sparkle(8);
   } catch(e) {
-    const m = String(e && (e.name || e.message) || e);
-    if (/NotFoundError|cancel/i.test(m)) toast(t('btCancel'), true);
+    const m = String(e && (e.message || e.name) || e);
+    if (/NotFoundError|cancel/i.test(String(e && e.name)) && !BT.ch) toast(t('btCancel'), true);
     else { toast(t('btFail') + ' ' + m, true); BT.ch = null; }
   }
   BT.busy = false; renderBtBox();
 }
+function btForget(){ try { BT.dev && BT.dev.gatt.connected && BT.dev.gatt.disconnect(); } catch(e) {} BT = { dev:null, ch:null, busy:false }; renderBtBox(); toast(t('btForgot')); }
 async function shareLabels(){
   try {
     const files = await Promise.all(LBL_URLS.map(async (u, i) => new File([await (await fetch(u)).blob()], `label-${i+1}.png`, { type:'image/png' })));
