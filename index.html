@@ -2344,17 +2344,16 @@ async function loadSettings(){
   try { SCFG = await api('staffGetConfig', TOKEN); fillSettings(); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 const NOQR_SVG = () => 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><text x="48" y="54" font-size="12" text-anchor="middle" fill="#b0906c">${esc(t('noQr'))}</text></svg>`);
-function fillSettings(){
+function fillSettings(imagesOnly){
   const c = SCFG;
   $('sLogo').src = c.logo || DEFAULT_LOGO; $('sQr').src = c.lineQr || NOQR_SVG(); $('sPayQr').src = c.payQr || NOQR_SVG();
+  fillGallery(c);
+  if (imagesOnly) return;   // อัปรูปแล้ว ไม่ทับข้อความที่กำลังพิมพ์ค้างไว้
   QUICK = (c.quickReplies || QUICK || []).slice(); renderQuickEdit(); renderQuickBar();
   const map = { sShop:'shopName', sTag:'tagline', sTagEn:'taglineEn', sTagMy:'taglineMy', sAnn:'announcement', sAnnEn:'announcementEn', sAnnMy:'announcementMy', sExFee:'expressFee', sPayName:'payName',
     sRNeed:'rewardNeed', sRPct:'rewardPct', sLineTitleMy:'lineTitleMy', sLineSubMy:'lineSubMy', sLineBodyMy:'lineBodyMy',
     sLineUrl:'lineUrl', sLineId:'lineId', sLineTitle:'lineTitle', sLineTitleEn:'lineTitleEn', sLineSub:'lineSub', sLineSubEn:'lineSubEn', sLineBody:'lineBody', sLineBodyEn:'lineBodyEn' };
   for (const id in map) $(id).value = c[map[id]] ?? '';
-  const G = c.gallery || [];
-  $('sGallery').innerHTML = G.map((g, i) => `<div class="ph"><img src="${esc(g.url)}" onclick="zoom(this.src)" alt=""><span class="no">${i+1}</span><button onclick="rmImg('gallery','${esc(g.id)}')">×</button>
-    ${i > 0 ? `<button class="mv l" onclick="moveGal(${i},-1)">◀</button>` : ''}${i < G.length-1 ? `<button class="mv r" onclick="moveGal(${i},1)">▶</button>` : ''}</div>`).join('') || `<span class="muted" style="grid-column:1/-1">${t('noGal')}</span>`;
   $('sNextQ').value = c.nextQueue || '';
   $('sRemindDays').value = c.remindDays || 3; $('sAutoRemind').checked = c.autoRemind !== false;
   $('sLabelW').value = c.labelW || 50; $('sLabelH').value = c.labelH || 30; $('sAppUrl').value = c.appUrl || '';
@@ -2367,15 +2366,20 @@ function fillSettings(){
 async function moveGal(i, d){
   const ids = (SCFG.gallery || []).map(g => g.id), j = i + d; if (j < 0 || j >= ids.length) return;
   [ids[i], ids[j]] = [ids[j], ids[i]];
-  const old = SCFG.gallery.slice(); [SCFG.gallery[i], SCFG.gallery[j]] = [SCFG.gallery[j], SCFG.gallery[i]]; fillSettings();
-  try { afterCfg(await api('staffSetGallery', TOKEN, ids)); } catch(e) { SCFG.gallery = old; fillSettings(); if (!authFail(e)) toast(errMsg(e), true); }
+  const old = SCFG.gallery.slice(); [SCFG.gallery[i], SCFG.gallery[j]] = [SCFG.gallery[j], SCFG.gallery[i]]; fillSettings(true);
+  try { afterCfg(await api('staffSetGallery', TOKEN, ids), true); } catch(e) { SCFG.gallery = old; fillSettings(true); if (!authFail(e)) toast(errMsg(e), true); }
 }
-function afterCfg(c){ SCFG = c; fillSettings(); CFG = c; cfgVer = c.ver; applyConfig(); updExpress(); }
+function fillGallery(c){
+  const G = c.gallery || [];
+  $('sGallery').innerHTML = G.map((g, i) => `<div class="ph"><img src="${esc(g.url)}" onclick="zoom(this.src)" alt=""><span class="no">${i+1}</span><button onclick="rmImg('gallery','${esc(g.id)}')">×</button>
+    ${i > 0 ? `<button class="mv l" onclick="moveGal(${i},-1)">◀</button>` : ''}${i < G.length-1 ? `<button class="mv r" onclick="moveGal(${i},1)">▶</button>` : ''}</div>`).join('') || `<span class="muted" style="grid-column:1/-1">${t('noGal')}</span>`;
+}
+function afterCfg(c, imagesOnly){ SCFG = c; fillSettings(imagesOnly); CFG = Object.assign({}, CFG, c); cfgVer = c.ver; applyConfig(); updExpress(); }
 async function upImg(inp, kind){
   const f = inp.files[0]; inp.value = ''; if (!f) return;
   try { loading(true, t('upIng'), 40);
     const d = await compress(f, LIVE ? 900 : 500, 0.9, kind === 'logo' ? 'image/jpeg' : 'image/png');
-    afterCfg(await api('staffUploadImage', TOKEN, kind, d)); toast(t('upOk'));
+    afterCfg(await api('staffUploadImage', TOKEN, kind, d), true); toast(t('upOk'));
   } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
   loading(false);
 }
@@ -2383,14 +2387,14 @@ async function upGallery(inp){
   const files = [...inp.files]; inp.value = '';
   try { for (let i = 0; i < files.length; i++) { loading(true, `${t('upIng')} ${i+1}/${files.length}`, (i+1)/files.length*100);
       const d = await compress(files[i], LIVE ? 1400 : 600, LIVE ? 0.82 : 0.6);
-      afterCfg(await api('staffUploadImage', TOKEN, 'gallery', d)); }
+      afterCfg(await api('staffUploadImage', TOKEN, 'gallery', d), true); }
     if (files.length) toast(t('galOk'));
   } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
   loading(false);
 }
 async function rmImg(kind, id){
   if (kind === 'gallery' && !ask(t('delGal'))) return;
-  try { afterCfg(await api('staffRemoveImage', TOKEN, kind, id || '')); toast(t('updated')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  try { afterCfg(await api('staffRemoveImage', TOKEN, kind, id || ''), true); toast(t('updated')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 async function saveSettings(){
   const p = { shopName:$('sShop').value, tagline:$('sTag').value, taglineEn:$('sTagEn').value, taglineMy:$('sTagMy').value, announcement:$('sAnn').value, announcementEn:$('sAnnEn').value,
