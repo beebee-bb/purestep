@@ -361,6 +361,14 @@ textarea.inp{min-height:90px;resize:vertical}
 .ge-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) 64px 64px 34px;gap:4px;margin:4px 0}
 .ge-row input{border:1.5px solid #e2c497;border-radius:8px;padding:5px 6px;font-size:13.5px;min-width:0}
 .ge-row button{border:0;background:#ffe1dd;border-radius:8px;cursor:pointer}
+.price-card{padding:10px}
+.price-card h2{margin:4px 6px 8px}
+.price-imgs{display:flex;flex-direction:column;gap:8px}
+.price-imgs img{width:100%;border-radius:14px;border:2px solid #f0dcb8;cursor:zoom-in;background:#fff}
+.rc-line{display:grid;grid-template-columns:minmax(0,1fr) 46px 76px 30px;gap:5px;margin:5px 0}
+.rc-line input,.rc-sel{border:2px solid #e2c497;border-radius:10px;padding:6px 7px;font-size:15px;min-width:0;background:#fff}
+.rc-line button{border:0;background:#ffe1dd;color:#a3261d;border-radius:8px;cursor:pointer}
+.rc-img{width:100%;max-width:360px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.2);display:block;margin:6px auto 10px}
 /* ===== print form ===== */
 #printArea{display:none}
 .pf *{box-sizing:border-box}
@@ -479,6 +487,7 @@ html[lang=my] body, html[lang=my] button, html[lang=my] input, html[lang=my] tex
   <!-- FORM -->
   <section id="v-form" class="view">
     <div class="steps"><span class="step on" data-i="step1"></span><span class="step" data-i="step2"></span><span class="step" data-i="step3"></span></div>
+    <div id="priceBox"></div>
     <div id="formLoginHint"></div>
     <div id="staffBanner" class="staff-banner" style="display:none"></div>
     <div class="card">
@@ -761,6 +770,19 @@ html[lang=my] body, html[lang=my] button, html[lang=my] input, html[lang=my] tex
       </div>
 
       <div class="card">
+        <h2 data-i="prImgH"></h2>
+        <p class="hint" data-i="prImgHint" style="margin-top:0"></p>
+        <div id="sPriceImgs" class="g-edit"></div>
+        <label class="btn blue small"><span data-i="prImgAdd"></span><input type="file" accept="image/*" multiple hidden onchange="upPriceImgs(this)"></label>
+      </div>
+
+      <div class="card">
+        <h2 data-i="rcSetH"></h2>
+        <label class="f" data-i="rcInfoL"></label>
+        <textarea id="sReceiptInfo" class="inp" data-ph="rcInfoPh"></textarea>
+      </div>
+
+      <div class="card">
         <h2 data-i="galH"></h2>
         <div id="sGallery" class="g-edit"></div>
         <label class="btn blue small"><span data-i="addGal"></span><input type="file" accept="image/*" multiple hidden onchange="upGallery(this)"></label>
@@ -794,6 +816,19 @@ html[lang=my] body, html[lang=my] button, html[lang=my] input, html[lang=my] tex
     <label class="f" data-i="prSpot"></label><input id="prSpot" class="inp" data-ph="prSpotPh">
     <button class="btn primary" onclick="doPrint()" data-i="prGo"></button>
     <button class="btn ghost small" onclick="closeM('mPrint')" data-i="cancel"></button>
+  </div>
+</div>
+<div id="mReceipt" class="modal" onclick="if(event.target===this)closeM('mReceipt')">
+  <div class="card wide" style="max-width:460px">
+    <h2 data-i="rcH"></h2>
+    <img id="rcImg" class="rc-img" alt="receipt" onclick="zoom(this.src)">
+    <div id="rcLines"></div>
+    <button class="btn ghost small" onclick="RC.lines.push({n:'',q:1,p:0});renderRcForm()" data-i="rcAddLine"></button>
+    <div class="row2"><div style="flex:1"><label class="f" data-i="rcDisc"></label><input id="rcDisc" class="inp" type="number" min="0" oninput="RC.disc=+this.value||0;drawReceipt()"></div>
+      <div style="flex:1"><label class="f" data-i="rcPay"></label><select id="rcPay" class="inp rc-sel" onchange="RC.pay=this.value;drawReceipt()"></select></div></div>
+    <button class="btn primary" onclick="sendReceipt()" data-i="rcSend"></button>
+    <button class="btn blue" onclick="saveFile(RC.blob, RC.name)" data-i="saveImg"></button>
+    <button class="btn ghost small" onclick="closeM('mReceipt')" data-i="close"></button>
   </div>
 </div>
 <div id="mLabel" class="modal" onclick="if(event.target===this)closeM('mLabel')">
@@ -848,8 +883,7 @@ html[lang=my] body, html[lang=my] button, html[lang=my] input, html[lang=my] tex
   <div class="card center wide">
     <img id="tkImg" class="tk-img" alt="ticket">
     <p class="hint" data-i="longPress" style="margin-top:0"></p>
-    <a id="tkDl" class="btn blue" download="PureStep-queue.png" data-i="download"></a>
-    <button id="tkShare" class="btn ghost" onclick="shareTicket()" data-i="share"></button>
+    <button class="btn blue" onclick="saveFile(TK_BLOB, TK_NAME)" data-i="saveImg"></button>
     <button class="btn ghost small" onclick="closeM('mTicket')" data-i="close"></button>
   </div>
 </div>
@@ -1068,6 +1102,9 @@ Object.assign(I18N.th, {"lbModel": "รุ่นรองเท้า คู่ 
 Object.assign(I18N.en, {"lbModel": "Shoe model, pair {i}", "lbPrice": "Price", "lbTotal": "Order total {x} ฿ — enter a price per pair if you like", "lbName": "Name", "lbTel": "Tel", "lbShoe": "Model"});
 Object.assign(I18N.th, {"btSwitch": "🔄 เปลี่ยน/เชื่อมเครื่องพิมพ์ใหม่", "btForgot": "ล้างการเชื่อมต่อแล้ว กดพิมพ์ตรงเพื่อเลือกเครื่องใหม่", "lbHow": "ครั้งแรก: ปิดแอป Print Master → กดพิมพ์ตรง → เลือก M110 ที่มี <b>ขีดสัญญาณ</b> (อันที่ไม่มีขีดสัญญาณเป็นรายการค้าง เชื่อมได้แต่พิมพ์ไม่ออก) · ถ้าไม่ออก ใช้ปุ่มบันทึกรูปแล้วพิมพ์ใน Print Master"});
 Object.assign(I18N.en, {"btSwitch": "🔄 Switch / reconnect printer", "btForgot": "Connection cleared — tap direct print to pick the printer again", "lbHow": "First time: close Print Master → tap direct print → pick the M110 entry that shows a <b>signal bar</b> (entries without one are stale and connect but won’t print) · If it fails, save the images and print in Print Master"});
+Object.assign(I18N.th, {"saveImg": "💾 บันทึกรูปลงเครื่อง", "savedImg": "บันทึกแล้ว — ดูได้ในคลังรูป/ไฟล์ดาวน์โหลด", "priceH": "📋 อัตราค่าบริการ", "priceTap": "แตะที่รูปเพื่อขยาย", "prImgH": "📋 รูปอัตราค่าบริการ (หน้าส่งรองเท้า)", "prImgHint": "แสดงบนสุดของหน้าส่งข้อมูลรองเท้า ให้ลูกค้าเห็นก่อนกรอก · ใส่ได้หลายรูป เรียงตามลำดับที่อัป", "prImgAdd": "➕ อัปโหลดรูปอัตราค่าบริการ", "noPriceImg": "ยังไม่มีรูป", "rcSetH": "🧾 ใบเสร็จ", "rcInfoL": "ข้อมูลร้านบนใบเสร็จ (ที่อยู่ / เบอร์โทร / LINE)", "rcInfoPh": "เช่น 123 ถ.สุขุมวิท กรุงเทพฯ · โทร 08x-xxx-xxxx · LINE @purestep", "btnReceipt": "🧾 ใบเสร็จ", "rcH": "🧾 ใบเสร็จรับเงิน", "rcAddLine": "➕ เพิ่มรายการ", "rcDisc": "ส่วนลด (บาท)", "rcPay": "ชำระโดย", "rcSend": "💬 ส่งใบเสร็จให้ลูกค้าในแชท", "rcSent": "ส่งใบเสร็จให้ลูกค้าแล้ว", "rcItem": "รายการ", "rcQty": "จำนวน", "rcPrice": "ราคา", "payTransfer": "โอนเงิน", "payCash": "เงินสด", "payOther": "อื่น ๆ", "rcTitle": "ใบเสร็จรับเงิน", "rcNo": "เลขที่", "rcDate": "วันที่", "rcCust": "ลูกค้า", "rcQueue": "คิว", "rcSub": "รวม", "rcTotal": "ยอดชำระ", "rcPaidBy": "ชำระโดย", "rcPaid": "ชำระแล้ว", "rcThanks": "ขอบคุณที่ใช้บริการ 💛", "rcMsg": "🧾 ใบเสร็จ คิว {q}", "rcNoPrice": "ยังไม่ได้แจ้งราคา — ใส่ราคาในรายการได้เลย", "rcExpress": "ค่าลัดคิว"});
+Object.assign(I18N.en, {"saveImg": "💾 Save image", "savedImg": "Saved — check your photos/downloads", "priceH": "📋 Service prices", "priceTap": "Tap an image to enlarge", "prImgH": "📋 Price list images (drop-off page)", "prImgHint": "Shown at the top of the drop-off form so customers see it first · several images allowed, in upload order", "prImgAdd": "➕ Upload price list image", "noPriceImg": "No images yet", "rcSetH": "🧾 Receipt", "rcInfoL": "Shop details on receipts (address / phone / LINE)", "rcInfoPh": "e.g. 123 Sukhumvit Rd, Bangkok · Tel 08x-xxx-xxxx · LINE @purestep", "btnReceipt": "🧾 Receipt", "rcH": "🧾 Receipt", "rcAddLine": "➕ Add item", "rcDisc": "Discount (฿)", "rcPay": "Paid by", "rcSend": "💬 Send receipt to customer chat", "rcSent": "Receipt sent to the customer", "rcItem": "Item", "rcQty": "Qty", "rcPrice": "Price", "payTransfer": "Bank transfer", "payCash": "Cash", "payOther": "Other", "rcTitle": "Receipt", "rcNo": "No.", "rcDate": "Date", "rcCust": "Customer", "rcQueue": "Queue", "rcSub": "Subtotal", "rcTotal": "Total", "rcPaidBy": "Paid by", "rcPaid": "PAID", "rcThanks": "Thank you for choosing us 💛", "rcMsg": "🧾 Receipt, queue {q}", "rcNoPrice": "No price sent yet — enter prices in the items", "rcExpress": "Express fee"});
+Object.assign(I18N_MY, {"saveImg": "💾 ပုံသိမ်းရန်", "savedImg": "သိမ်းပြီး — ဓာတ်ပုံ/ဒေါင်းလုဒ်တွင် ကြည့်ပါ", "priceH": "📋 ဝန်ဆောင်ခ စျေးနှုန်း", "priceTap": "ပုံကို နှိပ်၍ ချဲ့ကြည့်ပါ"});
 I18N.my = I18N_MY;
 let LANG = (()=>{ try { return localStorage.getItem('ps_lang') || 'th'; } catch(e) { return 'th'; } })();
 function t(k, v){ let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : (LANG === 'my' && I18N.en[k] != null) ? I18N.en[k] : (I18N.th[k] != null ? I18N.th[k] : k); if (v) for (const x in v) s = s.split('{'+x+'}').join(v[x]); return s; }
@@ -1134,7 +1171,7 @@ const Mock = (() => {
   const ok = v => new Promise(r => setTimeout(() => r(v === undefined ? v : JSON.parse(JSON.stringify(v))), 120));
   const no = m => new Promise((_, j) => setTimeout(() => j(new Error(m)), 120));
   const cfg = () => Object.assign({}, DEFAULT_CFG, S.cfg);
-  const pub = () => { const c = cfg(); return Object.assign({}, c, { logo:c.logoId, lineQr:c.lineQrId, payQr:c.payQrId, gallery:(c.gallery||[]).map(id=>({id,url:id})), ver:c.ver||0 }); };
+  const pub = () => { const c = cfg(); return Object.assign({}, c, { logo:c.logoId, lineQr:c.lineQrId, payQr:c.payQrId, gallery:(c.gallery||[]).map(id=>({id,url:id})), priceImgs:(c.priceImgs||[]).map(id=>({id,url:id})), receiptInfo:c.receiptInfo||'', ver:c.ver||0 }); };
   const auth = tk => tokens.has(tk);
   const bump = () => { S.cfg.ver = Date.now(); save(); };
   const fmt = ts => { const d = new Date(ts); return d.toLocaleDateString('th-TH',{day:'2-digit',month:'2-digit',year:'2-digit'})+' '+d.toTimeString().slice(0,5); };
@@ -1237,10 +1274,10 @@ const Mock = (() => {
       remindDays: cfg().remindDays || 3, autoRemind: cfg().autoRemind !== false, labelW: cfg().labelW || 50, labelH: cfg().labelH || 30, lineNotify: cfg().lineNotify || DEFAULT_LN })) : no('AUTH'),
     staffSaveConfig: (tk,p) => { if(!auth(tk)) return no('AUTH'); Object.assign(S.cfg,p); if ('expressFee' in p) S.cfg.expressFee = Math.max(0, Math.round(Number(p.expressFee)||0)); ['remindDays','labelW','labelH'].forEach(k => { if (k in p) S.cfg[k] = Number(p[k]) || S.cfg[k]; }); if ('rewardNeed' in p) S.cfg.rewardNeed = Math.max(1, Math.round(Number(p.rewardNeed)||5)); if ('rewardPct' in p) S.cfg.rewardPct = Math.min(100, Math.max(1, Math.round(Number(p.rewardPct)||10))); bump(); return Mock.staffGetConfig(tk); },
     staffUploadImage: (tk,k,d) => { if(!auth(tk)) return no('AUTH');
-      if (k==='logo') S.cfg.logoId=d; else if (k==='lineQr') S.cfg.lineQrId=d; else if (k==='payQr') S.cfg.payQrId=d; else S.cfg.gallery=(S.cfg.gallery||[]).concat([d]).slice(-20);
+      if (k==='logo') S.cfg.logoId=d; else if (k==='lineQr') S.cfg.lineQrId=d; else if (k==='payQr') S.cfg.payQrId=d; else if (k==='price') S.cfg.priceImgs=(S.cfg.priceImgs||[]).concat([d]).slice(-6); else S.cfg.gallery=(S.cfg.gallery||[]).concat([d]).slice(-20);
       bump(); return Mock.staffGetConfig(tk); },
     staffRemoveImage: (tk,k,id) => { if(!auth(tk)) return no('AUTH');
-      if (k==='logo') S.cfg.logoId=''; else if (k==='lineQr') S.cfg.lineQrId=''; else if (k==='payQr') S.cfg.payQrId=''; else S.cfg.gallery=(S.cfg.gallery||[]).filter(x=>x!==id);
+      if (k==='logo') S.cfg.logoId=''; else if (k==='lineQr') S.cfg.lineQrId=''; else if (k==='payQr') S.cfg.payQrId=''; else if (k==='price') S.cfg.priceImgs=(S.cfg.priceImgs||[]).filter(x=>x!==id); else S.cfg.gallery=(S.cfg.gallery||[]).filter(x=>x!==id);
       bump(); return Mock.staffGetConfig(tk); },
     staffSetNextQueue: (tk,n) => { if(!auth(tk)) return no('AUTH'); S.nextQ = Math.max(1, Math.floor(n)); save(); return ok(S.nextQ); },
     staffChangePassword: (tk,pw) => { if(!auth(tk)) return no('AUTH'); if(String(pw).length<4) return no('PWSHORT'); S.pw=String(pw); save(); return ok(true); }
@@ -1325,6 +1362,7 @@ function applyConfig(){
   $('tagline').textContent = L('tagline');
   document.title = CFG.shopName || 'PureStep';
   const ann = L('announcement'), a = $('announce'); a.textContent = ann; a.classList.toggle('on', !!ann.trim());
+  if ($('priceBox')) renderPriceBox();
   $('gallery').innerHTML = (CFG.gallery||[]).map(g => `<img src="${esc(g.url)}" loading="lazy" onclick="zoom(this.src)" alt="">`).join('');
   $('lineTitle').textContent = L('lineTitle');
   $('lineSub').textContent = L('lineSub');
@@ -1404,7 +1442,7 @@ function renderTicket(){
 function fmtDate(ts){ return new Date(ts).toLocaleString(LOCALE(),{ day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }); }
 
 /* บัตรคิวเป็นรูปภาพ (วาดด้วย canvas) */
-let TK_BLOB = null;
+let TK_BLOB = null, TK_NAME = 'PureStep-queue.png';
 async function saveTicket(tk){
   if (!tk) return;
   try { await document.fonts.ready; } catch(e) {}
@@ -1441,12 +1479,29 @@ async function saveTicket(tk){
   x.font = F(400, 26); x.fillStyle = '#4a2710';
   models.forEach((m, i) => { x.fillText(`${i+1}. ${String(m).slice(0, 38)}`, 100, y); y += lineH; });
   x.textAlign = 'center'; x.font = F(400, 21); x.fillStyle = '#8a6542'; x.fillText('✦ ' + t('tkFoot') + ' ✦', W/2, H - 60);
-  const url = c.toDataURL('image/png');
-  $('tkImg').src = url; $('tkDl').href = url; $('tkDl').download = `PureStep-queue-${pad(tk.q)}.png`;
-  TK_BLOB = null; c.toBlob(b => TK_BLOB = b);
-  $('tkShare').style.display = navigator.canShare ? '' : 'none';
+  TK_BLOB = await canvasBlob(c); TK_NAME = `PureStep-queue-${pad(tk.q)}.png`;
+  if (!TK_BLOB && pimg) { toast(t('longPress')); }
+  $('tkImg').src = TK_BLOB ? URL.createObjectURL(TK_BLOB) : c.toDataURL('image/png');
   openM('mTicket');
 }
+/* บันทึกรูปลงเครื่อง: iPhone ใช้เมนูแชร์ (มี "บันทึกรูปภาพ"), Android/คอม ใช้ดาวน์โหลด */
+async function saveFile(blob, name){
+  if (!blob) { toast(t('longPress')); return; }
+  const file = new File([blob], name || 'PureStep.png', { type: blob.type || 'image/png' });
+  const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios && navigator.canShare && navigator.canShare({ files:[file] })) {
+    try { await navigator.share({ files:[file] }); return; } catch(e) { if (e && e.name === 'AbortError') return; }
+  }
+  try {
+    const url = URL.createObjectURL(file), a = document.createElement('a');
+    a.href = url; a.download = file.name; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 30000); toast(t('savedImg'));
+  } catch(e) {
+    if (navigator.canShare && navigator.canShare({ files:[file] })) { try { await navigator.share({ files:[file] }); return; } catch(e2) {} }
+    toast(t('longPress'));
+  }
+}
+const canvasBlob = c => new Promise(r => { try { c.toBlob(b => r(b), 'image/png'); } catch(e) { r(null); } });
 async function shareTicket(){
   try { const f = new File([TK_BLOB], 'PureStep-queue.png', { type:'image/png' });
     if (navigator.canShare && navigator.canShare({ files:[f] })) await navigator.share({ files:[f], title:'PureStep' }); else toast(t('longPress')); }
@@ -1471,7 +1526,13 @@ function openForm(){
   renderPairs(); updExpress(); go('form');
   api('getModels').then(m => MODELS = m || []).catch(()=>{});
 }
+function renderPriceBox(){
+  const P = CFG.priceImgs || [];
+  $('priceBox').innerHTML = P.length ? `<div class="card price-card"><h2>${t('priceH')}</h2><div class="price-imgs">${P.map(g => `<img src="${esc(g.url)}" alt="" onclick="zoom(this.src)" loading="lazy">`).join('')}</div>
+    <div class="muted" style="text-align:center;font-size:13px;margin-top:6px">${t('priceTap')}</div></div>` : '';
+}
 function renderFormHint(){
+  renderPriceBox();
   $('formLoginHint').innerHTML = STAFF_ADD ? '' : `<div class="card" style="padding:12px 14px;font-size:15px">${CU ? t('formHintIn',{n:esc(CU.name)}) : t('formHint')}</div>`;
   $('staffBanner').style.display = STAFF_ADD ? '' : 'none'; $('staffBanner').textContent = t('staffAddBanner');
   document.querySelectorAll('#v-form .steps').forEach(x => x.style.display = STAFF_ADD ? 'none' : '');
@@ -2000,6 +2061,7 @@ function renderStaff(){
       <div class="oc-act wrap" style="margin-top:6px"><button class="btn blue small" onclick="openThread('${esc(o.phone)}')">${t('btnChat')}</button><button class="btn ghost small" onclick="openQuote('${o.id}','${esc(o.phone)}')">${t('btnQuote')}</button>
         <label class="btn ghost small">${t('btnAfter')}<input type="file" accept="image/*" hidden onchange="addAfter(this,'${o.id}')"></label>
         <button class="btn ghost small" onclick="openLabels('${o.id}')">${t('btnLabel')}</button>
+        <button class="btn ghost small" onclick="openReceipt('${o.id}')">${t('btnReceipt')}</button>
         ${o.pay !== PAY.PAID ? `<label class="btn ghost small">${t('btnSlipAdmin')}<input type="file" accept="image/*" hidden onchange="adminSlip(this,'${o.id}')"></label>` : ''}
         ${o.status === ST.Y ? `<button class="btn ghost small" onclick="remindOrder('${o.id}')">${t('btnRemind')}</button>` : ''}</div>
       <div class="oc-act">${act}</div></div>`;
@@ -2175,6 +2237,80 @@ async function shareLabels(){
   toast(t('longPress'));
 }
 
+/* ================= RECEIPT (ใบเสร็จ) ================= */
+let RC = null;
+function openReceipt(oid){
+  const o = SQ.find(x => x.id === oid) || TH.orders.find(x => x.id === oid); if (!o) return;
+  const saved = store('ql_' + oid);
+  let lines;
+  if (saved && saved.lines && saved.lines.length) { lines = saved.lines.map(l => ({ n:l.n, q:l.q, p:l.p })); if (saved.ex) lines.push({ n:t('rcExpress'), q:1, p:saved.ex }); }
+  else {
+    const models = o.models.map(m => String(m).replace(/^\d+\.\s*/, ''));
+    lines = models.map((m, i) => ({ n:'👟 ' + m, q:1, p: models.length === 1 && o.price ? o.price - (o.express ? o.fee : 0) : 0 }));
+    if (o.express && o.fee) lines.push({ n:t('rcExpress'), q:1, p:o.fee });
+  }
+  RC = { o, lines, disc: saved ? saved.disc || 0 : 0, pay: o.src === 'staff' ? 'cash' : 'transfer', blob:null, name:`PureStep-receipt-${pad(o.q)}.png` };
+  $('rcPay').innerHTML = ['transfer','cash','other'].map(k => `<option value="${k}" ${RC.pay === k ? 'selected' : ''}>${t({transfer:'payTransfer',cash:'payCash',other:'payOther'}[k])}</option>`).join('');
+  $('rcDisc').value = RC.disc || '';
+  renderRcForm(); openM('mReceipt');
+}
+function renderRcForm(){
+  $('rcLines').innerHTML = `<div class="rc-line muted" style="font-size:12.5px"><span>${t('rcItem')}</span><span>${t('rcQty')}</span><span>${t('rcPrice')}</span><span></span></div>` +
+    RC.lines.map((l, i) => `<div class="rc-line"><input value="${esc(l.n)}" oninput="RC.lines[${i}].n=this.value;drawReceipt()">
+      <input type="number" min="1" value="${l.q}" oninput="RC.lines[${i}].q=Math.max(1,+this.value||1);drawReceipt()">
+      <input type="number" min="0" value="${l.p || ''}" placeholder="0" oninput="RC.lines[${i}].p=+this.value||0;drawReceipt()">
+      <button onclick="RC.lines.splice(${i},1);renderRcForm()">✕</button></div>`).join('') +
+    (!RC.o.price ? `<p class="hint">${t('rcNoPrice')}</p>` : '');
+  drawReceipt();
+}
+let rcTimer = null;
+function drawReceipt(){ clearTimeout(rcTimer); rcTimer = setTimeout(drawReceiptNow, 120); }
+async function drawReceiptNow(){
+  const o = RC.o, L = RC.lines.filter(l => l.n || l.p);
+  const sub = L.reduce((a, l) => a + (l.p || 0) * (l.q || 1), 0), total = Math.max(0, sub - (RC.disc || 0));
+  try { await document.fonts.ready; } catch(e) {}
+  const W = 720, info = String(CFG.receiptInfo || '').split('\n').filter(Boolean).slice(0, 3);
+  const H = 640 + L.length * 44 + info.length * 28 + (RC.disc ? 44 : 0);
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  const F = (w, s) => `${w} ${s}px Mitr, Sarabun, sans-serif`;
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  for (let i = 0; i < 15; i++) { x.fillStyle = i % 2 ? '#fff' : '#e23b33'; x.fillRect(i * 48, 0, 48, 22); }
+  const logo = await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = DEFAULT_LOGO; });
+  if (logo) { x.save(); x.beginPath(); x.arc(92, 100, 54, 0, Math.PI*2); x.clip(); x.drawImage(logo, 38, 46, 108, 108); x.restore(); }
+  x.fillStyle = '#5e3314'; x.textBaseline = 'alphabetic'; x.textAlign = 'left';
+  x.font = F(600, 34); x.fillText(CFG.shopName || 'PureStep', 166, 92);
+  x.font = F(400, 18); x.fillStyle = '#8a6542'; let iy = 122; info.forEach(s => { x.fillText(s.slice(0, 60), 166, iy); iy += 26; });
+  let y = Math.max(190, iy + 20);
+  x.fillStyle = '#9a5f2c'; x.fillRect(36, y, W - 72, 52); x.fillStyle = '#fff'; x.font = F(500, 26); x.textAlign = 'center';
+  x.fillText(t('rcTitle') + (LANG === 'th' ? ' / Receipt' : ''), W / 2, y + 36); y += 92;
+  const d = new Date(), no = 'R' + String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '-' + pad(o.q);
+  const row = (a, b, yy) => { x.textAlign = 'left'; x.fillStyle = '#9b7a5b'; x.font = F(400, 20); x.fillText(a, 48, yy); x.fillStyle = '#3b1e0a'; x.font = F(500, 22); x.fillText(b, 170, yy); };
+  row(t('rcNo'), no, y); x.textAlign = 'right'; x.fillStyle = '#3b1e0a'; x.font = F(500, 22); x.fillText(t('rcQueue') + ' ' + pad(o.q), W - 48, y); y += 36;
+  row(t('rcDate'), d.toLocaleString(LOCALE(), { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }), y); y += 36;
+  row(t('rcCust'), String(o.name).slice(0, 28) + '  ·  ' + fmtPhone(o.phone), y); y += 30;
+  x.strokeStyle = '#e2c497'; x.lineWidth = 2; x.setLineDash([8, 6]); x.beginPath(); x.moveTo(36, y); x.lineTo(W - 36, y); x.stroke(); x.setLineDash([]); y += 36;
+  L.forEach(l => { x.textAlign = 'left'; x.fillStyle = '#3b1e0a'; x.font = F(400, 22); let n = String(l.n); while (x.measureText(n).width > 430 && n.length > 3) n = n.slice(0, -2) + '…';
+    x.fillText(n + ((l.q || 1) > 1 ? '  ×' + l.q : ''), 48, y); x.textAlign = 'right'; x.font = F(500, 22); x.fillText(money((l.p || 0) * (l.q || 1)) + ' ฿', W - 48, y); y += 44; });
+  x.strokeStyle = '#e2c497'; x.beginPath(); x.moveTo(36, y - 18); x.lineTo(W - 36, y - 18); x.stroke(); y += 14;
+  if (RC.disc) { x.textAlign = 'left'; x.fillStyle = '#9b7a5b'; x.font = F(400, 21); x.fillText(t('rcDisc').replace(/\s*\(.*\)/, ''), 48, y); x.textAlign = 'right'; x.fillStyle = '#a3261d'; x.fillText('−' + money(RC.disc) + ' ฿', W - 48, y); y += 44; }
+  x.textAlign = 'left'; x.fillStyle = '#5e3314'; x.font = F(600, 28); x.fillText(t('rcTotal'), 48, y + 6); x.textAlign = 'right'; x.fillStyle = '#e23b33'; x.font = F(600, 40); x.fillText(money(total) + ' ฿', W - 48, y + 10); y += 56;
+  x.textAlign = 'left'; x.fillStyle = '#9b7a5b'; x.font = F(400, 20); x.fillText(t('rcPaidBy') + ': ' + t({transfer:'payTransfer',cash:'payCash',other:'payOther'}[RC.pay]), 48, y);
+  if (o.pay === PAY.PAID || RC.pay === 'cash') { x.save(); x.translate(W - 150, y - 4); x.rotate(-0.18); x.strokeStyle = '#2e9d5b'; x.lineWidth = 4; x.strokeRect(-92, -30, 184, 52);
+    x.fillStyle = '#2e9d5b'; x.font = F(600, 28); x.textAlign = 'center'; x.fillText('✓ ' + t('rcPaid'), 0, 6); x.restore(); }
+  x.textAlign = 'center'; x.fillStyle = '#8a6542'; x.font = F(400, 21); x.fillText(t('rcThanks'), W / 2, H - 40);
+  RC.blob = await canvasBlob(c); RC.total = total;
+  $('rcImg').src = RC.blob ? URL.createObjectURL(RC.blob) : c.toDataURL('image/png');
+}
+async function sendReceipt(){
+  if (!RC) return;
+  try { loading(true, t('upIng'), 50);
+    await new Promise(r => setTimeout(r, 200)); await drawReceiptNow();
+    const d = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(RC.blob); });
+    await api('staffSend', TOKEN, RC.o.phone, { type:'img', img:d, text:t('rcMsg',{q:pad(RC.o.q)}) });
+    loading(false); closeM('mReceipt'); toast(t('rcSent')); if (TH.phone === RC.o.phone) loadThread(true);
+  } catch(e) { loading(false); if (!authFail(e)) toast(errMsg(e), true); }
+}
+
 /* ================= DASHBOARD ================= */
 let D_RANGE = 'month';
 function rangeOf(k){
@@ -2329,6 +2465,7 @@ async function sendQuote(){
     const use = $('qUse').checked && $('qReward').style.display !== 'none';
     const d = use ? Math.round((Number($('qBase').value) || 0) * (Number(CFG.rewardPct) || 10) / 100) : 0;
     await api('staffSend', TOKEN, Q_PHONE, { type:'quote', oid:Q_OID, amount:Math.max(1, amt - d), text:$('qNote').value.trim(), useReward:use, discount:d });
+    store('ql_' + Q_OID, { lines: Q_LINES.map(l => ({ n:l.full || l.name, q:l.qty, p:l.price })), ex:Q_LINES.length ? Q_EX : 0, disc:d, total:Math.max(1, amt - d) });
     $('qBase').value = '';
     loading(false); closeM('mQuote'); toast(t('updated'));
     if (TH.phone === Q_PHONE) loadThread(true); if (sTab === 'q') loadStaff();
@@ -2347,8 +2484,9 @@ const NOQR_SVG = () => 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="h
 function fillSettings(imagesOnly){
   const c = SCFG;
   $('sLogo').src = c.logo || DEFAULT_LOGO; $('sQr').src = c.lineQr || NOQR_SVG(); $('sPayQr').src = c.payQr || NOQR_SVG();
-  fillGallery(c);
-  if (imagesOnly) return;   // อัปรูปแล้ว ไม่ทับข้อความที่กำลังพิมพ์ค้างไว้
+  fillGallery(c); fillPriceImgs(c);
+  if (imagesOnly) return;
+  $('sReceiptInfo').value = c.receiptInfo || '';   // อัปรูปแล้ว ไม่ทับข้อความที่กำลังพิมพ์ค้างไว้
   QUICK = (c.quickReplies || QUICK || []).slice(); renderQuickEdit(); renderQuickBar();
   const map = { sShop:'shopName', sTag:'tagline', sTagEn:'taglineEn', sTagMy:'taglineMy', sAnn:'announcement', sAnnEn:'announcementEn', sAnnMy:'announcementMy', sExFee:'expressFee', sPayName:'payName',
     sRNeed:'rewardNeed', sRPct:'rewardPct', sLineTitleMy:'lineTitleMy', sLineSubMy:'lineSubMy', sLineBodyMy:'lineBodyMy',
@@ -2368,6 +2506,19 @@ async function moveGal(i, d){
   [ids[i], ids[j]] = [ids[j], ids[i]];
   const old = SCFG.gallery.slice(); [SCFG.gallery[i], SCFG.gallery[j]] = [SCFG.gallery[j], SCFG.gallery[i]]; fillSettings(true);
   try { afterCfg(await api('staffSetGallery', TOKEN, ids), true); } catch(e) { SCFG.gallery = old; fillSettings(true); if (!authFail(e)) toast(errMsg(e), true); }
+}
+function fillPriceImgs(c){
+  const P = c.priceImgs || [];
+  $('sPriceImgs').innerHTML = P.map((g, i) => `<div class="ph"><img src="${esc(g.url)}" onclick="zoom(this.src)" alt=""><span class="no">${i+1}</span><button onclick="rmImg('price','${esc(g.id)}')">×</button></div>`).join('') || `<span class="muted" style="grid-column:1/-1">${t('noPriceImg')}</span>`;
+}
+async function upPriceImgs(inp){
+  const files = [...inp.files]; inp.value = '';
+  try { for (let i = 0; i < files.length; i++) { loading(true, `${t('upIng')} ${i+1}/${files.length}`, (i+1)/files.length*100);
+      const d = await compress(files[i], LIVE ? 1600 : 700, LIVE ? 0.85 : 0.65);
+      afterCfg(await api('staffUploadImage', TOKEN, 'price', d), true); }
+    if (files.length) toast(t('upOk'));
+  } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
 }
 function fillGallery(c){
   const G = c.gallery || [];
@@ -2393,7 +2544,7 @@ async function upGallery(inp){
   loading(false);
 }
 async function rmImg(kind, id){
-  if (kind === 'gallery' && !ask(t('delGal'))) return;
+  if ((kind === 'gallery' || kind === 'price') && !ask(t('delGal'))) return;
   try { afterCfg(await api('staffRemoveImage', TOKEN, kind, id || ''), true); toast(t('updated')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 async function saveSettings(){
@@ -2403,7 +2554,7 @@ async function saveSettings(){
     expressFee:$('sExFee').value, payName:$('sPayName').value, lineUrl:$('sLineUrl').value.trim(), lineId:$('sLineId').value,
     lineTitle:$('sLineTitle').value, lineTitleEn:$('sLineTitleEn').value, lineSub:$('sLineSub').value, lineSubEn:$('sLineSubEn').value,
     lineBody:$('sLineBody').value, lineBodyEn:$('sLineBodyEn').value,
-    remindDays:$('sRemindDays').value, autoRemind:$('sAutoRemind').checked, labelW:$('sLabelW').value, labelH:$('sLabelH').value, appUrl:$('sAppUrl').value,
+    receiptInfo:$('sReceiptInfo').value, remindDays:$('sRemindDays').value, autoRemind:$('sAutoRemind').checked, labelW:$('sLabelW').value, labelH:$('sLabelH').value, appUrl:$('sAppUrl').value,
     lineNotify: Object.fromEntries([...document.querySelectorAll('[data-ln]')].map(x => [x.dataset.ln, x.checked])) };
   try { loading(true, t('saving'), 60); afterCfg(await api('staffSaveConfig', TOKEN, p)); toast(t('saved')); }
   catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
