@@ -15,7 +15,7 @@ if (!/googleusercontent\.com|script\.google\.com/.test(location.hostname) && loc
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="PureStep">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=Sarabun:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --wood:#9a5f2c; --wood2:#c4853f; --wood-d:#5e3314; --ink:#4a2710;
@@ -309,6 +309,130 @@ textarea.inp{min-height:90px;resize:vertical}
 .os.me{border-color:var(--blue);background:#f2f6ff}
 .os h3{margin:0 0 4px;font-size:16px}
 .chip-sm{font-size:12px;background:#e8e1d8;border-radius:999px;padding:1px 8px;color:#6d5a48}
+
+/* services / guide / dashboard / labels */
+.tabs{gap:6px}.tabs button{font-size:14px;padding:10px 4px;white-space:nowrap}
+.svc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.svc{border:2px solid #e2c497;background:#fff;border-radius:999px;padding:7px 13px;font-size:14.5px;cursor:pointer;color:var(--wood-d);font-family:'Mitr',sans-serif;min-height:38px}
+.svc.on{background:var(--wood2);border-color:var(--wood2);color:#fff}
+.svc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.svc-tag{background:#f3e4c9;color:var(--wood-d);border-radius:999px;padding:1px 9px;font-size:12.5px;font-family:'Mitr',sans-serif}
+.g-tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0 6px}
+.g-tabs button{flex:none;border:0;border-radius:12px;padding:8px 12px;background:#f3dcb4;color:var(--wood-d);font-family:'Mitr',sans-serif;font-size:14px;cursor:pointer;position:relative}
+.g-tabs button.on{background:var(--wood2);color:#fff}
+.g-tabs button.want:after{content:"";position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.g-note{background:#fff1c9;border-radius:10px;padding:6px 10px;font-size:13px;color:#7a4a00;margin-bottom:6px}
+.g-grp{font-family:'Mitr',sans-serif;font-size:13px;color:#9a5f2c;margin:8px 0 3px}
+.g-item{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #f0dcb8;border-radius:12px;padding:7px 10px;margin:4px 0;cursor:pointer;font-size:14.5px}
+.g-item.on{border-color:var(--green);background:#effaf3}
+.g-item .pr{margin-left:auto;font-family:'Mitr',sans-serif;color:var(--wood-d);white-space:nowrap}
+.q-lines{margin:8px 0;border-top:2px dashed #e2c497;padding-top:6px}
+.q-line{display:flex;align-items:center;gap:6px;margin:5px 0;font-size:14px}
+.q-line span{flex:1;min-width:0}
+.q-line input{width:64px;border:2px solid #e2c497;border-radius:10px;padding:5px 6px;font-size:15px;text-align:right}
+.q-line input.qty{width:46px;text-align:center}
+.q-line button{border:0;background:#ffe1dd;color:#a3261d;border-radius:8px;width:30px;height:30px;cursor:pointer}
+.q-sum{font-family:'Mitr',sans-serif;text-align:right;color:var(--wood-d)}
+.staff-tools{display:flex;gap:8px;margin-top:10px}.staff-tools .btn{margin:0}
+.oc-act.wrap{flex-wrap:wrap}.oc-act.wrap .btn{flex:1 1 40%;white-space:nowrap;font-size:14.5px}
+.stale{display:inline-block;background:#ffe1dd;color:#a3261d;border-radius:999px;padding:1px 9px;font-size:12.5px;font-family:'Mitr',sans-serif;margin-left:4px}
+.staff-banner{background:#2f6fdb;color:#fff;border-radius:16px;padding:10px 14px;margin:10px 0;font-family:'Mitr',sans-serif}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.ba figure{margin:0;text-align:center;font-size:12.5px;color:#8a6542}
+.ba img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:2px solid #f0dcb8;cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kpi{background:#fff;border:2px solid #f0dcb8;border-radius:16px;padding:10px 12px}
+.kpi small{display:block;color:#8a6542;font-size:12.5px}
+.kpi b{font-family:'Mitr',sans-serif;font-weight:500;font-size:22px;color:var(--wood-d)}
+.bars{display:flex;align-items:flex-end;gap:3px;height:140px;padding-top:10px;border-bottom:2px solid #e2c497}
+.bars div{flex:1;min-width:0;background:linear-gradient(#f05a4f,#e23b33);border-radius:5px 5px 0 0;position:relative}
+.bars div:hover:after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#3b1e0a;color:#fff;font-size:11px;padding:2px 6px;border-radius:6px;white-space:nowrap}
+.bar-lbl{display:flex;justify-content:space-between;font-size:11.5px;color:#8a6542;margin-top:3px}
+.hrow{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}
+.hrow span:first-child{width:96px;flex:none}
+.hrow i{display:block;height:14px;border-radius:7px;background:var(--wood2)}
+.lbl-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}
+.lbl-grid img{border:1px solid #ccc;border-radius:4px;background:#fff;max-width:100%}
+.line-card{background:linear-gradient(#effaf3,#fff);border:2.5px solid #9fd9b8}
+.code{font-family:'Mitr',sans-serif;font-size:24px;letter-spacing:2px;background:#fff;border:2px dashed var(--line);border-radius:12px;padding:6px 12px;display:inline-block;color:#167a43}
+.tog{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14.5px;cursor:pointer}
+.tog input{width:20px;height:20px}
+.ge-tab{margin:10px 0;padding:10px;border:2px solid #f0dcb8;border-radius:14px;background:#fff}
+.ge-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) 64px 64px 34px;gap:4px;margin:4px 0}
+.ge-row input{border:1.5px solid #e2c497;border-radius:8px;padding:5px 6px;font-size:13.5px;min-width:0}
+.ge-row button{border:0;background:#ffe1dd;border-radius:8px;cursor:pointer}
+/* ===== print form ===== */
+#printArea{display:none}
+.pf *{box-sizing:border-box}
+@media print{
+  html,body{background:#fff!important}
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block!important}
+}
+.pf{width:275mm;box-sizing:border-box;margin:0 auto;font-family:'Sarabun',sans-serif;color:#3b1e0a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pf-awn{height:9mm;background:repeating-linear-gradient(90deg,#e23b33 0 12mm,#fff 12mm 24mm);border:1.5px solid #9a5f2c;border-bottom:0;border-radius:4mm 4mm 0 0}
+.pf-head{display:flex;align-items:center;gap:5mm;border:1.5px solid #9a5f2c;border-top:0;padding:3mm 5mm;background:#fff7e8;
+  background-image:repeating-linear-gradient(90deg,rgba(154,95,44,.05) 0 1px,transparent 1px 22mm)}
+.pf-head img{width:24mm;height:24mm;border-radius:50%;border:1mm solid #f0cf98;object-fit:cover}
+.pf-title{flex:1}
+.pf-title h1{font-family:'Mitr',sans-serif;font-weight:600;font-size:22pt;margin:0;color:#5e3314;line-height:1.1}
+.pf-title div{font-family:'Mitr',sans-serif;font-size:12.5pt;color:#9a5f2c}
+.pf-meta{font-size:11pt;line-height:2}
+.pf-meta span{display:inline-block;min-width:38mm;border-bottom:1px dotted #9a5f2c;text-align:center;font-family:'Mitr',sans-serif}
+table.pf-t{width:100%;border-collapse:collapse;margin-top:3mm;font-size:11pt;table-layout:fixed}
+.pf-t th{background:#9a5f2c;color:#fff;font-family:'Mitr',sans-serif;font-weight:500;padding:2mm 1.5mm;border:1px solid #7f4a20;font-size:10.5pt;line-height:1.25}
+.pf-t th small{display:block;font-size:8pt;opacity:.85;font-weight:400}
+.pf-t td{border:1px solid #c9a36d;height:8.6mm;padding:0 2mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-t tr:nth-child(even) td{background:#fff7e8}
+.pf-t td.n{text-align:center;font-family:'Mitr',sans-serif;color:#e23b33;font-weight:500}
+.pf-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:4mm;font-size:10.5pt;color:#7a4a20}
+.pf-sign{text-align:center;min-width:60mm}
+.pf-sign div{border-bottom:1px dotted #7a4a20;height:10mm;margin-bottom:1mm}
+/* Burmese */
+html[lang=my] body, html[lang=my] button, html[lang=my] input, html[lang=my] textarea, html[lang=my] h1, html[lang=my] h2, html[lang=my] h3, html[lang=my] .btn, html[lang=my] .mitr{font-family:'Noto Sans Myanmar','Padauk','Myanmar Text','Sarabun',sans-serif!important;line-height:1.7}
+.lang button{padding:4px 9px}
+/* stamp card */
+.stamp-card{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 5px 0 #6e3d17,0 10px 22px rgba(40,15,0,.28);margin:14px 0 6px;border:3px solid #e2b97f;background:#f6e3c4}
+.stamp-card img.bg{display:block;width:100%}
+.slot{position:absolute;width:12.4%;aspect-ratio:1;transform:translate(-50%,-50%);top:63.3%;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.slot img{width:100%;height:100%;border-radius:50%;opacity:.5;animation:stampIn .5s ease both}
+.slot.new img{animation:stampIn .7s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes stampIn{from{transform:scale(1.8) rotate(-30deg);opacity:0}to{transform:scale(1) rotate(-8deg);opacity:.5}}
+.stamp-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:14px;background:var(--cream)}
+.stamp-row span{width:54px;height:54px;border-radius:50%;border:3px dashed #d9b98a;display:flex;align-items:center;justify-content:center;font-family:'Mitr',sans-serif;color:#c9a36d;position:relative}
+.stamp-row span img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;opacity:.5}
+.pts-box{padding:12px 14px}
+.pts-big{font-family:'Mitr',sans-serif;font-size:20px;color:var(--wood-d)}
+.pts-hist{font-size:13.5px;color:#8a6542;margin-top:8px;max-height:130px;overflow:auto}
+.pts-hist div{display:flex;justify-content:space-between;border-bottom:1px dashed #f0dcb8;padding:3px 0}
+.reward{background:linear-gradient(#fff6d6,#ffe9a8);border:2px solid var(--gold);border-radius:14px;padding:8px 12px;margin-top:8px;font-family:'Mitr',sans-serif;color:#7a4a00}
+.btn.gold{background:linear-gradient(#ffd45e,#f0a400);color:#5a3300;box-shadow:0 4px 0 #b97a00}
+.pts-tag{display:inline-block;background:#fff1c2;color:#8a5a00;border-radius:999px;padding:2px 10px;font-size:13px;font-family:'Mitr',sans-serif}
+/* stickers + quick replies */
+.msg.stk{background:none!important;border:0!important;padding:0;max-width:150px}
+.msg.stk img.sticker{width:150px;height:150px;max-width:none;border-radius:0;background:none;cursor:default;margin:0}
+.panel{display:none;border-top:2px solid #f0dcb8;background:#fff8ec;padding:8px 10px;max-height:240px;overflow:auto}
+.panel.on{display:block}
+.stk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stk-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;position:sticky;top:-8px;background:#fff8ec;z-index:1;padding-top:2px}
+.stk-tabs button{flex:none;border:0;border-radius:999px;padding:6px 12px;background:#f3dcb4;color:var(--wood-d);font-family:'Mitr',sans-serif;font-size:13.5px;cursor:pointer}
+.stk-tabs button.on{background:var(--wood2);color:#fff}
+.panel{max-height:300px}
+.stk-grid img{width:100%;aspect-ratio:1;cursor:pointer;border-radius:12px;transition:.1s}
+.stk-grid img:active{transform:scale(.92)}
+.qr-chips{display:flex;flex-direction:column;gap:6px}
+.qr-chip{border:1.5px solid #e2c497;background:#fff;border-radius:14px;padding:8px 12px;text-align:left;font-size:14.5px;cursor:pointer;color:var(--ink)}
+.qr-chip:hover{background:var(--cream2)}
+.qr-tools{display:flex;gap:6px;margin-top:6px}
+.qr-tools .btn{margin:0}
+.qr-edit{display:flex;gap:6px;align-items:flex-start;margin:6px 0}
+.qr-edit textarea{flex:1;min-height:46px}
+.qr-edit .mini{flex:none;width:40px;height:40px;border-radius:12px;border:0;background:#fff3dc;box-shadow:0 2px 0 #c9a36d;cursor:pointer;font-size:16px}
+.g-edit .ph .mv{position:absolute;top:auto;right:auto;bottom:4px;width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:var(--wood2);color:#fff;font-size:14px;line-height:1;cursor:pointer}
+.g-edit .ph .mv.l{left:4px}.g-edit .ph .mv.r{right:4px;left:auto}
+.g-edit .ph .no{position:absolute;top:4px;left:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;font-size:12px;padding:0 7px}
+.tk-photo{width:150px;height:150px;object-fit:cover;border-radius:18px;border:4px solid #fff;box-shadow:0 0 0 3px #e2b97f;margin:6px auto 2px;display:block}
+.mo-photo{width:56px;height:56px;border-radius:12px;object-fit:cover;flex:none;border:2px solid #f0dcb8;cursor:pointer}
 </style>
 </head>
 <body>
@@ -319,6 +443,7 @@ textarea.inp{min-height:90px;resize:vertical}
     <div class="lang" role="group" aria-label="Language">
       <button id="lgTh" onclick="setLang('th')">ไทย</button>
       <button id="lgEn" onclick="setLang('en')">EN</button>
+      <button id="lgMy" onclick="setLang('my')">မြန်မာ</button>
     </div>
   </div>
 </header>
@@ -355,6 +480,7 @@ textarea.inp{min-height:90px;resize:vertical}
   <section id="v-form" class="view">
     <div class="steps"><span class="step on" data-i="step1"></span><span class="step" data-i="step2"></span><span class="step" data-i="step3"></span></div>
     <div id="formLoginHint"></div>
+    <div id="staffBanner" class="staff-banner" style="display:none"></div>
     <div class="card">
       <h2 data-i="custInfo"></h2>
       <label class="f" for="fName" data-i="name"></label>
@@ -379,7 +505,7 @@ textarea.inp{min-height:90px;resize:vertical}
       <span class="ex-total" id="exTotal"></span>
     </label>
     <button class="btn primary big" onclick="submitForm()" data-i="confirm"></button>
-    <button class="btn ghost" onclick="go('home')" data-i="back"></button>
+    <button class="btn ghost" onclick="if(STAFF_ADD){STAFF_ADD=false;enterStaff()}else go('home')" data-i="back"></button>
   </section>
 
   <!-- LINE -->
@@ -406,11 +532,13 @@ textarea.inp{min-height:90px;resize:vertical}
       <div class="ticket-top"></div>
       <div class="ticket-head" data-i="ticketHead"></div>
       <div class="ticket-no" id="tNo">–</div>
+      <div id="tPhoto"></div>
       <div id="tEx"></div>
       <div id="tStatus" class="status-badge st-r"></div>
       <div id="tAhead" class="ahead"></div>
       <div id="tCel" class="ready-cel" data-i="cel"></div>
       <div id="tInfo" class="ticket-info"></div>
+      <div id="tLine" style="padding:0 16px"></div>
       <div style="padding:0 16px 14px"><button class="btn blue" onclick="saveTicket(curTicketObj())" data-i="saveTk"></button></div>
     </div>
     <button class="btn ghost" onclick="go('home')" data-i="home"></button>
@@ -455,6 +583,9 @@ textarea.inp{min-height:90px;resize:vertical}
     </div>
     <button class="btn blue big" onclick="openChat()"><span data-i="chatShop"></span><span class="badge" id="chatBadge2"></span></button>
     <button class="btn primary" onclick="openForm()" data-i="cta"></button>
+    <div id="aLine"></div>
+    <h2 style="color:#fff6e3;text-shadow:0 2px 0 var(--wood-d);margin:18px 4px 0" data-i="ptsH"></h2>
+    <div id="aPoints"></div>
     <h2 style="color:#fff6e3;text-shadow:0 2px 0 var(--wood-d);margin:18px 4px 0" data-i="myOrders"></h2>
     <div id="aOrders"></div>
     <button class="btn ghost" onclick="go('home')" data-i="home"></button>
@@ -467,18 +598,22 @@ textarea.inp{min-height:90px;resize:vertical}
       <div id="chatList" class="chat-list"></div>
       <div class="composer">
         <label class="ic-btn cam" title="photo">📷<input type="file" accept="image/*" hidden onchange="sendImg(this,'C')"></label>
+        <button class="ic-btn cam" onclick="togglePanel('cStk')" aria-label="stickers">😊</button>
         <textarea id="cText" rows="1" data-ph="typeMsg" onkeydown="if(event.key==='Enter'&&!event.shiftKey&&!isMobile()){event.preventDefault();sendText('C')}"></textarea>
         <button class="ic-btn send" onclick="sendText('C')" aria-label="send">➤</button>
       </div>
+      <div id="cStk" class="panel"><div class="stk-tabs" id="cStkTabs"></div><div class="stk-grid" id="cStkGrid"></div></div>
     </div>
   </section>
 
   <!-- STAFF -->
   <section id="v-staff" class="view">
     <div class="staff-head"><h2 data-i="backoffice"></h2><button class="staff-btn" onclick="logout()" data-i="logout"></button></div>
+    <div class="staff-tools"><button class="btn primary small" onclick="openStaffAdd()" data-i="addQ"></button><button class="btn ghost small" onclick="openPrint()" data-i="prBtn"></button></div>
     <div class="tabs">
       <button id="tabQ" class="on" onclick="staffTab('q')" data-i="tabQ"></button>
       <button id="tabC" onclick="staffTab('c')" style="position:relative"><span data-i="tabC"></span><span class="badge" id="staffChatBadge"></span></button>
+      <button id="tabD" onclick="staffTab('d')" data-i="tabD"></button>
       <button id="tabS" onclick="staffTab('s')" data-i="tabS"></button>
     </div>
 
@@ -501,14 +636,54 @@ textarea.inp{min-height:90px;resize:vertical}
           <div id="sChatList" class="chat-list"></div>
           <div class="composer">
             <label class="ic-btn cam">📷<input type="file" accept="image/*" hidden onchange="sendImg(this,'S')"></label>
+            <button class="ic-btn cam" onclick="togglePanel('sStk')" aria-label="stickers">😊</button>
+            <button class="ic-btn cam" onclick="togglePanel('sQr')" aria-label="quick replies">⚡</button>
             <textarea id="sText" rows="1" data-ph="typeMsg" onkeydown="if(event.key==='Enter'&&!event.shiftKey&&!isMobile()){event.preventDefault();sendText('S')}"></textarea>
             <button class="ic-btn send" onclick="sendText('S')" aria-label="send">➤</button>
           </div>
+          <div id="sStk" class="panel"><div class="stk-tabs" id="sStkTabs"></div><div class="stk-grid" id="sStkGrid"></div></div>
+          <div id="sQr" class="panel"><div class="qr-chips" id="qrChips"></div>
+            <div class="qr-tools"><button class="btn ghost small" onclick="saveCurAsQuick()" data-i="qrSaveCur"></button><button class="btn ghost small" style="flex:.5" onclick="staffTab('s');setTimeout(()=>$('qrCard').scrollIntoView({behavior:'smooth'}),300)">⚙️</button></div></div>
         </div>
       </div>
     </div>
 
+    <div id="paneD" style="display:none">
+      <div class="filters" id="dRange"></div>
+      <div id="dBody"></div>
+    </div>
+
     <div id="paneS" style="display:none">
+      <div class="card line-card">
+        <h2 data-i="lnH"></h2>
+        <div id="lnStatus" class="muted"></div>
+        <label class="f" data-i="lnToken"></label>
+        <div class="inline"><input id="lnToken" class="inp" type="password" autocomplete="off" data-ph="lnTokenPh"><button class="btn ghost small" onclick="saveLineToken()" data-i="set"></button></div>
+        <p class="hint" data-i="lnTokenHint"></p>
+        <div id="lnAdmin"></div>
+        <label class="f" data-i="lnWhen"></label>
+        <div id="lnToggles"></div>
+        <label class="f" data-i="appUrlL"></label><input id="sAppUrl" class="inp" placeholder="https://beebee-bb.github.io/purestep/">
+        <button class="btn line small" onclick="lineTest()" data-i="lnTest"></button>
+      </div>
+
+      <div class="card">
+        <h2 data-i="gH"></h2>
+        <p class="hint" data-i="gHint" style="margin-top:0"></p>
+        <div id="gEdit"></div>
+        <button class="btn primary small" onclick="saveGuide()" data-i="gSave"></button>
+      </div>
+
+      <div class="card">
+        <h2 data-i="rmH"></h2>
+        <label class="tog"><input type="checkbox" id="sAutoRemind"><span data-i="rmAuto"></span></label>
+        <label class="f" data-i="rmDays"></label><input id="sRemindDays" class="inp" type="number" min="1" max="60">
+        <h2 style="margin-top:16px" data-i="lbH"></h2>
+        <div class="row2"><div style="flex:1"><label class="f" data-i="lbW"></label><input id="sLabelW" class="inp" type="number" min="20" max="100"></div>
+          <div style="flex:1"><label class="f" data-i="lbHh"></label><input id="sLabelH" class="inp" type="number" min="15" max="150"></div></div>
+        <p class="hint" data-i="lbHint"></p>
+      </div>
+
       <div class="card">
         <h2 data-i="sLogoH"></h2>
         <div class="set-row">
@@ -521,10 +696,13 @@ textarea.inp{min-height:90px;resize:vertical}
         <label class="f" data-i="shopName"></label><input id="sShop" class="inp">
         <label class="f"><span data-i="tagline"></span> <span class="sub2">ไทย</span></label><input id="sTag" class="inp">
         <label class="f"><span data-i="tagline"></span> <span class="sub2">English</span></label><input id="sTagEn" class="inp">
+        <label class="f"><span data-i="tagline"></span> <span class="sub2">မြန်မာ</span></label><input id="sTagMy" class="inp">
         <label class="f"><span data-i="ann"></span> <span class="sub2">ไทย</span></label>
         <textarea id="sAnn" class="inp" placeholder="🎉 โปรเดือนนี้ สปารองเท้า 2 คู่ ลด 10%"></textarea>
         <label class="f"><span data-i="ann"></span> <span class="sub2">English</span></label>
         <textarea id="sAnnEn" class="inp" placeholder="🎉 This month: 10% off when you spa 2 pairs"></textarea>
+        <label class="f"><span data-i="ann"></span> <span class="sub2">မြန်မာ</span></label>
+        <textarea id="sAnnMy" class="inp"></textarea>
       </div>
 
       <div class="card">
@@ -537,6 +715,21 @@ textarea.inp{min-height:90px;resize:vertical}
           </div>
         </div>
         <label class="f" data-i="payName"></label><input id="sPayName" class="inp" placeholder="PromptPay 08x-xxx-xxxx · ชื่อบัญชี">
+      </div>
+
+      <div class="card" id="qrCard">
+        <h2 data-i="qrH"></h2>
+        <p class="hint" data-i="qrHint" style="margin-top:0"></p>
+        <div id="qrList"></div>
+        <div class="qr-edit"><textarea id="qrNew" class="inp" data-ph="qrNewPh"></textarea><button class="mini" onclick="qrAddNew()">➕</button></div>
+        <button class="btn primary small" onclick="saveQuick()" data-i="qrSave"></button>
+      </div>
+
+      <div class="card">
+        <h2 data-i="ptsSetH"></h2>
+        <div class="row2"><div style="flex:1"><label class="f" data-i="ptsNeedL"></label><input id="sRNeed" class="inp" type="number" min="1"></div>
+          <div style="flex:1"><label class="f" data-i="ptsPctL"></label><input id="sRPct" class="inp" type="number" min="1" max="100"></div></div>
+        <p class="hint" data-i="ptsCardNote"></p>
       </div>
 
       <div class="card">
@@ -558,10 +751,13 @@ textarea.inp{min-height:90px;resize:vertical}
         <label class="f" data-i="lineIdL"></label><input id="sLineId" class="inp" placeholder="@purestep">
         <label class="f"><span data-i="lTitle"></span> <span class="sub2">ไทย</span></label><input id="sLineTitle" class="inp">
         <label class="f"><span data-i="lTitle"></span> <span class="sub2">English</span></label><input id="sLineTitleEn" class="inp">
+        <label class="f"><span data-i="lTitle"></span> <span class="sub2">မြန်မာ</span></label><input id="sLineTitleMy" class="inp">
         <label class="f"><span data-i="lSub"></span> <span class="sub2">ไทย</span></label><input id="sLineSub" class="inp">
         <label class="f"><span data-i="lSub"></span> <span class="sub2">English</span></label><input id="sLineSubEn" class="inp">
+        <label class="f"><span data-i="lSub"></span> <span class="sub2">မြန်မာ</span></label><input id="sLineSubMy" class="inp">
         <label class="f"><span data-i="lBody"></span> <span class="sub2">ไทย</span></label><textarea id="sLineBody" class="inp" style="min-height:140px"></textarea>
         <label class="f"><span data-i="lBody"></span> <span class="sub2">English</span></label><textarea id="sLineBodyEn" class="inp" style="min-height:140px"></textarea>
+        <label class="f"><span data-i="lBody"></span> <span class="sub2">မြန်မာ</span></label><textarea id="sLineBodyMy" class="inp" style="min-height:140px"></textarea>
       </div>
 
       <div class="card">
@@ -569,6 +765,7 @@ textarea.inp{min-height:90px;resize:vertical}
         <div id="sGallery" class="g-edit"></div>
         <label class="btn blue small"><span data-i="addGal"></span><input type="file" accept="image/*" multiple hidden onchange="upGallery(this)"></label>
         <p class="hint" data-i="galHint"></p>
+        <p class="hint" data-i="galOrderHint"></p>
       </div>
 
       <button class="btn primary big" onclick="saveSettings()" data-i="save"></button>
@@ -586,6 +783,33 @@ textarea.inp{min-height:90px;resize:vertical}
   </section>
 </main>
 
+<!-- print form options -->
+<div id="mPrint" class="modal" onclick="if(event.target===this)closeM('mPrint')">
+  <div class="card">
+    <h2 data-i="prH"></h2>
+    <label class="f" data-i="prMode"></label>
+    <div class="seg" style="margin-bottom:6px"><button id="prBlank" class="on" onclick="prMode('blank')" data-i="prBlankL"></button><button id="prFill" onclick="prMode('fill')" data-i="prFillL"></button></div>
+    <div id="prDateBox" style="display:none"><label class="f" data-i="prDate"></label><input id="prDate" class="inp" type="date"></div>
+    <label class="f" data-i="prRows"></label><input id="prRows" class="inp" type="number" min="5" max="40" value="15">
+    <label class="f" data-i="prSpot"></label><input id="prSpot" class="inp" data-ph="prSpotPh">
+    <button class="btn primary" onclick="doPrint()" data-i="prGo"></button>
+    <button class="btn ghost small" onclick="closeM('mPrint')" data-i="cancel"></button>
+  </div>
+</div>
+<div id="mLabel" class="modal" onclick="if(event.target===this)closeM('mLabel')">
+  <div class="card center wide">
+    <h2 data-i="lbH2"></h2>
+    <div id="lblGrid" class="lbl-grid"></div>
+    <div id="lblForm" style="text-align:left"></div>
+    <p class="hint" data-i="lbHow"></p>
+    <div id="btBox"></div>
+    <button class="btn blue" onclick="shareLabels()" data-i="lbShare"></button>
+    <button class="btn ghost" onclick="printLabels()" data-i="lbPrint"></button>
+    <button class="btn ghost small" onclick="closeM('mLabel')" data-i="close"></button>
+  </div>
+</div>
+<style id="pageStyle">@page{size:A4 landscape;margin:9mm}</style>
+<div id="printArea"></div>
 <!-- staff login -->
 <div id="mLogin" class="modal" onclick="if(event.target===this)closeM('mLogin')">
   <div class="card center">
@@ -597,11 +821,18 @@ textarea.inp{min-height:90px;resize:vertical}
 </div>
 <!-- quote (staff) -->
 <div id="mQuote" class="modal" onclick="if(event.target===this)closeM('mQuote')">
-  <div class="card">
+  <div class="card wide" style="max-width:480px">
     <h2 data-i="quoteH"></h2>
     <div id="qOrderTxt" class="muted"></div>
+    <div class="g-tabs" id="qgTabs"></div>
+    <div id="qgBody"></div>
+    <div class="q-lines" id="qLines"></div>
     <label class="f" data-i="amount"></label>
-    <input id="qAmt" class="inp" type="number" inputmode="numeric" min="1" placeholder="0">
+    <input id="qAmt" class="inp" type="number" inputmode="numeric" min="1" placeholder="0" oninput="calcReward()">
+    <div id="qReward" style="display:none" class="reward">
+      <label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="qUse" onchange="calcReward()" style="width:22px;height:22px;flex:none;margin-top:3px"><span id="qUseTxt"></span></label>
+      <div id="qRewardBox" style="display:none"><label class="f" data-i="rewardBase"></label><input id="qBase" class="inp" type="number" inputmode="numeric" oninput="calcReward()"><div id="qCalc" style="margin-top:6px"></div></div>
+    </div>
     <label class="f" data-i="quoteNote"></label>
     <textarea id="qNote" class="inp" data-ph="quoteNotePh"></textarea>
     <button class="btn primary" onclick="sendQuote()" data-i="sendQuote"></button>
@@ -653,7 +884,12 @@ const ST = { R:'รับเข้าแล้ว', Y:'พร้อมส่ง'
 const PAY = { WAIT:'รอชำระ', SENT:'แจ้งโอนแล้ว', PAID:'ชำระแล้ว' };
 const DEFAULT_CFG = {
   shopName:'PureStep', tagline:'ซัก • ซ่อม • สปา • ฟื้นฟูรองเท้า', taglineEn:'Cleaning • Repair • Spa • Restoration',
-  announcement:'', announcementEn:'', expressFee:50, pinLen:6,
+  announcement:'', announcementEn:'', announcementMy:'', expressFee:50, pinLen:6, rewardNeed:5, rewardPct:10,
+  taglineMy:'ဖိနပ် ဆေးကြော • ပြုပြင် • စပါ • ပြန်လည်မွမ်းမံ',
+  lineTitleMy:'PureStep ကို LINE မှာ မိတ်ဆွေအဖြစ် ထည့်ပါ 💛',
+  lineSubMy:'QR ကို စကင်ဖတ်ပါ သို့မဟုတ် အောက်ပါခလုတ်ကို နှိပ်ပါ — အထူးအခွင့်အရေးများ လက်မလွတ်စေရန်',
+  lineBodyMy:'🎁 ဝန်ဆောင်မှုသုံးတိုင်း ပွိုင့်စုပြီး လျှော့စျေးနှင့် အခမဲ့ဝန်ဆောင်မှု လဲယူပါ\n📦 သင့်ဖိနပ်အခြေအနေကို ခြေရာခံပြီး အဆင်သင့်ဖြစ်တာနဲ့ ချက်ချင်းသိပါ\n💎 LINE မိတ်ဆွေများအတွက်သာ အထူးအခွင့်အရေးများ\n📢 ပရိုမိုးရှင်းနှင့် ဆိုင်သတင်းများကို လက်မလွတ်ပါနဲ့',
+  quickReplies:['สวัสดีค่ะ ร้าน PureStep ยินดีให้บริการค่ะ 😊','ได้รับรองเท้าเรียบร้อยแล้วค่ะ กำลังตรวจสภาพ เดี๋ยวแจ้งราคาให้นะคะ','รบกวนโอนตาม QR ด้านบน แล้วแนบสลิปในแชทได้เลยค่ะ 🙏','ได้รับยอดโอนเรียบร้อยแล้วค่ะ ขอบคุณค่ะ 💛','ขออนุญาตส่งรูปความคืบหน้าให้ดูนะคะ 📸','รองเท้าพร้อมรับแล้วค่ะ มารับได้ตามเวลาเปิดร้านเลยนะคะ','ขอบคุณที่ใช้บริการค่ะ แล้วพบกันใหม่นะคะ 💛'],
   logoId:'', lineQrId:'', lineUrl:'', lineId:'', payQrId:'', payName:'',
   lineTitle:'แอดไลน์ PureStep เป็นเพื่อนกันนะ 💛',
   lineSub:'สแกน QR หรือกดปุ่มด้านล่าง เพื่อไม่พลาดทุกสิทธิพิเศษจากร้าน',
@@ -666,10 +902,23 @@ const DEFAULT_CFG = {
 /* ▼▼ ถ้าวางแอปบน GitHub Pages: ใส่ลิงก์ Web App ของ Apps Script (ลงท้าย /exec) ระหว่างเครื่องหมาย ' ' ▼▼ */
 const API_URL = 'https://script.google.com/macros/s/AKfycbyoCCuUU8TcfBO1k4ek9qtARScv58joW-H4A-wEjYwRwLNA48cSa06aCkeN6IWPKDKOQA/exec';
 /* ▲▲ ------------------------------------------------------------------------------------------------ ▲▲ */
+const DEFAULT_LN = { new:true, quote:true, ready:true, paid:true, points:true, remind:true, after:true, chat:false, admin:true };
+const DEFAULT_GUIDE = [
+  { key:'clean', name:'ทำความสะอาด', note:'', items:[
+    { g:'ผ้าใบทั่วไป / รองเท้าแตะ', n:'สกปรกน้อย - ปานกลาง', p:190, p2:200 }, { g:'ผ้าใบทั่วไป / รองเท้าแตะ', n:'สกปรกมาก', p:210, p2:220 },
+    { g:'รองเท้าสีขาวทุกรูปแบบ', n:'สกปรกน้อย', p:230 }, { g:'รองเท้าสีขาวทุกรูปแบบ', n:'สกปรกปานกลาง', p:240 }, { g:'รองเท้าสีขาวทุกรูปแบบ', n:'สกปรกมาก', p:250 },
+    { g:'หนัง / หนังกลับ / อื่น ๆ', n:'สกปรกน้อย - ปานกลาง', p:210, p2:220 }, { g:'หนัง / หนังกลับ / อื่น ๆ', n:'สกปรกมาก', p:230, p2:240 } ] },
+  { key:'spa', name:'สปาและฟื้นฟู', note:'ถ้าเสนอขายแพ็กใหญ่ไม่ได้ ลองเสนอแพ็กย่อยดู', items:[
+    { g:'แพ็กใหญ่', n:'สปาและฟื้นฟู (ครบทุกขั้นตอน)', p:200 }, { g:'แพ็กย่อย', n:'พ่นสเปรย์กันน้ำและกันฝุ่น', p:50 }, { g:'แพ็กย่อย', n:'พ่นสเปรย์บำรุงและฟื้นฟูหนัง', p:50 },
+    { g:'แพ็กย่อย', n:'ลงแว็กซ์เคลือบเงา', p:50 }, { g:'แพ็กย่อย', n:'ลงน้ำยาแก้คราบเหลือง', p:50 }, { g:'แพ็กย่อย', n:'ดันทรงรองเท้า', p:50 } ] },
+  { key:'sole', name:'ติด SOLE', note:'แผ่นกันสึก 3M แท้จากอเมริกา อายุการใช้งาน 1 ปี', items:[
+    { g:'ตามไซส์รองเท้า', n:'ไซส์ไม่เกิน 40', p:690 }, { g:'ตามไซส์รองเท้า', n:'ไซส์ไม่เกิน 44', p:850 }, { g:'ตามไซส์รองเท้า', n:'ไซส์ไม่เกิน 48', p:990 } ] },
+  { key:'repair', name:'ซ่อมแซม', note:'ซ่อมอย่างอื่นนอกจากติดกาว โทรหาบีก่อนทุกครั้ง', items:[ { g:'ซ่อม', n:'ติดกาว (เริ่มต้น)', p:150 } ] } ];
 const IS_GAS = typeof google !== 'undefined' && google.script && google.script.run;
 const LIVE = !!(IS_GAS || API_URL);
 
 /* ================= LANGUAGE ================= */
+const I18N_MY = {"staff": "🔐 ဝန်ထမ်း", "backoffice": "🧰 နောက်ကွယ်စီမံ", "demo": "⚠️ နမူနာမုဒ် — Google Sheet နှင့် မချိတ်ရသေးပါ (ဒေတာသည် ဤဖုန်းထဲတွင်သာ)", "readyNow": "✨ ယူရန်အသင့်ဖြစ်ပြီ", "loading": "ဖွင့်နေသည်…", "noReady": "အသင့်ဖြစ်သော တန်းစီ မရှိသေးပါ", "lastQ": "နောက်ဆုံး တန်းစီနံပါတ်", "inProg": "လုပ်ဆောင်နေဆဲ", "cta": "👟 ဖိနပ်အပ်ပြီး တန်းစီနံပါတ်ယူရန်", "myQ": "🎫 ကျွန်ုပ်၏တန်းစီ", "readyShort": " • အသင့်!", "foot": "✦ ဆေးကြော • ပြုပြင် • စပါ • ပြန်လည်မွမ်းမံ ✦", "install": "📲 ဖုန်းထဲသို့ အက်ပ်ထည့်သွင်းရန်", "step1": "1 ဖိနပ်အချက်အလက်", "step2": "2 LINE ထည့်ရန်", "step3": "3 တန်းစီနံပါတ်", "custInfo": "👤 သင့်အချက်အလက်", "name": "အမည်", "namePh": "နာမည်ပြောင် သို့မဟုတ် အမည်အပြည့်အစုံ", "phone": "ဖုန်းနံပါတ်", "howMany": "👟 ဖိနပ် ဘယ်နှစ်ရံလဲ?", "pairsUnit": "ရံ", "pairN": "အရံ {n}", "model": "ဖိနပ်မော်ဒယ်", "modelPh": "ဥပမာ Nike Air Force 1", "photos": "ဖိနပ်ဓာတ်ပုံ", "min1": "(အနည်းဆုံး ၁ ပုံ)", "addPhoto": "ရိုက်/ရွေး", "popular": "လူကြိုက်များသော မော်ဒယ်", "times": "{n} ကြိမ်", "exTitle": "⚡ အမြန်တန်းစီ +{fee} ฿ / တစ်ရံ", "exDesc": "သင့်ဖိနပ်ကို ပုံမှန်တန်းစီထက် အရင်လုပ်ပေးပါမည်", "exTotal": "+{x} ฿", "confirm": "✅ အတည်ပြုမည်", "back": "← ပင်မစာမျက်နှာသို့", "errName": "အမည် ထည့်ပါ", "errPhone": "ဖုန်းနံပါတ် မှန်ကန်စွာ ထည့်ပါ", "errModel": "အရံ {n} ၏ မော်ဒယ် ထည့်ပါ", "errPhoto": "အရံ {n} အတွက် ဓာတ်ပုံ အနည်းဆုံး ၁ ပုံ ထည့်ပါ", "prepPhoto": "ဓာတ်ပုံ ပြင်ဆင်နေသည်…", "uploading": "ဓာတ်ပုံ တင်နေသည် {a}/{b}", "issuing": "တန်းစီလက်မှတ် ထုတ်နေသည်…", "sendFail": "ပို့၍မရပါ: ", "sentOk": "✅ အချက်အလက် ပို့ပြီးပါပြီ!", "qrPh": "ဆိုင်၏ LINE QR<br>(ဝန်ထမ်းက တင်ပေးပါမည်)", "addLine": "👉 မိတ်ဆွေအဖြစ် ထည့်ရန် နှိပ်ပါ", "addLineQr": "👉 မိတ်ဆွေအဖြစ် ထည့်ရန် နှိပ်ပါ (လင့်ခ် မထည့်ရသေး — အပေါ်က QR ကို စကင်ဖတ်ပါ)", "next": "ရှေ့ဆက် ➜ ကျွန်ုပ်၏ တန်းစီနံပါတ်", "ticketHead": "🎫 သင့်တန်းစီလက်မှတ်", "ahead": "သင့်ရှေ့တွင် <b>{n}</b> တန်း ရှိသည်", "working": "သင့်ဖိနပ်ကို လုပ်ဆောင်ပေးနေပါသည် 🧽", "comePick": "ဆိုင်သို့ လာယူနိုင်ပါပြီ 🙌", "thanks": "ဝန်ဆောင်မှုသုံးတဲ့အတွက် ကျေးဇူးတင်ပါတယ် 💛", "cel": "🎉 သင့်ဖိနပ် ယူရန်အသင့်ဖြစ်ပါပြီ! ✨", "tPairs": "👟 {n} ရံ: ", "tSent": "🕒 ", "tExpress": "⚡ အမြန် +{x} ฿", "home": "🏠 ပင်မစာမျက်နှာ", "st_R": "လက်ခံပြီး", "st_Y": "အသင့်", "st_D": "ပေးအပ်ပြီး", "saveTk": "💾 တန်းစီလက်မှတ် သိမ်းရန် (ပုံ)", "longPress": "ပုံကို ဖိထားပြီး သိမ်းပါ သို့မဟုတ် အောက်ပါခလုတ်ကို သုံးပါ", "download": "⬇️ ပုံဒေါင်းလုဒ်", "share": "📤 မျှဝေ / သိမ်း", "close": "ပိတ်ရန်", "warnNoLogin": "<b>⚠️ သင် အကောင့်ဝင်မထားပါ</b><br>ဖိနပ်လာယူချိန် ပြရန် <b>screenshot ရိုက်ပါ</b> သို့မဟုတ် <b>💾 တန်းစီလက်မှတ် သိမ်းရန်</b> ကို နှိပ်ပါ", "regToTrack": "👤 တန်းစီခြေရာခံ၊ ပွိုင့်စုရန်နှင့် ဆိုင်နှင့် chat ရန် အကောင့်ဖွင့်ပါ", "remindH": "တန်းစီလက်မှတ် သိမ်းဖို့ မမေ့ပါနဲ့!", "remindTxt": "သင် အကောင့်ဝင်မထားပါ။ screenshot ရိုက်ပါ သို့မဟုတ် တန်းစီလက်မှတ်ကို သိမ်းထားပါ — ဖိနပ်လာယူချိန် ပြရပါမည်။", "regNow": "👤 အခုပဲ အကောင့်ဖွင့်မည်", "gotIt": "နားလည်ပါပြီ", "tkTitle": "တန်းစီလက်မှတ်", "tkDate": "ရက်စွဲ", "tkName": "အမည်", "tkPhone": "ဖုန်း", "tkShoes": "ဖိနပ်", "tkFoot": "ဖိနပ်လာယူချိန် ဤလက်မှတ်ကို ပြပါ", "loginReg": "👤 အကောင့်ဝင်", "acctShort": "👤 {n}", "login": "အကောင့်ဝင်", "register": "အကောင့်ဖွင့်", "hiName": "မင်္ဂလာပါ {n} 👋", "notYou": "သင်မဟုတ်ဘူးလား? အကောင့်ပြောင်းရန်", "enterPin": "PIN ၆ လုံး ထည့်ပါ", "forgot": "PIN မေ့သွားပါသလား? ဆိုင်ဝန်ထမ်းကို reset လုပ်ခိုင်းပြီး ဖုန်းနံပါတ်တူတူဖြင့် ပြန်ဖွင့်ပါ (တန်းစီမှတ်တမ်း မပျောက်ပါ)", "regWhy": "အမည်နှင့် ဖုန်းနံပါတ်ဖြင့် တစ်ကြိမ်သာ အကောင့်ဖွင့်ပြီး PIN ၆ လုံး သတ်မှတ်ပါ — တန်းစီခြေရာခံ၊ စျေးနှုန်းကြည့်၊ ပွိုင့်စု၊ ဆိုင်နှင့် chat နိုင်ပါသည်", "setPin": "PIN ၆ လုံး သတ်မှတ်ပါ", "setPin2": "PIN ကို ထပ်မံအတည်ပြုပါ", "pinMismatch": "PIN နှစ်ခု မတူပါ", "pinFmt": "ဂဏန်း ၆ လုံး အပြည့်ထည့်ပါ", "welcome": "ကြိုဆိုပါတယ် {n} 💛", "loggingIn": "အကောင့်ဝင်နေသည်…", "homeAcctOut": "👤 အကောင့်ဝင် / အကောင့်ဖွင့်", "homeAcctSub": "တန်းစီခြေရာခံ • စျေးနှုန်း • ပွိုင့်စု • chat", "homeAcctIn": "👋 မင်္ဂလာပါ {n}", "myOrdersBtn": "📋 ကျွန်ုပ်၏ အော်ဒါ", "chatShop": "💬 ဆိုင်နှင့် chat", "myOrders": "📋 ကျွန်ုပ်၏ အော်ဒါများ", "noOrders": "ဤအကောင့်တွင် အော်ဒါ မရှိသေးပါ", "formHint": "အကောင့်ရှိပြီးသားလား? <button class=\"link\" onclick=\"openLogin('l')\">အကောင့်ဝင်ပါ</button> — တန်းစီခြေရာခံပြီး ဆိုင်နှင့် chat နိုင်ပါသည်", "formHintIn": "✅ <b>{n}</b> အဖြစ် ဝင်ထားသည် — ဤအော်ဒါကို သင့်အကောင့်ထဲ အလိုအလျောက် ထည့်ပါမည်", "price": "💰 စျေးနှုန်း", "waitPrice": "ဆိုင်မှ စျေးနှုန်း စောင့်နေသည်", "pay_W": "ငွေပေးချေရန်", "pay_S": "ပြေစာပို့ပြီး စစ်ဆေးနေသည်", "pay_P": "ပေးချေပြီး ✓", "payBtn": "💳 ငွေပေး / ပြေစာတွဲ", "tkBtn": "🎫 လက်မှတ်", "payH": "💳 ဝန်ဆောင်ခ ပေးချေရန်", "payFor": "တန်းစီ {q}", "payNoQr": "ဆိုင်က ငွေလက်ခံ QR မတင်ရသေးပါ — chat မှာ မေးပါ", "attachSlip": "📎 ငွေလွှဲပြေစာ တွဲရန်", "slipSent": "ပြေစာ ပို့ပြီးပါပြီ — ဆိုင်က စစ်ဆေးအတည်ပြုပေးပါမည် 🙏", "payTransferFirst": "အလုပ်မစခင် ငွေလွှဲပြီး ဒီမှာ ပြေစာ တွဲပေးပါ", "chatTitle": "💬 {s} နှင့် chat", "typeMsg": "စာရိုက်ပါ…", "you": "သင်", "shopSays": "ဆိုင်", "sys_new": "📥 တန်းစီ {q} လက်ခံပြီး", "sys_ready": "🎉 တန်းစီ {q} ယူရန်အသင့်ဖြစ်ပြီ!", "sys_done": "🤝 တန်းစီ {q} ပေးအပ်ပြီး — ကျေးဇူးတင်ပါတယ်!", "sys_paid": "✅ တန်းစီ {q} ငွေပေးချေမှု အတည်ပြုပြီး", "sys_points": "🎁 တန်းစီ {q} မှ +{n} ပွိုင့် ရရှိပါပြီ", "quoteFor": "💰 တန်းစီ {q} စျေးနှုန်း", "slipFor": "🧾 ငွေလွှဲပြေစာ၊ တန်းစီ {q}", "paidOk": "✅ ပေးချေပြီး", "chatEmpty": "ဆိုင်ကို စာပို့နိုင်ပါသည် — မေးမြန်းရန်၊ ပြဿနာပြောရန် သို့မဟုတ် ဖိနပ်ပုံ ထပ်ပို့ရန် 😊", "loggedOutC": "အကောင့်ထွက်ပြီး", "instH": "အက်ပ် ထည့်သွင်းရန်", "instIos": "<h3>🍎 iPhone / iPad (Safari)</h3><ol class=\"steps-i\"><li>ဤလင့်ခ်ကို <b>Safari</b> တွင် ဖွင့်ပါ</li><li><b>Share</b> ခလုတ် ⬆️ ကို နှိပ်ပါ</li><li><b>“Add to Home Screen”</b> ကို ရွေးပါ</li><li><b>Add</b> ကို နှိပ်ပါ — Home screen ပေါ်တွင် အိုင်ကွန် ပေါ်လာပါမည်</li></ol>", "instAnd": "<h3>🤖 Android (Chrome)</h3><ol class=\"steps-i\"><li>ဤလင့်ခ်ကို <b>Chrome</b> တွင် ဖွင့်ပါ</li><li>ညာဘက်အပေါ်ရှိ <b>⋮</b> ကို နှိပ်ပါ</li><li><b>“Install app”</b> သို့မဟုတ် <b>“Add to Home screen”</b> ကို ရွေးပါ</li></ol>", "instLine": "💡 LINE မှ ဖွင့်ထားလျှင် ⋯ ကိုနှိပ်ပြီး “Open in browser” ကို အရင်ရွေးပါ", "logout": "ထွက်ရန်", "ptsH": "🎁 ပွိုင့်စုကတ်", "ptsRule": "ဖိနပ် ၁ ရံ = ၁ ပွိုင့် · {need} ပွိုင့်ပြည့်ရင် နောက်တစ်ရံ {pct}% လျှော့", "ptsBal": "သင့်ပွိုင့် <b>{n}</b>", "ptsReward": "🎉 {pct}% လျှော့စျေး {r} ကြိမ် သုံးနိုင်ပါပြီ — chat မှာ ဆိုင်ကို ပြောပါ", "ptsToGo": "နောက်ထပ် {n} ပွိုင့်ဆိုရင် {pct}% လျှော့", "ptsHist": "ပွိုင့်မှတ်တမ်း", "ptsEarn": "+{n} ပွိုင့် · တန်းစီ {q}", "ptsRedeem": "−{n} ပွိုင့် · လျှော့စျေးသုံး", "ptsShort": "🎁 {n}/{need} ပွိုင့်", "stickerPv": "🧸 စတစ်ကာ", "stickers": "စတစ်ကာ", "e_NETWORK": "ဆိုင်စနစ်နှင့် ချိတ်ဆက်၍ မရပါ — နောက်မှ ထပ်ကြိုးစားပါ", "e_CAUTH": "အကောင့်ဝင်ချိန် ကုန်သွားပါပြီ — PIN ပြန်ထည့်ပါ", "e_EXISTS": "ဤနံပါတ် အကောင့်ရှိပြီးသား — အကောင့်ဝင်ပါ", "e_NOACCOUNT": "ဤနံပါတ်အတွက် အကောင့် မရှိသေးပါ — အကောင့်ဖွင့်ပါ", "e_BADPIN": "PIN မှားနေပါသည်", "e_LOCKED": "PIN အကြိမ်များစွာ မှားသဖြင့် ၁၀ မိနစ် စောင့်ပါ", "e_BADPHONE": "ဖုန်းနံပါတ် မှန်ကန်စွာ ထည့်ပါ", "e_BADPINFMT": "ဂဏန်း ၆ လုံး အပြည့်ထည့်ပါ", "e_NOORDER": "အော်ဒါ ရှာမတွေ့ပါ", "e_EMPTY": "စာရိုက်ပါ", "e_BADIMG": "ပုံ မမှန်ကန်ပါ", "e_BIGIMG": "ပုံ အရမ်းကြီးနေသည်"};
 const I18N = {
  th:{
   staff:'🔐 พนักงาน', backoffice:'🧰 หลังบ้าน', demo:'⚠️ โหมดตัวอย่าง — ยังไม่ได้เชื่อมกับ Google Sheet (ข้อมูลอยู่แค่ในเครื่องนี้)',
@@ -733,7 +982,7 @@ const I18N = {
   sysH:'⚙️ ระบบ', nextQ:'เลขคิวถัดไป', set:'ตั้งค่า', nextQHint:'ใช้เมื่ออยากเริ่มนับคิวใหม่ เช่น ตั้งเป็น 1 ทุกต้นเดือน',
   chPw:'เปลี่ยนรหัสผ่านพนักงาน', newPw:'รหัสใหม่', change:'เปลี่ยน', pwOk:'เปลี่ยนรหัสผ่านแล้ว',
   askQ:'ตั้งเลขคิวถัดไปเป็น {q} ?', qOk:'ตั้งเลขคิวแล้ว', sheet:'📊 ข้อมูลทั้งหมดอยู่ใน', noQr:'ยังไม่มี QR',
-  e_NETWORK:'เชื่อมต่อหลังบ้าน (Apps Script) ไม่ได้ — ตรวจว่า Deploy เป็น "ทุกคน" และเป็นเวอร์ชันล่าสุด', e_CAUTH:'หมดเวลาเข้าสู่ระบบ กรุณาใส่ PIN อีกครั้ง', e_AUTH:'หมดเวลาเข้าสู่ระบบ กรุณาล็อกอินใหม่', e_EXISTS:'เบอร์นี้สมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
+  e_NETWORK:'เชื่อมต่อหลังบ้าน (Apps Script) ไม่ได้ — ตรวจว่า Deploy เป็น "ทุกคน" และเป็นเวอร์ชันล่าสุด', e_NOPOINTS:'แต้มไม่พอใช้สิทธิ์', e_GIVEN:'คิวนี้ส่งแต้มไปแล้ว', e_CAUTH:'หมดเวลาเข้าสู่ระบบ กรุณาใส่ PIN อีกครั้ง', e_AUTH:'หมดเวลาเข้าสู่ระบบ กรุณาล็อกอินใหม่', e_EXISTS:'เบอร์นี้สมัครสมาชิกแล้ว กรุณาเข้าสู่ระบบ',
   e_NOACCOUNT:'ยังไม่มีบัญชีของเบอร์นี้ กรุณาสมัครสมาชิก', e_BADPIN:'PIN ไม่ถูกต้อง', e_LOCKED:'ใส่ PIN ผิดหลายครั้ง กรุณารอ 10 นาที',
   e_BADPHONE:'กรุณาใส่เบอร์โทรให้ถูกต้อง', e_BADPINFMT:'กรุณาตั้ง PIN ให้ครบ 6 หลัก', e_STAFFPW:'รหัสผ่านไม่ถูกต้อง', e_BADAMOUNT:'กรุณาใส่ราคา',
   e_NOORDER:'ไม่พบคิวนี้', e_EMPTY:'กรุณาพิมพ์ข้อความ', e_BADIMG:'ไฟล์รูปไม่ถูกต้อง', e_BIGIMG:'รูปใหญ่เกินไป', e_PWSHORT:'รหัสผ่านต้องมีอย่างน้อย 4 ตัว', e_BADQ:'ใส่เลขคิวให้ถูกต้อง'
@@ -800,21 +1049,38 @@ const I18N = {
   sysH:'⚙️ System', nextQ:'Next queue number', set:'Set', nextQHint:'Use this to restart numbering, e.g. set to 1 each month',
   chPw:'Change staff password', newPw:'New password', change:'Change', pwOk:'Password changed',
   askQ:'Set the next queue number to {q}?', qOk:'Queue number set', sheet:'📊 All data is in the', noQr:'No QR yet',
-  e_NETWORK:'Cannot reach the back end (Apps Script) — check it is deployed for "Anyone" and is the latest version', e_CAUTH:'Session expired — please enter your PIN again', e_AUTH:'Session expired, please log in again', e_EXISTS:'This number is already registered — please log in',
+  e_NETWORK:'Cannot reach the back end (Apps Script) — check it is deployed for "Anyone" and is the latest version', e_NOPOINTS:'Not enough points', e_GIVEN:'Points already given for this order', e_CAUTH:'Session expired — please enter your PIN again', e_AUTH:'Session expired, please log in again', e_EXISTS:'This number is already registered — please log in',
   e_NOACCOUNT:'No account for this number yet — please sign up', e_BADPIN:'Wrong PIN', e_LOCKED:'Too many wrong PINs — please wait 10 minutes',
   e_BADPHONE:'Please enter a valid phone number', e_BADPINFMT:'Please enter all 6 digits', e_STAFFPW:'Wrong password', e_BADAMOUNT:'Please enter a price',
   e_NOORDER:'Order not found', e_EMPTY:'Please type a message', e_BADIMG:'Invalid image', e_BIGIMG:'Image is too large', e_PWSHORT:'Password needs at least 4 characters', e_BADQ:'Enter a valid queue number'
  }
 };
+Object.assign(I18N.th, {"addLine": "👉 กดเพื่อเพิ่มเพื่อน", "addLineQr": "👉 กดเพื่อเพิ่มเพื่อน (ร้านยังไม่ได้ใส่ลิงก์ — สแกน QR ด้านบน)", "ptsH": "🎁 บัตรสะสมแต้ม", "ptsRule": "ทุก 1 คู่ = 1 แต้ม · ครบ {need} แต้ม รับส่วนลด {pct}% คู่ถัดไป", "ptsBal": "แต้มสะสมของคุณ <b>{n}</b> แต้ม", "ptsReward": "🎉 คุณใช้สิทธิ์ส่วนลด {pct}% ได้ {r} ครั้ง — แจ้งร้านในแชทได้เลย", "ptsToGo": "อีก {n} แต้ม รับส่วนลด {pct}%", "ptsHist": "ประวัติแต้ม", "ptsEarn": "+{n} แต้ม · คิว {q}", "ptsRedeem": "−{n} แต้ม · ใช้ส่วนลด", "ptsShort": "🎁 {n}/{need} แต้ม", "sys_points": "🎁 ได้รับ +{n} แต้ม จากคิว {q}", "stickerPv": "🧸 สติกเกอร์", "stickers": "สติกเกอร์", "regToTrack": "👤 สมัครสมาชิก เพื่อติดตามคิว สะสมแต้ม และแชทกับร้าน", "homeAcctSub": "ติดตามคิว • ดูราคา • สะสมแต้ม • แชทกับร้าน", "btnGivePts": "🎁 ส่งแต้ม +{n}", "ptsGiven": "🎁 ให้แต้มแล้ว +{n}", "givePtsOk": "ส่งแต้มแล้ว — ลูกค้ามี {n} แต้ม", "custPts": "🎁 แต้มลูกค้า {n}", "useReward": "ใช้สิทธิ์ส่วนลด {pct}% (ใช้ {need} แต้ม · ลูกค้ามี {n} แต้ม)", "rewardBase": "ราคาคู่ที่ได้ส่วนลด (บาท)", "rewardCalc": "ลด −{d} ฿ → ลูกค้าจ่าย <b>{f} ฿</b>", "qrH": "💬 ข้อความที่ใช้บ่อย", "qrHint": "กดปุ่ม ⚡ ในแชท แล้วเลือกข้อความเพื่อใส่ในช่องพิมพ์ แก้ไข/ลบ/เพิ่มได้ที่นี่", "qrSave": "💾 บันทึกข้อความที่ใช้บ่อย", "qrSaveCur": "➕ บันทึกข้อความในช่องพิมพ์", "qrSaved": "บันทึกข้อความที่ใช้บ่อยแล้ว", "qrNewPh": "พิมพ์ข้อความใหม่ แล้วกด ➕", "qrEmpty": "ยังไม่มีข้อความ — เพิ่มได้ที่ ⚙️", "qrTypeFirst": "พิมพ์ข้อความในช่องก่อน", "ptsSetH": "🎁 สะสมแต้ม", "ptsNeedL": "แต้มที่ต้องสะสม", "ptsPctL": "ส่วนลด (%)", "ptsCardNote": "ลูกค้าได้ 1 แต้มต่อ 1 คู่ เมื่อแอดมินกด 🎁 ส่งแต้ม หลังส่งมอบรองเท้า · รูปบัตรสะสมแต้มออกแบบไว้สำหรับ 5 แต้ม ถ้าเปลี่ยนจำนวนจะแสดงเป็นวงกลมธรรมดาแทน", "galOrderHint": "กด ◀ ▶ ที่รูปเพื่อสลับลำดับ (รูปแรกแสดงใหญ่สุด)"});
+Object.assign(I18N.en, {"addLine": "👉 Tap to add us as a friend", "addLineQr": "👉 Tap to add us as a friend (link not set yet — scan the QR above)", "ptsH": "🎁 Points card", "ptsRule": "Every pair = 1 point · Collect {need} points for {pct}% off your next pair", "ptsBal": "You have <b>{n}</b> point(s)", "ptsReward": "🎉 You can use {pct}% off {r} time(s) — just tell us in the chat", "ptsToGo": "{n} more point(s) for {pct}% off", "ptsHist": "Points history", "ptsEarn": "+{n} pts · queue {q}", "ptsRedeem": "−{n} pts · discount used", "ptsShort": "🎁 {n}/{need} pts", "sys_points": "🎁 You earned +{n} point(s) from queue {q}", "stickerPv": "🧸 Sticker", "stickers": "Stickers", "regToTrack": "👤 Sign up to track your queue, collect points and chat with us", "homeAcctSub": "Track your queue • See prices • Collect points • Chat", "btnGivePts": "🎁 Give points +{n}", "ptsGiven": "🎁 Points given +{n}", "givePtsOk": "Points sent — customer now has {n}", "custPts": "🎁 Customer points {n}", "useReward": "Use {pct}% discount ({need} points · customer has {n})", "rewardBase": "Price of the discounted pair (฿)", "rewardCalc": "−{d} ฿ → customer pays <b>{f} ฿</b>", "qrH": "💬 Quick replies", "qrHint": "Tap ⚡ in the chat and pick a message to put it in the text box. Edit, delete or add them here.", "qrSave": "💾 Save quick replies", "qrSaveCur": "➕ Save the typed message", "qrSaved": "Quick replies saved", "qrNewPh": "Type a new message, then tap ➕", "qrEmpty": "No quick replies yet — add them in ⚙️", "qrTypeFirst": "Type a message first", "ptsSetH": "🎁 Points", "ptsNeedL": "Points needed", "ptsPctL": "Discount (%)", "ptsCardNote": "Customers get 1 point per pair when staff tap 🎁 Give points after pickup · the card artwork is made for 5 points; other numbers show simple circles", "galOrderHint": "Tap ◀ ▶ on a photo to reorder (the first photo shows largest)"});
+Object.assign(I18N.th, {"prBtn": "🖨️ พิมพ์ใบรับ-ส่งรองเท้า", "prH": "🖨️ ใบรับ-ส่งรองเท้า", "prMode": "รูปแบบ", "prBlankL": "ฟอร์มเปล่า", "prFillL": "ใส่คิวของวัน", "prDate": "วันที่", "prRows": "จำนวนแถว (อย่างน้อย)", "prSpot": "สถานที่พักรองเท้า (ใส่ล่วงหน้าได้)", "prSpotPh": "เช่น ชั้นวาง A / ล็อกเกอร์ 3 / เคาน์เตอร์หน้าร้าน", "prGo": "🖨️ พิมพ์ / บันทึกเป็น PDF", "prBlocked": "หน้านี้พิมพ์ไม่ได้ — เปิดจากลิงก์ GitHub ของร้าน"});
+Object.assign(I18N.en, {"prBtn": "🖨️ Print drop-off form", "prH": "🖨️ Shoe drop-off form", "prMode": "Type", "prBlankL": "Blank form", "prFillL": "Fill with day's queue", "prDate": "Date", "prRows": "Rows (at least)", "prSpot": "Holding place (optional, pre-filled)", "prSpotPh": "e.g. Shelf A / Locker 3 / Front counter", "prGo": "🖨️ Print / save as PDF", "prBlocked": "Printing is blocked here — open the shop GitHub link"});
+Object.assign(I18N.th, {"svcQ": "ต้องการบริการ (เลือกได้หลายอย่าง · ร้านจะประเมินราคาให้)", "svc_clean": "🧽 ทำความสะอาด", "svc_spa": "✨ สปาและฟื้นฟู", "svc_sole": "🛡️ ติดโซลกันสึก", "svc_repair": "🔧 ซ่อมแซม", "addQ": "➕ เพิ่มคิวแทนลูกค้า", "staffAddBanner": "🧰 โหมดแอดมิน: กรอกแทนลูกค้า (รูปไม่บังคับ) · คิวจะรันต่อจากคนล่าสุดอัตโนมัติ", "staffAddOk": "เพิ่มคิว {q} แล้ว ✨", "tabD": "📊 สรุป", "btnAfter": "📸 รูปหลังทำ", "btnLabel": "🏷️ ป้าย", "btnSlipAdmin": "🧾 แนบสลิป", "btnRemind": "🔔 เตือนมารับ", "afterOk": "ส่งรูปหลังทำให้ลูกค้าแล้ว", "slipAdminOk": "แนบสลิปแล้ว — กดยืนยันรับเงินได้เลย", "remindOk": "ส่งข้อความเตือนแล้ว", "staleTag": "ค้าง {n} วัน", "srcStaff": "แอดมินเพิ่ม", "sys_after": "📸 ร้านส่งรูปหลังทำ คิว {q}", "sys_remind": "🔔 รองเท้าคิว {q} พร้อมรับมา {n} วันแล้ว แวะมารับได้เลยนะคะ", "before": "ก่อนทำ", "after": "หลังทำ", "gPick": "💡 ไกด์ราคา (เห็นเฉพาะแอดมิน) — แตะรายการเพื่อเพิ่ม", "gSum": "รวม {x} ฿", "gExpress": "ค่าลัดคิว", "qtyL": "×", "lnH": "🟩 แจ้งเตือนทาง LINE", "lnToken": "Channel access token (Messaging API)", "lnTokenPh": "วาง token ที่นี่ (จะไม่แสดงอีก)", "lnTokenHint": "ได้จาก LINE Developers > Messaging API > Channel access token (long-lived) · ปล่อยว่างแล้วกดตั้งค่า = ปิดแจ้งเตือน", "lnOn": "✅ เชื่อมต่อแล้ว · ลูกค้าที่เชื่อม LINE {n} รายการ", "lnOff": "⚪ ยังไม่ได้ใส่ token", "lnWebhook": "Webhook URL (ใส่ใน LINE Developers):", "lnAdminCode": "แอดมินรับแจ้งเตือน: พิมพ์รหัสนี้ส่งในแชท LINE OA ของร้าน", "lnAdminOn": "✅ เชื่อม LINE แอดมินแล้ว {n} คน", "lnWhen": "ส่งแจ้งเตือนเมื่อ", "ln_new": "รับคิวแล้ว", "ln_quote": "แจ้งราคา", "ln_ready": "พร้อมรับ", "ln_paid": "ยืนยันรับเงิน", "ln_points": "ได้แต้ม", "ln_remind": "เตือนมารับ", "ln_after": "ส่งรูปหลังทำ", "ln_chat": "ร้านตอบแชท (ใช้โควตาเยอะ)", "ln_admin": "แจ้งแอดมิน: คิวใหม่ / สลิป / แชทลูกค้า", "appUrlL": "ลิงก์แอป (ใส่ในข้อความ LINE)", "lnTest": "📨 ส่งทดสอบหาแอดมิน", "lnTestOk": "ส่งข้อความทดสอบแล้ว เช็ก LINE ได้เลย", "gH": "💡 ไกด์ราคา (หลังบ้านเท่านั้น)", "gHint": "ลูกค้าไม่เห็นหน้านี้ · ใช้ตอนกด 💰 แจ้งราคา · ราคาช่วง ใส่ราคาเริ่ม-ราคาสูงสุด", "gSave": "💾 บันทึกไกด์ราคา", "gSaved": "บันทึกไกด์ราคาแล้ว", "gGroup": "กลุ่ม", "gName": "รายการ", "gFrom": "ราคา", "gTo": "ถึง", "gAdd": "➕ เพิ่มรายการ", "gNote": "หมายเหตุสำหรับแอดมิน", "rmH": "🔔 เตือนลูกค้าที่ยังไม่มารับ", "rmAuto": "เตือนอัตโนมัติทุกวัน (11:00 น.)", "rmDays": "เตือนเมื่อพร้อมรับเกิน (วัน)", "lbH": "🏷️ ป้ายติดรองเท้า (Phomemo)", "lbW": "กว้าง (มม.)", "lbHh": "สูง (มม.)", "lbHint": "ตั้งตามขนาดสติกเกอร์ในเครื่องพิมพ์ เช่น 40×30, 50×30", "lbH2": "🏷️ ป้ายติดรองเท้า", "lbHow": "มือถือ: กด \"บันทึก/แชร์รูปป้าย\" แล้วเปิดในแอป Print Master เพื่อพิมพ์ · คอมพิวเตอร์: กด \"พิมพ์\" แล้วเลือกเครื่อง Phomemo", "lbPrint": "🖨️ พิมพ์", "lbShare": "💾 บันทึก/แชร์รูปป้าย", "lbPair": "คู่ {i}/{n}", "dToday": "วันนี้", "d7": "7 วัน", "dMonth": "เดือนนี้", "dLast": "เดือนที่แล้ว", "dAll": "ทั้งหมด", "kPaid": "รายได้ (ชำระแล้ว)", "kUnpaid": "รอชำระ", "kOrders": "คิว", "kPairs": "คู่", "kExpress": "ลัดคิว", "kNew": "ลูกค้าใหม่", "kOld": "ลูกค้าเก่า", "kStaff": "แอดมินเพิ่มให้", "dDaily": "รายได้รายวัน", "dSvc": "บริการที่ลูกค้าเลือก", "dStatus": "สถานะคิว", "dStale": "🔔 รองเท้าค้างรับ", "dNone": "ยังไม่มีข้อมูลในช่วงนี้", "svc_none": "ไม่ได้ระบุ", "lineLinkH": "🔔 รับแจ้งเตือนทาง LINE", "lineLinkTxt": "1) แอดไลน์ร้าน  2) คัดลอกรหัสนี้ส่งในแชท LINE ของร้าน", "lineLinked": "✅ เชื่อม LINE แล้ว — แจ้งเตือนราคา คิวพร้อมรับ และแต้มจะเข้า LINE", "copyCode": "📋 คัดลอกรหัส", "copied": "คัดลอกแล้ว", "openLine": "💬 เปิด LINE ร้าน", "tkLine": "🔔 อยากได้แจ้งเตือนคิวนี้ทาง LINE? แอดไลน์ร้านแล้วส่งรหัสนี้:", "e_NOLINE": "ยังไม่ได้ใส่ LINE token", "e_NOADMINLINE": "ยังไม่มี LINE แอดมิน — ส่งรหัสแอดมินในแชท LINE ร้านก่อน", "e_BADPHONE": "กรุณาใส่เบอร์โทรให้ถูกต้อง"});
+Object.assign(I18N.en, {"svcQ": "Services you want (choose any · we will quote the price)", "svc_clean": "🧽 Cleaning", "svc_spa": "✨ Spa & restore", "svc_sole": "🛡️ Sole protector", "svc_repair": "🔧 Repair", "addQ": "➕ Add queue for customer", "staffAddBanner": "🧰 Staff mode: entering for a customer (photos optional) · the queue number continues automatically", "staffAddOk": "Queue {q} added ✨", "tabD": "📊 Stats", "btnAfter": "📸 After photo", "btnLabel": "🏷️ Label", "btnSlipAdmin": "🧾 Attach slip", "btnRemind": "🔔 Remind", "afterOk": "After photo sent to the customer", "slipAdminOk": "Slip attached — now confirm payment", "remindOk": "Reminder sent", "staleTag": "{n} days waiting", "srcStaff": "added by staff", "sys_after": "📸 The shop sent after photos for queue {q}", "sys_remind": "🔔 Queue {q} has been ready for {n} days — please come pick it up", "before": "Before", "after": "After", "gPick": "💡 Price guide (staff only) — tap items to add", "gSum": "Total {x} ฿", "gExpress": "Express fee", "qtyL": "×", "lnH": "🟩 LINE notifications", "lnToken": "Channel access token (Messaging API)", "lnTokenPh": "Paste token here (hidden after saving)", "lnTokenHint": "From LINE Developers > Messaging API > Channel access token (long-lived) · Save it empty to turn notifications off", "lnOn": "✅ Connected · {n} customer link(s)", "lnOff": "⚪ No token yet", "lnWebhook": "Webhook URL (paste in LINE Developers):", "lnAdminCode": "Staff alerts: send this code in the shop LINE OA chat", "lnAdminOn": "✅ {n} staff LINE account(s) linked", "lnWhen": "Notify when", "ln_new": "Order received", "ln_quote": "Price sent", "ln_ready": "Ready", "ln_paid": "Payment confirmed", "ln_points": "Points earned", "ln_remind": "Pickup reminder", "ln_after": "After photos", "ln_chat": "Shop chat replies (uses more quota)", "ln_admin": "Alert staff: new order / slip / customer chat", "appUrlL": "App link (used in LINE messages)", "lnTest": "📨 Send test to staff", "lnTestOk": "Test sent — check LINE", "gH": "💡 Price guide (back office only)", "gHint": "Customers never see this · used when you tap 💰 Send price · for ranges enter from–to", "gSave": "💾 Save price guide", "gSaved": "Price guide saved", "gGroup": "Group", "gName": "Item", "gFrom": "Price", "gTo": "to", "gAdd": "➕ Add item", "gNote": "Note for staff", "rmH": "🔔 Pickup reminders", "rmAuto": "Remind automatically every day (11:00)", "rmDays": "Remind when ready for more than (days)", "lbH": "🏷️ Shoe labels (Phomemo)", "lbW": "Width (mm)", "lbHh": "Height (mm)", "lbHint": "Match your label roll, e.g. 40×30, 50×30", "lbH2": "🏷️ Shoe labels", "lbHow": "Phone: tap \"Save/share label images\" and open them in Print Master · Computer: tap Print and choose the Phomemo printer", "lbPrint": "🖨️ Print", "lbShare": "💾 Save/share label images", "lbPair": "Pair {i}/{n}", "dToday": "Today", "d7": "7 days", "dMonth": "This month", "dLast": "Last month", "dAll": "All", "kPaid": "Revenue (paid)", "kUnpaid": "Awaiting payment", "kOrders": "Orders", "kPairs": "Pairs", "kExpress": "Express", "kNew": "New customers", "kOld": "Returning", "kStaff": "Added by staff", "dDaily": "Daily revenue", "dSvc": "Services requested", "dStatus": "Order status", "dStale": "🔔 Waiting for pickup", "dNone": "No data in this period", "svc_none": "Not specified", "lineLinkH": "🔔 Get LINE notifications", "lineLinkTxt": "1) Add the shop on LINE  2) Send this code in the shop chat", "lineLinked": "✅ LINE linked — prices, ready alerts and points will come to LINE", "copyCode": "📋 Copy code", "copied": "Copied", "openLine": "💬 Open shop LINE", "tkLine": "🔔 Want LINE alerts for this order? Add the shop on LINE and send this code:", "e_NOLINE": "LINE token not set", "e_NOADMINLINE": "No staff LINE linked yet — send the staff code in the shop LINE chat first", "e_BADPHONE": "Please enter a valid phone number"});
+Object.assign(I18N_MY, {"svcQ": "လိုချင်သော ဝန်ဆောင်မှု (အများရွေးနိုင် · ဆိုင်က စျေးနှုန်း တွက်ပေးပါမည်)", "svc_clean": "🧽 ဆေးကြော", "svc_spa": "✨ စပါ နှင့် ပြန်လည်မွမ်းမံ", "svc_sole": "🛡️ ဖိနပ်အောက်ခံ ကာကွယ်", "svc_repair": "🔧 ပြုပြင်", "sys_after": "📸 တန်းစီ {q} ၏ လုပ်ပြီးနောက် ဓာတ်ပုံ ပို့ထားပါသည်", "sys_remind": "🔔 တန်းစီ {q} အသင့်ဖြစ်တာ {n} ရက်ရှိပြီ — လာယူပေးပါ", "before": "မလုပ်ခင်", "after": "လုပ်ပြီး", "lineLinkH": "🔔 LINE မှ အသိပေးချက် ရယူရန်", "lineLinkTxt": "1) ဆိုင် LINE ကို ထည့်ပါ  2) ဤကုဒ်ကို ဆိုင် LINE chat သို့ ပို့ပါ", "lineLinked": "✅ LINE ချိတ်ပြီး — စျေးနှုန်း၊ အသင့်ဖြစ်ချိန်နှင့် ပွိုင့်များ LINE သို့ ရောက်ပါမည်", "copyCode": "📋 ကုဒ်ကူးရန်", "copied": "ကူးပြီး", "openLine": "💬 ဆိုင် LINE ဖွင့်ရန်", "tkLine": "🔔 ဤတန်းစီအတွက် LINE အသိပေးချက် လိုပါသလား? ဆိုင် LINE ထည့်ပြီး ဤကုဒ်ပို့ပါ:"});
+Object.assign(I18N.th, {"btPrint": "🖨️ พิมพ์ตรงไป Phomemo (Bluetooth)", "btPrintOn": "🖨️ พิมพ์เลย · เชื่อมกับ {n} แล้ว", "btDark": "ความเข้ม", "btConnecting": "กำลังเชื่อมเครื่องพิมพ์…", "btPrinting": "กำลังพิมพ์ {a}/{b}…", "btDone": "พิมพ์เสร็จแล้ว ✨", "btCancel": "ยังไม่ได้เลือกเครื่องพิมพ์", "btFail": "พิมพ์ไม่สำเร็จ:", "btIos": "📱 iPhone: Safari/Chrome ส่งงานพิมพ์ทาง Bluetooth ไม่ได้ — เปิดแอปร้านในแอป <b>Bluefy</b> (ฟรีใน App Store) แล้วจะมีปุ่มพิมพ์ตรงขึ้นมา หรือใช้ปุ่มบันทึกรูปด้านล่างแล้วพิมพ์ใน Print Master", "btNo": "เบราว์เซอร์นี้ส่งงานพิมพ์ทาง Bluetooth ไม่ได้ — ใช้ Chrome บน Android หรือบันทึกรูปแล้วพิมพ์ใน Print Master", "lbHow": "ครั้งแรก: กดพิมพ์ตรง → เลือกเครื่อง M110 ในรายการ (เปิดเครื่องพิมพ์ และปิดแอป Print Master ก่อน) · ถ้าพิมพ์ตรงไม่ได้ ใช้ปุ่มบันทึกรูปแล้วพิมพ์ใน Print Master", "lbPrint": "🖨️ พิมพ์ผ่านคอมพิวเตอร์"});
+Object.assign(I18N.en, {"btPrint": "🖨️ Print to Phomemo (Bluetooth)", "btPrintOn": "🖨️ Print · connected to {n}", "btDark": "Darkness", "btConnecting": "Connecting to printer…", "btPrinting": "Printing {a}/{b}…", "btDone": "Printed ✨", "btCancel": "No printer selected", "btFail": "Print failed:", "btIos": "📱 iPhone: Safari/Chrome cannot print over Bluetooth — open the shop app inside the free <b>Bluefy</b> app and the direct-print button will appear, or save the images below and print in Print Master", "btNo": "This browser cannot print over Bluetooth — use Chrome on Android, or save the images and print in Print Master", "lbHow": "First time: tap direct print → pick the M110 in the list (printer on, Print Master closed) · If it fails, save the images and print in Print Master", "lbPrint": "🖨️ Print from a computer"});
+Object.assign(I18N.th, {"lbModel": "รุ่นรองเท้า คู่ {i}", "lbPrice": "ราคา", "lbTotal": "ราคารวมทั้งคิว {x} ฿ — ใส่ราคาแยกต่อคู่ได้", "lbName": "ชื่อ", "lbTel": "โทร", "lbShoe": "รุ่น"});
+Object.assign(I18N.en, {"lbModel": "Shoe model, pair {i}", "lbPrice": "Price", "lbTotal": "Order total {x} ฿ — enter a price per pair if you like", "lbName": "Name", "lbTel": "Tel", "lbShoe": "Model"});
+I18N.my = I18N_MY;
 let LANG = (()=>{ try { return localStorage.getItem('ps_lang') || 'th'; } catch(e) { return 'th'; } })();
-function t(k, v){ let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : (I18N.th[k] != null ? I18N.th[k] : k); if (v) for (const x in v) s = s.split('{'+x+'}').join(v[x]); return s; }
-function L(key){ return (LANG === 'en' && String(CFG[key+'En'] || '').trim()) ? CFG[key+'En'] : (CFG[key] || ''); }
+function t(k, v){ let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : (LANG === 'my' && I18N.en[k] != null) ? I18N.en[k] : (I18N.th[k] != null ? I18N.th[k] : k); if (v) for (const x in v) s = s.split('{'+x+'}').join(v[x]); return s; }
+function L(key){
+  if (LANG === 'my' && String(CFG[key+'My'] || '').trim()) return CFG[key+'My'];
+  if (LANG !== 'th' && String(CFG[key+'En'] || '').trim()) return CFG[key+'En'];
+  return CFG[key] || '';
+}
+const LOCALE = () => LANG === 'th' ? 'th-TH' : 'en-GB';
 function stLabel(st){ return st === ST.Y ? t('st_Y') : st === ST.D ? t('st_D') : t('st_R'); }
 function payPill(p){ return p === PAY.PAID ? `<span class="pill p-paid">${t('pay_P')}</span>` : p === PAY.SENT ? `<span class="pill p-sent">${t('pay_S')}</span>` : p === PAY.WAIT ? `<span class="pill p-wait">${t('pay_W')}</span>` : ''; }
 function setLang(l){
   LANG = l; try { localStorage.setItem('ps_lang', l); } catch(e) {}
   document.documentElement.lang = l;
-  $('lgTh').classList.toggle('on', l === 'th'); $('lgEn').classList.toggle('on', l === 'en');
+  $('lgTh').classList.toggle('on', l === 'th'); $('lgEn').classList.toggle('on', l === 'en'); $('lgMy').classList.toggle('on', l === 'my');
   document.querySelectorAll('[data-i]').forEach(el => el.innerHTML = t(el.dataset.i));
   document.querySelectorAll('[data-ph]').forEach(el => el.placeholder = t(el.dataset.ph));
   if (TOKEN) $('staffBtn').textContent = t('backoffice');
@@ -824,25 +1090,26 @@ function setLang(l){
   if (view === 'login') renderKnown();
   if (view === 'acct') renderAcct();
   if (view === 'chat') renderChat(true);
-  if (view === 'staff') { renderStaff(); renderThreads(); if (TH.phone) renderThread(true); if (SCFG) fillSettings(); }
+  if (view === 'staff') { renderStaff(); renderThreads(); if (TH.phone) renderThread(true); if (SCFG) fillSettings(); renderQuickBar(); }
 }
 
 /* ================= DEMO BACKEND (ใช้เมื่อเปิดนอก Apps Script) ================= */
 const Mock = (() => {
-  const KEY = 'purestep_demo_v3';
+  const KEY = 'purestep_demo_v5';
   let S = null;
   try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
   if (!S) {
     const now = Date.now();
-    S = { cfg:{}, nextQ:5, pw:'211140', seen:{}, models:[
+    S = { cfg:{}, nextQ:5, pw:'211140', seen:{}, points:[{ts:now-86000000,phone:'0812345678',pts:2,reason:'earn',q:0},{ts:now-2000000,phone:'0812345678',pts:1,reason:'earn',q:1}], models:[
       ['Nike Air Force 1',9],['Adidas Samba OG',7],['New Balance 530',6],['Nike Air Jordan 1 High',5],['Converse Chuck 70',5],
       ['Vans Old Skool',4],['Onitsuka Tiger Mexico 66',4],['Adidas Stan Smith',3],['New Balance 550',3],['Asics Gel-Kayano 14',2],
       ['Dr. Martens 1460',2],['Crocs Classic Clog',1],['Nike Dunk Low Panda',3],['Birkenstock Boston',1]],
       customers:{ '0812345678':{ name:'มายด์', pin:'123456' } },
       orders:[
-        {q:1,id:'demo1',created:now-86400000,name:'มายด์',phone:'0812345678',models:['Nike Air Force 1'],photos:[[]],status:ST.Y,express:false,fee:0,price:250,pay:PAY.PAID},
-        {q:2,id:'demo2',created:now-7200000,name:'ต้น',phone:'0898765432',models:['Adidas Samba OG','New Balance 530'],photos:[[],[]],status:ST.R,express:false,fee:0,price:0,pay:''},
-        {q:3,id:'demo3',created:now-5400000,name:'มายด์',phone:'0812345678',models:['Converse Chuck 70'],photos:[[]],status:ST.R,express:false,fee:0,price:0,pay:''},
+        {q:1,id:'demo1',created:now-86400000,name:'มายด์',phone:'0812345678',models:['Nike Air Force 1'],photos:[[]],status:ST.D,express:false,fee:0,price:250,pay:PAY.PAID,pts:1},
+        {q:2,id:'demo2',created:now-7200000,name:'ต้น',phone:'0898765432',models:['Adidas Samba OG','New Balance 530'],photos:[[],[]],status:ST.R,express:false,fee:0,price:0,pay:'',services:[['clean','spa'],['clean']]},
+        {q:3,id:'demo3',created:now-5400000,name:'มายด์',phone:'0812345678',models:['Converse Chuck 70'],photos:[[]],status:ST.R,express:false,fee:0,price:0,pay:'',services:[['clean','repair']]},
+        {q:-1,id:'old1',created:now-6*86400000,name:'แนน',phone:'0855556666',models:['Nike Air Max 90'],photos:[[]],status:ST.Y,express:false,fee:0,price:240,pay:PAY.PAID,services:[['clean']],readyTs:now-5*86400000},
         {q:4,id:'demo4',created:now-3600000,name:'Jake',phone:'0923334444',models:['Nike Dunk Low Panda'],photos:[[]],status:ST.R,express:true,fee:50,price:0,pay:''}
       ],
       msgs:[
@@ -850,6 +1117,9 @@ const Mock = (() => {
         {id:'m2',ts:now-86000000,phone:'0812345678',from:'S',type:'quote',text:'ซักทำความสะอาด 1 คู่',q:1,oid:'demo1',amt:250},
         {id:'m3',ts:now-85000000,phone:'0812345678',from:'SYS',type:'sys',text:'paid',q:1,oid:'demo1',amt:250},
         {id:'m4',ts:now-3000000,phone:'0812345678',from:'SYS',type:'sys',text:'ready',q:1,oid:'demo1'},
+        {id:'m4b',ts:now-2500000,phone:'0812345678',from:'S',type:'sticker',text:'s5'},
+        {id:'m4c',ts:now-2100000,phone:'0812345678',from:'SYS',type:'sys',text:'done',q:1,oid:'demo1'},
+        {id:'m4d',ts:now-2000000,phone:'0812345678',from:'SYS',type:'sys',text:'points',q:1,oid:'demo1',amt:1},
         {id:'m5',ts:now-5300000,phone:'0812345678',from:'SYS',type:'sys',text:'new',q:3,oid:'demo3'},
         {id:'m6',ts:now-5200000,phone:'0812345678',from:'C',type:'text',text:'คู่ Converse พื้นด้านซ้ายเริ่มลอก ซ่อมได้ไหมคะ'},
         {id:'m7',ts:now-7100000,phone:'0898765432',from:'SYS',type:'sys',text:'new',q:2,oid:'demo2'},
@@ -857,6 +1127,7 @@ const Mock = (() => {
       ]};
   }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) { console.warn('demo storage full', e); } };
+  save();
   const tokens = new Set();
   const ok = v => new Promise(r => setTimeout(() => r(v === undefined ? v : JSON.parse(JSON.stringify(v))), 120));
   const no = m => new Promise((_, j) => setTimeout(() => j(new Error(m)), 120));
@@ -866,7 +1137,11 @@ const Mock = (() => {
   const bump = () => { S.cfg.ver = Date.now(); save(); };
   const fmt = ts => { const d = new Date(ts); return d.toLocaleDateString('th-TH',{day:'2-digit',month:'2-digit',year:'2-digit'})+' '+d.toTimeString().slice(0,5); };
   const waitingIds = () => { const w = S.orders.filter(o=>o.status===ST.R); return w.filter(o=>o.express).concat(w.filter(o=>!o.express)).map(o=>o.id); };
-  const ord = o => ({ id:o.id, q:o.q, created:fmt(o.created), ts:o.created, name:o.name, phone:o.phone, models:o.models.slice(), status:o.status, express:!!o.express, fee:o.fee||0, price:o.price||0, pay:o.pay||'' });
+  if (S.orders.some(o => o.q === -1)) { S.orders.forEach(o => { if (o.q === -1) o.q = 0; }); }
+  const ord = o => ({ services:o.services||[], after:o.after||[], src:o.src||'app', readyTs:o.readyTs||0, remindTs:o.remindTs||0, id:o.id, q:o.q, created:fmt(o.created), ts:o.created, name:o.name, phone:o.phone, models:o.models.slice(), status:o.status, express:!!o.express, fee:o.fee||0, price:o.price||0, pay:o.pay||'',
+    pts:o.pts||0, pairs:o.models.length, photo:((o.photos||[])[0]||[])[0]||'' });
+  const ptsOf = ph => { const h = (S.points||[]).filter(p=>p.phone===ph); return { bal:Math.max(0,h.reduce((a,p)=>a+p.pts,0)), hist:h.slice(-15).reverse() }; };
+  const addPts = (ph, pts, reason, q) => { (S.points = S.points || []).push({ ts:Date.now(), phone:ph, pts, reason, q }); save(); return ptsOf(ph); };
   const ordersOf = ph => S.orders.filter(o=>o.phone===ph).map(ord).reverse();
   const out = m => Object.assign({}, m, { img:m.img||'', full:m.img||'' });
   let lastTs = 0;
@@ -888,10 +1163,10 @@ const Mock = (() => {
     submitOrder: (o) => {
       const q = S.nextQ++, id = 'd' + Date.now().toString(36), ph = String(o.phone).replace(/\D/g,'');
       const per = Number(cfg().expressFee) || 0, express = !!o.express && per > 0, fee = express ? per * o.pairs.length : 0;
-      S.orders.push({ q, id, created:Date.now(), name:o.name, phone:ph, models:o.pairs.map(p=>p.model), photos:o.pairs.map(p=>p.photos), status:ST.R, express, fee, price:0, pay:'' });
+      S.orders.push({ q, id, created:Date.now(), name:o.name, phone:ph, models:o.pairs.map(p=>p.model), photos:o.pairs.map(p=>p.photos||[]), status:ST.R, express, fee, price:0, pay:'', services:o.pairs.map(p=>p.services||[]), src:o._staff?'staff':'app' });
       o.pairs.forEach(p => { const k = norm(p.model); const m = S.models.find(x=>norm(x[0])===k); if (m) m[1]++; else S.models.push([p.model.trim(),1]); });
       add(ph,'SYS','sys','new','',q,id); save();
-      return ok({ queue:q, id, express, fee, created:Date.now() });
+      return ok({ queue:q, id, express, fee, created:Date.now(), lineCode:'Q' + id.slice(-6).toUpperCase() });
     },
     custRegister: (name, phone, pin) => { phone = String(phone).replace(/\D/g,'');
       if (phone.length < 9) return no('BADPHONE'); if (!/^\d{6}$/.test(pin)) return no('BADPINFMT'); if (S.customers[phone]) return no('EXISTS');
@@ -901,7 +1176,8 @@ const Mock = (() => {
     custSync: (tk, since, seenTs) => { const ph = custPhone(tk); if (!ph) return no('CAUTH');
       if (seenTs) S.seen['c_'+ph] = seenTs; const seen = seenTs || seenGet('c_'+ph); save();
       const all = S.msgs.filter(m=>m.phone===ph);
-      return ok({ orders:ordersOf(ph), msgs:all.filter(m=>m.ts>(since||0)).map(out), unread:all.filter(m=>m.from!=='C'&&m.ts>seen).length, lastTs: all.length ? all[all.length-1].ts : 0 }); },
+      return ok({ orders:ordersOf(ph), msgs:all.filter(m=>m.ts>(since||0)).map(out), unread:all.filter(m=>m.from!=='C'&&m.ts>seen).length, points:ptsOf(ph), line:{ code:'PS' + ph.slice(-6), linked:false }, lastTs: all.length ? all[all.length-1].ts : 0 }); },
+    custTicketPhoto: (tk, oid) => { const o = S.orders.find(x=>x.id===oid); return ok(o ? ((o.photos||[])[0]||[])[0]||'' : ''); },
     custSend: (tk, m) => { const ph = custPhone(tk); if (!ph) return no('CAUTH');
       let q = '', oid = '';
       if (m.type === 'slip') { const o = S.orders.find(x=>x.id===m.oid && x.phone===ph); if (!o) return no('NOORDER'); if (o.pay !== PAY.PAID) o.pay = PAY.SENT; q = o.q; oid = o.id; }
@@ -918,16 +1194,46 @@ const Mock = (() => {
       return ok(Object.values(map).map(th => { const c = S.customers[th.phone], o = S.orders.find(x=>x.phone===th.phone); return Object.assign(th, { name: c ? c.name : (o ? o.name : th.phone), reg: !!c }); }).sort((a,b)=>b.lastTs-a.lastTs)); },
     staffMessages: (tk, ph, since) => { if(!auth(tk)) return no('AUTH'); const all = S.msgs.filter(m=>m.phone===ph);
       if (all.length) S.seen['s_'+ph] = all[all.length-1].ts; save(); const c = S.customers[ph], os = ordersOf(ph);
-      return ok({ msgs:all.filter(m=>m.ts>(since||0)).map(out), orders:os, name: c ? c.name : (os[0] ? os[0].name : ph), reg:!!c, custSeen:seenGet('c_'+ph) }); },
-    staffSend: (tk, ph, m) => { if(!auth(tk)) return no('AUTH'); let q='', oid='', amt='';
-      if (m.type === 'quote') { amt = Math.round(Number(m.amount)||0); if (amt <= 0) return no('BADAMOUNT'); const o = S.orders.find(x=>x.id===m.oid); if (!o) return no('NOORDER'); o.price = amt; o.pay = PAY.WAIT; q = o.q; oid = o.id; }
+      return ok({ msgs:all.filter(m=>m.ts>(since||0)).map(out), orders:os, name: c ? c.name : (os[0] ? os[0].name : ph), reg:!!c, custSeen:seenGet('c_'+ph), points:ptsOf(ph) }); },
+    staffAddOrder: (tk, o) => auth(tk) ? Mock.submitOrder(Object.assign({}, o, { _staff:true })) : no('AUTH'),
+    staffAddAfter: (tk, oid, d) => { if(!auth(tk)) return no('AUTH'); const o = S.orders.find(x=>x.id===oid); (o.after = o.after || []).push(d); add(o.phone,'SYS','sys','after',d,o.q,o.id); return ok(true); },
+    staffAttachSlip: (tk, oid, d) => { if(!auth(tk)) return no('AUTH'); const o = S.orders.find(x=>x.id===oid); if (o.pay !== PAY.PAID) o.pay = PAY.SENT; add(o.phone,'S','slip','',d,o.q,o.id); return ok(true); },
+    staffRemind: (tk, oid) => { if(!auth(tk)) return no('AUTH'); const o = S.orders.find(x=>x.id===oid); o.remindTs = Date.now(); add(o.phone,'SYS','sys','remind','',o.q,o.id,Math.max(1,Math.floor((Date.now()-(o.readyTs||Date.now()))/864e5))); return ok(true); },
+    staffStats: (tk, from, to) => { if(!auth(tk)) return no('AUTH');
+      const s = { orders:0, pairs:0, paid:0, unpaid:0, express:0, expressFee:0, newC:0, oldC:0, staffAdded:0, svc:{clean:0,spa:0,sole:0,repair:0,none:0}, days:{}, status:{R:0,Y:0,D:0}, stale:[] };
+      const first = {}, inR = {};
+      S.orders.slice().sort((a,b)=>a.created-b.created).forEach(o => { if (!(o.phone in first)) first[o.phone] = o.created;
+        if (o.status === ST.Y && o.readyTs && Date.now() - o.readyTs >= (Number(cfg().remindDays)||3)*864e5) s.stale.push({ id:o.id, q:o.q, name:o.name, days:Math.floor((Date.now()-o.readyTs)/864e5) });
+        if (o.created < from || o.created >= to) return;
+        s.orders++; s.pairs += o.models.length; if (o.pay === PAY.PAID) s.paid += o.price||0; else s.unpaid += o.price||0;
+        if (o.express) { s.express++; s.expressFee += o.fee||0; } if (o.src === 'staff') s.staffAdded++;
+        s.status[o.status===ST.Y?'Y':o.status===ST.D?'D':'R']++;
+        (o.services||[]).forEach(a => { if (!a.length) s.svc.none++; a.forEach(k => s.svc[k]++); });
+        const d = new Date(o.created), k = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+        const day = s.days[k] || (s.days[k] = { orders:0, pairs:0, paid:0 }); day.orders++; day.pairs += o.models.length; if (o.pay === PAY.PAID) day.paid += o.price||0;
+        if (!(o.phone in inR)) inR[o.phone] = first[o.phone] >= from; });
+      Object.values(inR).forEach(v => v ? s.newC++ : s.oldC++); return ok(s); },
+    staffSaveGuide: (tk, g) => { if(!auth(tk)) return no('AUTH'); S.cfg.priceGuide = g; save(); return ok(g); },
+    staffLineStatus: (tk) => auth(tk) ? ok({ hasToken:!!S.lineTok, webhook:'https://script.google.com/macros/s/…/exec', adminCode:'ADMDEMO12', adminLinked:0, customers:0 }) : no('AUTH'),
+    staffSaveLine: (tk, tok) => { if(!auth(tk)) return no('AUTH'); S.lineTok = tok; save(); return Mock.staffLineStatus(tk); },
+    staffLineTest: (tk) => no(S.lineTok ? 'NOADMINLINE' : 'NOLINE'),
+    staffPoints: (tk, ph) => auth(tk) ? ok(ptsOf(ph)) : no('AUTH'),
+    staffGivePoints: (tk, oid) => { if(!auth(tk)) return no('AUTH'); const o = S.orders.find(x=>x.id===oid); if (!o) return no('NOORDER'); if (o.pts) return no('GIVEN');
+      o.pts = o.models.length; const p = addPts(o.phone, o.pts, 'earn', o.q); add(o.phone,'SYS','sys','points','',o.q,o.id,o.pts); return ok(p); },
+    staffSetGallery: (tk, ids) => { if(!auth(tk)) return no('AUTH'); S.cfg.gallery = ids.slice(); bump(); return Mock.staffGetConfig(tk); },
+    staffSaveQuick: (tk, list) => { if(!auth(tk)) return no('AUTH'); S.cfg.quickReplies = list.map(x=>String(x).trim()).filter(Boolean).slice(0,40); save(); return ok(S.cfg.quickReplies); },
+    staffSend: (tk, ph, m) => { if(!auth(tk)) return no('AUTH'); let q='', oid='', amt='', text = m.text;
+      if (m.type === 'quote') { amt = Math.round(Number(m.amount)||0); if (amt <= 0) return no('BADAMOUNT'); const o = S.orders.find(x=>x.id===m.oid); if (!o) return no('NOORDER');
+        if (m.useReward) { const need = Number(cfg().rewardNeed)||5; if (ptsOf(ph).bal < need) return no('NOPOINTS'); addPts(ph, -need, 'redeem', o.q); text = '🎁 -' + Math.round(m.discount||0) + ' ฿ (' + (Number(cfg().rewardPct)||10) + '%)' + (text ? '\n' + text : ''); }
+        o.price = amt; o.pay = PAY.WAIT; q = o.q; oid = o.id; }
       if (m.type === 'text' && !String(m.text||'').trim()) return no('EMPTY');
-      return ok(out(add(ph,'S',m.type,m.text,m.img,q,oid,amt))); },
+      return ok(out(add(ph,'S',m.type,text,m.img,q,oid,amt))); },
     staffConfirmPay: (tk, oid) => { if(!auth(tk)) return no('AUTH'); const o = S.orders.find(x=>x.id===oid); if (!o) return no('NOORDER');
       if (o.pay !== PAY.PAID) { o.pay = PAY.PAID; add(o.phone,'SYS','sys','paid','',o.q,o.id,o.price); } save(); return ok(true); },
     staffResetPin: (tk, ph) => { if(!auth(tk)) return no('AUTH'); delete S.customers[ph]; save(); return ok(true); },
-    staffGetConfig: (tk) => auth(tk) ? ok(Object.assign(pub(), { nextQueue:S.nextQ, sheetUrl:'' })) : no('AUTH'),
-    staffSaveConfig: (tk,p) => { if(!auth(tk)) return no('AUTH'); Object.assign(S.cfg,p); if ('expressFee' in p) S.cfg.expressFee = Math.max(0, Math.round(Number(p.expressFee)||0)); bump(); return Mock.staffGetConfig(tk); },
+    staffGetConfig: (tk) => auth(tk) ? ok(Object.assign(pub(), { nextQueue:S.nextQ, sheetUrl:'', quickReplies: cfg().quickReplies, priceGuide: cfg().priceGuide || DEFAULT_GUIDE,
+      remindDays: cfg().remindDays || 3, autoRemind: cfg().autoRemind !== false, labelW: cfg().labelW || 50, labelH: cfg().labelH || 30, lineNotify: cfg().lineNotify || DEFAULT_LN })) : no('AUTH'),
+    staffSaveConfig: (tk,p) => { if(!auth(tk)) return no('AUTH'); Object.assign(S.cfg,p); if ('expressFee' in p) S.cfg.expressFee = Math.max(0, Math.round(Number(p.expressFee)||0)); ['remindDays','labelW','labelH'].forEach(k => { if (k in p) S.cfg[k] = Number(p[k]) || S.cfg[k]; }); if ('rewardNeed' in p) S.cfg.rewardNeed = Math.max(1, Math.round(Number(p.rewardNeed)||5)); if ('rewardPct' in p) S.cfg.rewardPct = Math.min(100, Math.max(1, Math.round(Number(p.rewardPct)||10))); bump(); return Mock.staffGetConfig(tk); },
     staffUploadImage: (tk,k,d) => { if(!auth(tk)) return no('AUTH');
       if (k==='logo') S.cfg.logoId=d; else if (k==='lineQr') S.cfg.lineQrId=d; else if (k==='payQr') S.cfg.payQrId=d; else S.cfg.gallery=(S.cfg.gallery||[]).concat([d]).slice(-20);
       bump(); return Mock.staffGetConfig(tk); },
@@ -955,7 +1261,7 @@ const pad = q => String(q).padStart(3, '0');
 const fmtPhone = p => String(p||'').replace(/^(\d{3})(\d{3})(\d{3,4})$/, '$1-$2-$3');
 const money = n => Number(n||0).toLocaleString('en-US');
 function norm(s){ return String(s||'').toLowerCase().replace(/[\s\-_.\/]+/g,''); }
-const ERR_CODES = /\b(NETWORK|CAUTH|AUTH|EXISTS|NOACCOUNT|BADPIN|LOCKED|BADPHONE|BADPINFMT|STAFFPW|BADAMOUNT|NOORDER|EMPTY|BADIMG|BIGIMG|PWSHORT|BADQ)\b/;
+const ERR_CODES = /\b(NOLINE|NOADMINLINE|NETWORK|NOPOINTS|GIVEN|CAUTH|AUTH|EXISTS|NOACCOUNT|BADPIN|LOCKED|BADPHONE|BADPINFMT|STAFFPW|BADAMOUNT|NOORDER|EMPTY|BADIMG|BIGIMG|PWSHORT|BADQ)\b/;
 function errMsg(e){ const s = String((e && e.message) || e || 'Error'); const m = s.match(ERR_CODES); return m ? t('e_'+m[1]) : s.replace(/^(Error|Exception):\s*/,''); }
 function isMobile(){ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); }
 let toastT;
@@ -970,6 +1276,12 @@ function sparkle(n){ for(let i=0;i<(n||18);i++){ const s=document.createElement(
   s.style.left=(innerWidth/2)+'px'; s.style.top=(innerHeight/2.6)+'px';
   s.style.setProperty('--x',(Math.random()*320-160)+'px'); s.style.setProperty('--y',(Math.random()*-260-40)+'px');
   document.body.appendChild(s); setTimeout(()=>s.remove(),1500);} }
+function shrink(dataUrl, max, q){
+  return new Promise((res, rej) => { const img = new Image(); img.onerror = rej; img.onload = () => {
+    const k = Math.min(1, max / Math.max(img.width, img.height)), c = document.createElement('canvas');
+    c.width = Math.round(img.width*k); c.height = Math.round(img.height*k); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', q || 0.75)); };
+    img.src = dataUrl; });
+}
 function compress(file, max, q, type){
   return new Promise((res, rej) => {
     const r = new FileReader();
@@ -1064,7 +1376,7 @@ function curTicketObj(){
   const local = myTickets().find(x => x.id === curTicket);
   if (local) return local;
   const o = ORDERS.find(x => x.id === curTicket);
-  return o ? { id:o.id, q:o.q, name:o.name, phone:o.phone, models:o.models, ts:o.ts || Date.now(), express:o.express, fee:o.fee } : myTickets().slice(-1)[0];
+  return o ? { id:o.id, q:o.q, name:o.name, phone:o.phone, models:o.models, ts:o.ts || Date.now(), express:o.express, fee:o.fee, remote:true, photoUrl:o.photo } : myTickets().slice(-1)[0];
 }
 function renderTicket(){
   const tk = curTicketObj();
@@ -1072,6 +1384,8 @@ function renderTicket(){
   curTicket = tk.id;
   const s = STATUS_CACHE[tk.id] || { status:ST.R };
   $('tNo').textContent = pad(tk.q);
+  const ph = tk.thumb || tk.photoUrl || '';
+  $('tPhoto').innerHTML = ph ? `<img class="tk-photo" src="${esc(ph)}" onclick="zoom(this.src)" alt="">` : '';
   $('tEx').innerHTML = tk.express ? `<span class="ex-badge">${t('tExpress',{x:tk.fee})}</span>` : '';
   const b = $('tStatus'); b.textContent = stLabel(s.status);
   b.className = 'status-badge ' + (s.status===ST.Y ? 'st-y' : s.status===ST.D ? 'st-d' : 'st-r');
@@ -1079,21 +1393,27 @@ function renderTicket(){
   $('tCel').classList.toggle('on', s.status === ST.Y);
   if (s.status === ST.Y && !celebrated[tk.id]) { celebrated[tk.id] = 1; sparkle(24); try{ navigator.vibrate && navigator.vibrate([120,60,120]); }catch(e){} }
   $('tInfo').innerHTML = `<div>👤 ${esc(tk.name)} · 📞 ${esc(fmtPhone(tk.phone))}</div><div>${t('tPairs',{n:tk.models.length})}${tk.models.map(esc).join(', ')}</div><div>${t('tSent')}${esc(fmtDate(tk.ts))}</div>`;
+  $('tLine').innerHTML = (!CU && tk.lineCode && CFG.lineUrl) ? `<div class="pay-row" style="flex-direction:column;align-items:flex-start;margin-bottom:8px">
+    <span style="font-size:14px">${t('tkLine')}</span><span class="code">${esc(tk.lineCode)}</span>
+    <div class="row2" style="width:100%"><button class="btn ghost small" onclick="copyText('${esc(tk.lineCode)}')">${t('copyCode')}</button><a class="btn line small" href="${esc(CFG.lineUrl)}" target="_blank" rel="noopener">${t('openLine')}</a></div></div>` : '';
   $('tWarn').innerHTML = CU ? '' : `<div class="warn">${t('warnNoLogin')}<button class="btn ghost small" style="margin-top:10px" onclick="openLogin('r')">${t('regToTrack')}</button></div>`;
   if (remindPending && !CU) { remindPending = false; setTimeout(() => openM('mRemind'), 600); }
 }
-function fmtDate(ts){ return new Date(ts).toLocaleString(LANG==='en'?'en-GB':'th-TH',{ day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }); }
+function fmtDate(ts){ return new Date(ts).toLocaleString(LOCALE(),{ day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }); }
 
 /* บัตรคิวเป็นรูปภาพ (วาดด้วย canvas) */
 let TK_BLOB = null;
 async function saveTicket(tk){
   if (!tk) return;
   try { await document.fonts.ready; } catch(e) {}
-  const W = 720, models = tk.models.slice(0, 12), lineH = 40;
-  const H = 850 + models.length * lineH + (tk.express ? 56 : 0);
+  let photo = tk.thumb || '';
+  if (!photo && tk.remote && CU) { try { photo = await api('custTicketPhoto', CU.token, tk.id); } catch(e) {} }
+  const pimg = photo ? await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = photo; }) : null;
+  const W = 720, models = tk.models.slice(0, 12), lineH = 40, PH = pimg ? 250 : 0;
+  const H = 850 + models.length * lineH + (tk.express ? 56 : 0) + PH;
   const c = document.createElement('canvas'); c.width = W; c.height = H;
   const x = c.getContext('2d');
-  const F = (w, s) => `${w} ${s}px Mitr, Sarabun, sans-serif`;
+  const F = (w, s) => `${w} ${s}px Mitr, Sarabun, 'Noto Sans Myanmar', sans-serif`;
   const rr = (X,Y,w,h,r) => { x.beginPath(); x.moveTo(X+r,Y); x.arcTo(X+w,Y,X+w,Y+h,r); x.arcTo(X+w,Y+h,X,Y+h,r); x.arcTo(X,Y+h,X,Y,r); x.arcTo(X,Y,X+w,Y,r); x.closePath(); };
   x.fillStyle = '#9a5f2c'; x.fillRect(0,0,W,H);
   rr(24,24,W-48,H-48,36); x.fillStyle = '#fff7e8'; x.fill(); x.lineWidth = 6; x.strokeStyle = '#e2b97f'; x.stroke();
@@ -1107,6 +1427,9 @@ async function saveTicket(tk){
   x.font = F(400, 24); x.fillStyle = '#8a6542'; x.fillText('🎫 ' + t('tkTitle') + ' / Queue ticket', W/2, 295);
   x.font = F(600, 150); x.fillStyle = '#e23b33'; x.fillText(pad(tk.q), W/2, 450);
   let y = 470;
+  if (pimg) { const S2 = 230, sx = W/2 - S2/2, sy = y + 6, k = Math.max(S2 / pimg.width, S2 / pimg.height), w = pimg.width * k, hh = pimg.height * k;
+    x.save(); rr(sx-6, sy-6, S2+12, S2+12, 30); x.fillStyle = '#e2b97f'; x.fill(); rr(sx, sy, S2, S2, 24); x.clip();
+    x.drawImage(pimg, sx + (S2 - w)/2, sy + (S2 - hh)/2, w, hh); x.restore(); y += PH; }
   if (tk.express) { rr(W/2-150, y, 300, 44, 22); x.fillStyle = '#f0a400'; x.fill(); x.fillStyle = '#fff'; x.font = F(500, 24); x.fillText(t('tExpress',{x:tk.fee}), W/2, y+31); y += 56; }
   x.setLineDash([10,8]); x.strokeStyle = '#e2c497'; x.lineWidth = 3; x.beginPath(); x.moveTo(70, y+20); x.lineTo(W-70, y+20); x.stroke(); x.setLineDash([]);
   y += 70; x.textAlign = 'left';
@@ -1129,8 +1452,16 @@ async function shareTicket(){
 }
 
 /* ================= FORM ================= */
-let pairs = [{ model:'', photos:[] }], MODELS = [];
+const SVC_KEYS = ['clean','spa','sole','repair'];
+let pairs = [{ model:'', photos:[], services:[] }], MODELS = [], STAFF_ADD = false;
+function openStaffAdd(){
+  STAFF_ADD = true; $('fName').value = ''; $('fPhone').value = ''; pairs = [{ model:'', photos:[], services:[] }]; $('fExpress').checked = false;
+  renderPairs(); updExpress(); go('form');
+  api('getModels').then(m => MODELS = m || []).catch(()=>{});
+}
+function toggleSvc(i, k){ savePairInputs(); const a = pairs[i].services || (pairs[i].services = []); const j = a.indexOf(k); if (j > -1) a.splice(j, 1); else a.push(k); renderPairs(); }
 function openForm(){
+  STAFF_ADD = false;
   const me = CU || store('me') || {};
   if (!$('fName').value) $('fName').value = me.name || '';
   if (!$('fPhone').value) $('fPhone').value = me.phone || '';
@@ -1138,12 +1469,16 @@ function openForm(){
   renderPairs(); updExpress(); go('form');
   api('getModels').then(m => MODELS = m || []).catch(()=>{});
 }
-function renderFormHint(){ $('formLoginHint').innerHTML = `<div class="card" style="padding:12px 14px;font-size:15px">${CU ? t('formHintIn',{n:esc(CU.name)}) : t('formHint')}</div>`; }
+function renderFormHint(){
+  $('formLoginHint').innerHTML = STAFF_ADD ? '' : `<div class="card" style="padding:12px 14px;font-size:15px">${CU ? t('formHintIn',{n:esc(CU.name)}) : t('formHint')}</div>`;
+  $('staffBanner').style.display = STAFF_ADD ? '' : 'none'; $('staffBanner').textContent = t('staffAddBanner');
+  document.querySelectorAll('#v-form .steps').forEach(x => x.style.display = STAFF_ADD ? 'none' : '');
+}
 function savePairInputs(){ pairs.forEach((p,i) => { const el = $('m'+i); if (el) p.model = el.value; }); }
 function setPairs(d){
   savePairInputs();
   const n = Math.min(20, Math.max(1, pairs.length + d));
-  while (pairs.length < n) pairs.push({ model:'', photos:[] });
+  while (pairs.length < n) pairs.push({ model:'', photos:[], services:[] });
   pairs.length = n;
   renderPairs(); updExpress();
 }
@@ -1166,7 +1501,9 @@ function renderPairs(){
           oninput="pairs[${i}].model=this.value;this.classList.remove('err');suggest(${i})" onfocus="suggest(${i})" onblur="setTimeout(()=>hideAc(${i}),150)" onkeydown="acKey(event,${i})">
         <div class="ac-list" id="ac${i}"></div>
       </div>
-      <label class="f">${t('photos')} <span class="muted">${t('min1')}</span></label>
+      <label class="f">${t('svcQ')}</label>
+      <div class="svc-row">${SVC_KEYS.map(k => `<button type="button" class="svc${(p.services||[]).includes(k) ? ' on' : ''}" onclick="toggleSvc(${i},'${k}')">${t('svc_'+k)}</button>`).join('')}</div>
+      <label class="f">${t('photos')} ${STAFF_ADD ? '' : `<span class="muted">${t('min1')}</span>`}</label>
       <div class="photos">
         ${p.photos.map((u, j) => `<div class="ph"><img src="${u}" onclick="zoom(this.src)" alt=""><button type="button" onclick="rmPhoto(${i},${j})">×</button></div>`).join('')}
         <label class="add-photo" id="add${i}">📷<span>${t('addPhoto')}</span><input type="file" accept="image/*" multiple hidden onchange="addPhotos(this,${i})"></label>
@@ -1232,11 +1569,11 @@ async function submitForm(){
   $('fPhone').classList.toggle('err', phoneBad); if (phoneBad) bad = bad || [$('fPhone'), t('errPhone')];
   pairs.forEach((p, i) => {
     if (!p.model.trim()) { $('m'+i).classList.add('err'); bad = bad || [$('m'+i), t('errModel',{n:i+1})]; }
-    if (!p.photos.length) { $('add'+i).classList.add('err'); bad = bad || [$('add'+i), t('errPhoto',{n:i+1})]; }
+    if (!p.photos.length && !STAFF_ADD) { $('add'+i).classList.add('err'); bad = bad || [$('add'+i), t('errPhoto',{n:i+1})]; }
   });
   if (bad) { toast(bad[1], true); bad[0].scrollIntoView({behavior:'smooth', block:'center'}); return; }
 
-  const express = $('fExpress').checked;
+  const express = $('fExpress').checked, firstPhoto = pairs[0].photos[0];
   const total = pairs.reduce((s, p) => s + p.photos.length, 0); let done = 0;
   try {
     loading(true, t('uploading',{a:0,b:total}), 2);
@@ -1247,14 +1584,23 @@ async function submitForm(){
         ids.push(await api('uploadPhoto', d, phone + '_p' + (i+1)));
         done++; loading(true, t('uploading',{a:done,b:total}), done / total * 90);
       }
-      out.push({ model: pairs[i].model.trim(), photos: ids });
+      out.push({ model: pairs[i].model.trim(), photos: ids, services: pairs[i].services || [] });
     }
     loading(true, t('issuing'), 96);
+    if (STAFF_ADD) {
+      const r = await api('staffAddOrder', TOKEN, { name, phone, pairs: out, express });
+      pairs = [{ model:'', photos:[], services:[] }]; $('fExpress').checked = false; STAFF_ADD = false;
+      loading(false); toast(t('staffAddOk',{q:pad(r.queue)})); sparkle(10);
+      $('fName').value = ''; $('fPhone').value = '';
+      enterStaff(); setTimeout(async () => { await loadStaff(); openLabels(r.id); }, 300);
+      return;
+    }
     const r = await api('submitOrder', { name, phone, pairs: out, express });
-    const list = myTickets(); list.push({ id:r.id, q:r.queue, name, phone, models: out.map(p => p.model), ts: r.created || Date.now(), express:r.express, fee:r.fee });
+    let thumb = ''; try { thumb = await shrink(firstPhoto, 260, 0.7); } catch(e) {}
+    const list = myTickets(); list.push({ id:r.id, q:r.queue, name, phone, models: out.map(p => p.model), ts: r.created || Date.now(), express:r.express, fee:r.fee, thumb, lineCode:r.lineCode });
     store('tickets', list.slice(-10)); store('me', { name, phone });
     STATUS_CACHE[r.id] = { q:r.queue, status:ST.R, ahead:0 }; curTicket = r.id;
-    pairs = [{ model:'', photos:[] }]; $('fExpress').checked = false; updExpress();
+    pairs = [{ model:'', photos:[], services:[] }]; $('fExpress').checked = false; updExpress();
     remindPending = !CU;
     loading(false); go('line'); sparkle(14);
   } catch(e) { loading(false); toast(t('sendFail') + errMsg(e), true); }
@@ -1264,6 +1610,16 @@ async function submitForm(){
 const PIN_LEN = 6;
 let CU = store('cust');           // { token, name, phone }  เมื่อเข้าสู่ระบบ
 let KNOWN = store('known');       // { name, phone }  จำชื่อล่าสุดในเครื่อง
+let POINTS = null, NEW_STAMP = 0, LINE_ST = null;
+function copyText(s){ try { navigator.clipboard.writeText(s).then(() => toast(t('copied')), () => toast(s)); } catch(e) { toast(s); } }
+function renderLineCard(){
+  const box = $('aLine'); if (!box) return;
+  if (!LINE_ST || !CFG.lineUrl) { box.innerHTML = ''; return; }
+  box.innerHTML = LINE_ST.linked ? `<div class="card line-card" style="padding:12px 14px">${t('lineLinked')}</div>`
+    : `<div class="card line-card"><h2 style="margin-bottom:6px">${t('lineLinkH')}</h2><div class="muted">${t('lineLinkTxt')}</div>
+       <div style="margin:10px 0"><span class="code">${esc(LINE_ST.code)}</span></div>
+       <div class="row2"><button class="btn ghost small" onclick="copyText('${esc(LINE_ST.code)}')">${t('copyCode')}</button><a class="btn line small" href="${esc(CFG.lineUrl)}" target="_blank" rel="noopener">${t('openLine')}</a></div></div>`;
+}
 let ORDERS = [], CHAT = [], chatLast = 0, UNREAD = 0, syncBusy = false, loginMode = 'l', changeAcct = false;
 
 function pinHTML(id, onfull){
@@ -1318,16 +1674,16 @@ async function doRegister(){
 }
 function afterCustLogin(r){
   CU = r; store('cust', r); KNOWN = { name:r.name, phone:r.phone }; store('known', KNOWN); store('me', KNOWN);
-  CHAT = []; chatLast = 0; ORDERS = [];
+  CHAT = []; chatLast = 0; ORDERS = []; POINTS = null;
   toast(t('welcome',{n:r.name})); sparkle(12);
   renderAcctUI(); go('acct');
 }
-function custLogout(){ CU = null; store('cust', null); CHAT = []; ORDERS = []; UNREAD = 0; renderAcctUI(); toast(t('loggedOutC')); go('home'); }
+function custLogout(){ CU = null; store('cust', null); CHAT = []; ORDERS = []; POINTS = null; PTS_SIG = ''; UNREAD = 0; renderAcctUI(); toast(t('loggedOutC')); go('home'); }
 function renderAcctUI(){
   const b = $('acctBtn');
   b.innerHTML = `<span class="nm">${CU ? esc(t('acctShort',{n:CU.name})) : t('loginReg')}</span>` + `<span class="badge${UNREAD?' on':''}">${UNREAD}</span>`;
   $('homeAcct').innerHTML = CU
-    ? `<div class="card"><div style="font-family:'Mitr',sans-serif;font-size:18px;margin-bottom:6px">${esc(t('homeAcctIn',{n:CU.name}))}</div>
+    ? `<div class="card"><div style="font-family:'Mitr',sans-serif;font-size:18px;margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span>${esc(t('homeAcctIn',{n:CU.name}))}</span>${POINTS ? `<span class="pts-tag" style="font-size:15px">${t('ptsShort',{n:POINTS.bal,need:Number(CFG.rewardNeed)||5})}</span>` : ''}</div>
        <div class="row2"><button class="btn green" onclick="go('acct')">${t('myOrdersBtn')}</button><button class="btn blue" onclick="openChat()">${t('btnChat')}<span class="badge${UNREAD?' on':''}">${UNREAD}</span></button></div></div>`
     : `<button class="btn blue" onclick="openLogin('l')" style="flex-direction:column;gap:2px">${t('homeAcctOut')}<small style="font-size:13px;opacity:.9;font-family:'Sarabun',sans-serif">${t('homeAcctSub')}</small></button>`;
   const cb = $('chatBadge2'); cb.textContent = UNREAD; cb.classList.toggle('on', !!UNREAD);
@@ -1339,6 +1695,8 @@ async function custSync(){
     const inChat = view === 'chat';
     const r = await api('custSync', CU.token, chatLast, inChat ? Math.max(chatLast, Date.now()) : 0);
     ORDERS = r.orders || [];
+    if (r.points) { if (POINTS && r.points.bal > POINTS.bal) NEW_STAMP = r.points.bal; POINTS = r.points; }
+    if (r.line) LINE_ST = r.line;
     ORDERS.forEach(o => { STATUS_CACHE[o.id] = Object.assign(STATUS_CACHE[o.id] || {}, { q:o.q, status:o.status }); });
     if (r.msgs && r.msgs.length) { CHAT = CHAT.concat(r.msgs.filter(m => !CHAT.some(x => x.id === m.id))); chatLast = CHAT[CHAT.length-1].ts; if (inChat) renderChat(); }
     UNREAD = inChat ? 0 : r.unread;
@@ -1352,6 +1710,7 @@ function renderAcct(){
   if (!CU) return;
   $('aAvatar').textContent = (CU.name || '?').trim().charAt(0).toUpperCase();
   $('aHello').textContent = t('hiName',{n:CU.name}); $('aPhone').textContent = '📞 ' + fmtPhone(CU.phone);
+  renderPoints(); renderLineCard();
   const list = ORDERS.filter(o => o.status !== ST.D).concat(ORDERS.filter(o => o.status === ST.D).slice(0, 5));
   $('aOrders').innerHTML = list.length ? list.map(o => {
     const badge = o.status===ST.Y ? 'st-y' : o.status===ST.D ? 'st-d' : 'st-r';
@@ -1362,14 +1721,37 @@ function renderAcct(){
       <div class="mo-top"><div class="oc-q">${pad(o.q)}</div><div style="flex:1">
         <span class="status-badge ${badge}" style="font-size:14px;padding:3px 12px;margin:0;animation:none">${stLabel(o.status)}</span>
         <div class="oc-meta" style="margin-top:4px">🕒 ${esc(o.created)}${o.status===ST.R && s.ahead>0 ? ' · ' + t('ahead',{n:s.ahead}) : ''}</div></div></div>
-      <div style="margin-top:8px;font-size:15px">👟 ${o.models.map(esc).join(', ')}</div>
+      <div style="margin-top:8px;font-size:15px;display:flex;gap:10px;align-items:center">${o.photo ? `<img class="mo-photo" src="${esc(o.photo)}" onclick="zoom(this.src)" alt="">` : ''}<span>👟 ${o.models.map(esc).join(', ')}${o.pts ? ` <span class="pts-tag">+${o.pts} 🎁</span>` : ''}</span></div>
+      ${(o.services||[]).some(a => a && a.length) ? `<div class="svc-tags">${[...new Set((o.services||[]).flat())].map(k => `<span class="svc-tag">${t('svc_'+k)}</span>`).join('')}</div>` : ''}
+      ${(o.after||[]).length ? `<div class="ba"><figure>${o.photo ? `<img src="${esc(o.photo)}" onclick="zoom(this.src)" alt="">` : ''}<figcaption>${t('before')}</figcaption></figure>
+        <figure><img src="${esc(o.after[o.after.length-1])}" onclick="zoom(this.src)" alt=""><figcaption>${t('after')}</figcaption></figure></div>` : ''}
       ${price}
       <div class="row2">${o.price && o.pay !== PAY.PAID && o.status !== ST.D ? `<button class="btn primary small" onclick="openPay('${o.id}')">${t('payBtn')}</button>` : ''}
         <button class="btn ghost small" onclick="saveTicket(orderTk('${o.id}'))">${t('tkBtn')}</button></div>
     </div>`;
   }).join('') : `<div class="card center muted">${t('noOrders')}</div>`;
 }
-function orderTk(id){ const o = ORDERS.find(x => x.id === id); return o && { id:o.id, q:o.q, name:o.name, phone:o.phone, models:o.models, ts:o.ts || Date.now(), express:o.express, fee:o.fee }; }
+function orderTk(id){ const o = ORDERS.find(x => x.id === id); return o && { id:o.id, q:o.q, name:o.name, phone:o.phone, models:o.models, ts:o.ts || Date.now(), express:o.express, fee:o.fee, remote:true }; }
+
+/* บัตรสะสมแต้ม (ใช้รูปบัตรของร้าน + ลายน้ำโลโก้ 50% เป็นตราประทับ) */
+let PTS_SIG = '';
+const SLOT_X = [11.6, 25.9, 40.25, 54.6, 68.15];
+function renderPoints(){
+  const box = $('aPoints'); if (!box) return;
+  const need = Number(CFG.rewardNeed) || 5, pct = Number(CFG.rewardPct) || 10;
+  const bal = POINTS ? POINTS.bal : 0, rewards = Math.floor(bal / need), filled = bal >= need ? need : bal % need;
+  const sig = [bal, need, pct, LANG, (POINTS && POINTS.hist || []).length].join('|');
+  if (sig === PTS_SIG && box.innerHTML) return; PTS_SIG = sig;
+  const fresh = NEW_STAMP ? Math.min(NEW_STAMP, need) : 0; NEW_STAMP = 0;
+  let card;
+  if (need === 5) card = `<div class="stamp-card"><img class="bg" src="stamp-card.jpg" alt="">` +
+      SLOT_X.map((x, i) => `<div class="slot${i+1 === fresh ? ' new' : ''}" style="left:${x}%">${i < filled ? '<img src="stamp-logo.webp" alt="✓">' : ''}</div>`).join('') + `</div>`;
+  else card = `<div class="stamp-card"><div class="stamp-row">` + Array.from({length:need}, (_, i) => `<span>${i+1}${i < filled ? '<img src="stamp-logo.webp" alt="">' : ''}</span>`).join('') + `</div></div>`;
+  const hist = (POINTS && POINTS.hist || []).map(h => `<div><span>${h.pts > 0 ? t('ptsEarn',{n:h.pts,q:pad(h.q||0)}) : t('ptsRedeem',{n:-h.pts})}</span><span>${esc(new Date(h.ts).toLocaleDateString(LOCALE(),{day:'numeric',month:'short'}))}</span></div>`).join('');
+  box.innerHTML = card + `<div class="card pts-box"><div class="pts-big">${t('ptsBal',{n:bal})}</div><div class="muted">${t('ptsRule',{need,pct})}</div>
+    ${rewards ? `<div class="reward">${t('ptsReward',{pct,r:rewards})}</div>` : `<div class="muted" style="margin-top:6px">${t('ptsToGo',{n:need - (bal % need),pct})}</div>`}
+    ${hist ? `<details style="margin-top:8px"><summary class="muted" style="cursor:pointer">${t('ptsHist')}</summary><div class="pts-hist">${hist}</div></details>` : ''}</div>`;
+}
 
 /* ชำระเงิน */
 let PAY_OID = null;
@@ -1394,11 +1776,12 @@ async function sendSlip(inp){
 }
 
 /* ================= CHAT (shared renderer) ================= */
-function fmtTime(ts){ const d = new Date(ts), now = new Date(); return d.toDateString() === now.toDateString() ? d.toTimeString().slice(0,5) : d.toLocaleDateString(LANG==='en'?'en-GB':'th-TH',{day:'numeric',month:'short'}) + ' ' + d.toTimeString().slice(0,5); }
+function fmtTime(ts){ const d = new Date(ts), now = new Date(); return d.toDateString() === now.toDateString() ? d.toTimeString().slice(0,5) : d.toLocaleDateString(LOCALE(),{day:'numeric',month:'short'}) + ' ' + d.toTimeString().slice(0,5); }
 function msgHTML(m, side, orders){
   const mine = m.from === side, cls = mine ? 'me' : 'them';
   const time = `<time>${fmtTime(m.ts)}</time>`;
-  if (m.type === 'sys') return `<div class="sys">${t('sys_'+m.text,{q:pad(m.q)})} · ${fmtTime(m.ts)}</div>`;
+  if (m.type === 'sys') return `<div class="sys">${t('sys_'+m.text,{q:pad(m.q), n:m.amt})} · ${fmtTime(m.ts)}${m.img ? `<img src="${esc(m.img)}" onclick="zoom('${esc(m.full || m.img)}')" alt="" style="display:block;max-width:220px;width:100%;border-radius:12px;margin:6px auto 2px;cursor:pointer">` : ''}</div>`;
+  if (m.type === 'sticker') return `<div class="msg stk ${cls}"><img class="sticker" src="${stickerSrc(m.text)}" alt="sticker">${time}</div>`;
   if (m.type === 'quote') {
     const o = orders.find(x => x.id === m.oid) || {};
     const latest = !CUR_MSGS(side).some(x => x.type === 'quote' && x.oid === m.oid && x.ts > m.ts);
@@ -1447,6 +1830,104 @@ async function sendImg(inp, side){
   loading(false);
 }
 
+/* ================= STICKERS ================= */
+const rng = (p, n) => Array.from({length:n}, (_, i) => p + (i+1));
+// ทุกแผ่นที่ร้านทำมาเป็น "คำพูดของร้าน" → ร้านใช้ได้ครบ 4 ชุด
+// ลูกค้าได้เฉพาะคำที่พูดจากฝั่งลูกค้าได้ (ขอบคุณ / รับทราบ / สู้ๆ / แล้วพบกันใหม่ ฯลฯ)
+const STK_SETS = { tc:rng('tc',12), ts:rng('ts',15), ec:rng('ec',15), es:rng('es',15),
+  cTH:['tc1','ts15','ts5','ts14','tc12'], cEN:['ec1','ec2','ec4','ec6','ec10','ec12','ec15','es15'] };
+const STK_TABS = { C:[['cTH','🇹🇭 ไทย'],['cEN','🇬🇧 English']],
+  S:[['tc','🇹🇭 คุยกับลูกค้า'],['ts','🇹🇭 สถานะงาน'],['ec','🇬🇧 To customer'],['es','🇬🇧 Work status']] };
+let STK_CUR = { C: LANG === 'th' ? 'cTH' : 'cEN', S: LANG === 'th' ? 'tc' : 'ec' };
+const stickerSrc = id => /^(tc|ec|ts|es|c|s)\d{1,2}$/.test(id) ? 'stickers/' + id + '.webp' : '';
+function togglePanel(id){
+  const p = $(id), on = !p.classList.contains('on');
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
+  if (on) { p.classList.add('on'); if (id === 'sQr') renderQuickBar(); setTimeout(() => p.scrollIntoView({ behavior:'smooth', block:'end' }), 50); }
+}
+function renderStickerGrids(){
+  ['C','S'].forEach(side => {
+    const g = side === 'C' ? 'cStk' : 'sStk', cur = STK_CUR[side];
+    $(g+'Tabs').innerHTML = STK_TABS[side].map(([k, l]) => `<button class="${k === cur ? 'on' : ''}" onclick="stkTab('${side}','${k}')">${l}</button>`).join('');
+    $(g+'Grid').innerHTML = STK_SETS[cur].map(id => `<img src="${stickerSrc(id)}" alt="" loading="lazy" onclick="sendSticker('${id}','${side}')">`).join('');
+  });
+}
+function stkTab(side, k){ STK_CUR[side] = k; renderStickerGrids(); }
+async function sendSticker(id, side){
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
+  try {
+    if (side === 'C') { const m = await api('custSend', CU.token, { type:'sticker', text:id }); CHAT.push(m); chatLast = m.ts; renderChat(true); }
+    else { const m = await api('staffSend', TOKEN, TH.phone, { type:'sticker', text:id }); TH.msgs.push(m); TH.last = m.ts; renderThread(true); }
+  } catch(e) { if (side === 'S' ? !authFail(e) : true) toast(errMsg(e), true); }
+}
+
+/* ================= QUICK REPLIES (staff) ================= */
+let QUICK = null;
+function renderQuickBar(){
+  const list = QUICK || (SCFG && SCFG.quickReplies) || [];
+  $('qrChips').innerHTML = list.length ? list.map((q, i) => `<button class="qr-chip" onclick="useQuick(${i})">${esc(q)}</button>`).join('') : `<div class="muted">${t('qrEmpty')}</div>`;
+}
+function useQuick(i){ const ta = $('sText'); ta.value = (QUICK || [])[i] || ''; $('sQr').classList.remove('on'); ta.focus(); }
+async function loadQuick(){ if (QUICK) return; try { SCFG = SCFG || await api('staffGetConfig', TOKEN); QUICK = (SCFG.quickReplies || []).slice(); renderQuickBar(); renderQuickEdit(); } catch(e) { authFail(e); } }
+function renderQuickEdit(){
+  const box = $('qrList'); if (!box || !QUICK) return;
+  box.innerHTML = QUICK.map((q, i) => `<div class="qr-edit"><textarea class="inp" oninput="QUICK[${i}]=this.value">${esc(q)}</textarea>
+    <button class="mini" onclick="qrMove(${i},-1)" ${i===0?'disabled':''}>↑</button><button class="mini" onclick="qrDel(${i})">🗑</button></div>`).join('');
+}
+function qrMove(i, d){ const j = i + d; if (j < 0 || j >= QUICK.length) return; [QUICK[i], QUICK[j]] = [QUICK[j], QUICK[i]]; renderQuickEdit(); }
+function qrDel(i){ QUICK.splice(i, 1); renderQuickEdit(); }
+function qrAddNew(){ const v = $('qrNew').value.trim(); if (!v) return; QUICK.push(v); $('qrNew').value = ''; renderQuickEdit(); }
+async function saveQuick(){
+  try { loading(true, t('saving'), 60); QUICK = await api('staffSaveQuick', TOKEN, QUICK.map(s => s.trim()).filter(Boolean)); if (SCFG) SCFG.quickReplies = QUICK.slice();
+    renderQuickEdit(); renderQuickBar(); toast(t('qrSaved')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
+}
+async function saveCurAsQuick(){
+  const v = $('sText').value.trim(); if (!v) { toast(t('qrTypeFirst'), true); return; }
+  await loadQuick(); if (!QUICK.includes(v)) QUICK.push(v); await saveQuick();
+}
+
+
+/* ================= PRINT FORM (ใบรับ-ส่งรองเท้า) ================= */
+let PR_MODE = 'blank';
+function openPrint(){
+  const d = new Date(); $('prDate').value = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  $('prSpot').value = store('prSpot') || ''; prMode(PR_MODE); openM('mPrint');
+}
+function prMode(m){ PR_MODE = m; $('prBlank').classList.toggle('on', m === 'blank'); $('prFill').classList.toggle('on', m === 'fill'); $('prDateBox').style.display = m === 'fill' ? '' : 'none'; }
+async function doPrint(){
+  const spot = $('prSpot').value.trim(); store('prSpot', spot);
+  let rows = [], dateTxt = '';
+  if (PR_MODE === 'fill') {
+    if (!SQ.length) { try { SQ = await api('staffGetQueue', TOKEN); } catch(e) { if (authFail(e)) return; } }
+    const [Y, M, D] = $('prDate').value.split('-').map(Number);
+    const day = new Date(Y, M-1, D); dateTxt = day.toLocaleDateString('th-TH', { day:'numeric', month:'long', year:'numeric' });
+    rows = SQ.filter(o => { const t = new Date(o.ts); return t.getFullYear() === Y && t.getMonth() === M-1 && t.getDate() === D; })
+      .sort((a, b) => a.q - b.q).map(o => { const t = new Date(o.ts);
+        return { q:pad(o.q) + (o.express ? ' ⚡' : ''), name:o.name, phone:fmtPhone(o.phone), date:t.toLocaleDateString('th-TH',{day:'2-digit',month:'2-digit',year:'2-digit'}), time:t.toTimeString().slice(0,5), who:'', spot }; });
+  }
+  const n = Math.max(rows.length, Math.min(40, Math.max(5, Number($('prRows').value) || 15)));
+  while (rows.length < n) rows.push({ q:'', name:'', phone:'', date:'', time:'', who:'', spot: PR_MODE === 'fill' ? '' : spot });
+  const perPage = 12, pages = [];
+  for (let i = 0; i < rows.length; i += perPage) pages.push(rows.slice(i, i + perPage));
+  const H = ['ลำดับ|No.','ชื่อลูกค้า|Customer name','เบอร์โทรลูกค้า|Phone','วันที่รับ|Date received','เวลาที่รับ|Time','คนที่รับ|Received by','สถานที่พักรองเท้ารอส่งต่อให้ร้าน|Holding place before handing to shop'];
+  const W = ['7%','19%','14%','11%','8%','14%','27%'];
+  $('printArea').innerHTML = pages.map((pg, pi) => `<div class="pf" style="${pi < pages.length-1 ? 'page-break-after:always;' : ''}">
+    <div class="pf-awn"></div>
+    <div class="pf-head"><img src="${esc(CFG.logo || DEFAULT_LOGO)}" alt="">
+      <div class="pf-title"><h1>${esc(CFG.shopName || 'PureStep')} · ใบรับ-ส่งรองเท้า</h1><div>Shoe Drop-off Log · ${esc(L('tagline'))}</div></div>
+      <div class="pf-meta">วันที่ / Date <span>${esc(dateTxt)}</span><br>หน้า / Page <span>${pi+1} / ${pages.length}</span></div></div>
+    <table class="pf-t"><colgroup>${W.map(w => `<col style="width:${w}">`).join('')}</colgroup>
+      <thead><tr>${H.map(h => { const [a, b] = h.split('|'); return `<th>${a}<small>${b}</small></th>`; }).join('')}</tr></thead>
+      <tbody>${pg.map(r => `<tr><td class="n">${esc(r.q)}</td><td>${esc(r.name)}</td><td>${esc(r.phone)}</td><td>${esc(r.date)}</td><td>${esc(r.time)}</td><td>${esc(r.who)}</td><td>${esc(r.spot)}</td></tr>`).join('')}</tbody></table>
+    <div class="pf-foot"><div>✦ ตรวจสอบจำนวนคู่และสภาพรองเท้าก่อนรับทุกครั้ง · ส่งต่อให้ร้านภายในวัน ✦</div>
+      <div class="pf-sign"><div></div>ผู้ส่งมอบ / Handed over by</div><div class="pf-sign"><div></div>ผู้รับที่ร้าน / Received at shop</div></div>
+  </div>`).join('');
+  closeM('mPrint'); $('pageStyle').textContent = '@page{size:A4 landscape;margin:9mm}';
+  const imgs = [...$('printArea').querySelectorAll('img')];
+  await Promise.all(imgs.map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+  try { window.print(); } catch(e) { toast(t('prBlocked'), true); }
+}
 /* ================= INSTALL ================= */
 let deferredPrompt = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; });
@@ -1467,7 +1948,7 @@ async function doLogin(){
   try { TOKEN = await api('staffLogin', $('pw').value); sessionStorage.setItem('ps_tk', TOKEN); closeM('mLogin'); toast(t('loggedIn')); enterStaff(); }
   catch(e) { toast(errMsg(e), true); $('pw').select(); }
 }
-function logout(){ TOKEN = ''; sessionStorage.removeItem('ps_tk'); clearInterval(sTimer); $('staffBtn').classList.remove('on'); $('staffBtn').textContent = t('staff'); TH.phone = ''; $('thView').style.display = 'none'; $('thList').style.display = ''; sTab = 'q'; go('home'); }
+function logout(){ QUICK = null; SCFG = null; TOKEN = ''; sessionStorage.removeItem('ps_tk'); clearInterval(sTimer); $('staffBtn').classList.remove('on'); $('staffBtn').textContent = t('staff'); TH.phone = ''; $('thView').style.display = 'none'; $('thList').style.display = ''; sTab = 'q'; go('home'); }
 function authFail(e){ if (/(^|[^C])AUTH\b/.test(String((e && e.message) || e)) && !/CAUTH/.test(String((e && e.message) || e))) { toast(t('sessionExp'), true); logout(); return true; } return false; }
 function enterStaff(){
   $('staffBtn').classList.add('on'); $('staffBtn').textContent = t('backoffice');
@@ -1480,35 +1961,45 @@ function enterStaff(){
 }
 function staffTab(x){
   sTab = x;
-  ['q','c','s'].forEach(k => { $('tab'+k.toUpperCase()).classList.toggle('on', x === k); $('pane'+k.toUpperCase()).style.display = x === k ? '' : 'none'; });
-  if (x === 'q') loadStaff(); else if (x === 'c') { loadThreads(); if (TH.phone) loadThread(); } else loadSettings();
+  ['q','c','d','s'].forEach(k => { $('tab'+k.toUpperCase()).classList.toggle('on', x === k); $('pane'+k.toUpperCase()).style.display = x === k ? '' : 'none'; });
+  if (x === 'q') loadStaff(); else if (x === 'c') { loadThreads(); loadQuick(); if (TH.phone) loadThread(); } else if (x === 'd') loadStats(); else loadSettings();
 }
 async function loadStaff(){
   try { SQ = await api('staffGetQueue', TOKEN); renderStaff(); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 function renderStaff(){
+  if (!SCFG && TOKEN) api('staffGetConfig', TOKEN).then(c => { SCFG = c; }).catch(() => {});
   const cnt = { R:0, Y:0, P:0 }; SQ.forEach(o => { if (o.status===ST.R) cnt.R++; else if (o.status===ST.Y) cnt.Y++; if (o.pay===PAY.SENT) cnt.P++; });
+  const staleMs = (Number((SCFG||{}).remindDays) || 3) * 864e5;
   const F = [['R',t('fR',{n:cnt.R})],['Y',t('fY',{n:cnt.Y})],['P',t('fP',{n:cnt.P})],['X',t('fX')],['D',t('fD')],['A',t('fA')]];
   $('filters').innerHTML = F.map(([k,l]) => `<button class="${sFilter===k?'on':''}" onclick="sFilter='${k}';renderStaff()">${l}</button>`).join('');
   const q = norm($('sSearch').value);
   let list = SQ.filter(o => sFilter === 'A' || (sFilter === 'X' ? o.express : sFilter === 'P' ? o.pay === PAY.SENT : o.status === ST[sFilter]));
   if (sFilter === 'R') { const old = list.slice().reverse(); list = old.filter(o => o.express).concat(old.filter(o => !o.express)); }
-  if (q) list = list.filter(o => norm([pad(o.q), o.q, o.name, o.phone, o.models.join(' ')].join(' ')).includes(q));
+  if (q) list = list.filter(o => norm([pad(o.q), o.q, o.name, o.phone, o.id, o.models.join(' ')].join(' ')).includes(q));
   $('staffList').innerHTML = list.length ? list.map(o => {
     const badge = o.status===ST.Y ? 'st-y' : o.status===ST.D ? 'st-d' : 'st-r';
     const act = o.status===ST.R ? `<button class="btn primary" onclick="setSt('${o.id}','${ST.Y}')">${t('btnReady')}</button>`
       : o.status===ST.Y ? `<button class="btn green" onclick="setSt('${o.id}','${ST.D}')">${t('btnDone')}</button><button class="btn ghost" style="flex:.6" onclick="setSt('${o.id}','${ST.R}')">${t('btnBack')}</button>`
       : `<button class="btn ghost" onclick="setSt('${o.id}','${ST.Y}')">${t('btnBackReady')}</button>`;
-    const pay = o.price ? `<div class="pay-row"><span>${t('price')} <b>${money(o.price)} ฿</b></span>${payPill(o.pay)}${o.pay===PAY.SENT?`<button class="btn green small" style="width:auto" onclick="confirmPay('${o.id}')">${t('btnConfirmPay')}</button>`:''}</div>` : '';
+    const pay = o.price ? `<div class="pay-row"><span>${t('price')} <b>${money(o.price)} ฿</b></span>${payPill(o.pay)}${o.pay===PAY.SENT || (o.pay===PAY.WAIT && o.src==='staff') ? `<button class="btn green small" style="width:auto" onclick="confirmPay('${o.id}')">${t('btnConfirmPay')}</button>`:''}</div>` : '';
+    const stale = o.status === ST.Y && o.readyTs && Date.now() - o.readyTs >= staleMs ? `<span class="stale">${t('staleTag',{n:Math.floor((Date.now()-o.readyTs)/864e5)})}</span>` : '';
+    const svcs = (o.services||[]).map((a, i) => (a && a.length) ? a : null);
     return `<div class="card oc${o.express?' ex':''}">
       ${o.express ? `<span class="ex-badge">${t('tExpress',{x:o.fee})}</span>` : ''}
       <div class="oc-top"><div class="oc-q">${pad(o.q)}</div>
         <div style="flex:1"><div class="oc-name">${esc(o.name)}</div>
         <div class="oc-meta">📞 <a href="tel:${esc(o.phone)}">${esc(fmtPhone(o.phone))}</a> · 🕒 ${esc(o.created)}</div>
-        <span class="status-badge ${badge}" style="font-size:13px;padding:2px 10px;margin:4px 0 0;animation:none">${stLabel(o.status)}</span></div></div>
-      <div class="oc-pairs">${o.models.map((m, i) => `<div class="oc-pair"><div class="m">👟 ${esc(m)}</div><div class="thumbs">${(o.photos[i]||[]).map(p => `<img src="${esc(p.t)}" loading="lazy" onclick="zoom('${esc(p.f)}')" alt="">`).join('') || `<span class="muted">${t('noPhoto')}</span>`}</div></div>`).join('')}</div>
+        <span class="status-badge ${badge}" style="font-size:13px;padding:2px 10px;margin:4px 0 0;animation:none">${stLabel(o.status)}</span>${stale}${o.src === 'staff' ? ` <span class="chip-sm">${t('srcStaff')}</span>` : ''}</div></div>
+      <div class="oc-pairs">${o.models.map((m, i) => `<div class="oc-pair"><div class="m">👟 ${esc(m)}</div>${svcs[i] ? `<div class="svc-tags" style="margin:-2px 0 6px">${svcs[i].map(k => `<span class="svc-tag">${t('svc_'+k)}</span>`).join('')}</div>` : ''}<div class="thumbs">${(o.photos[i]||[]).map(p => `<img src="${esc(p.t)}" loading="lazy" onclick="zoom('${esc(p.f)}')" alt="">`).join('') || `<span class="muted">${t('noPhoto')}</span>`}</div></div>`).join('')}</div>
       ${pay}
-      <div class="oc-act" style="margin-top:6px"><button class="btn blue small" onclick="openThread('${esc(o.phone)}')">${t('btnChat')}</button><button class="btn ghost small" onclick="openQuote('${o.id}','${esc(o.phone)}')">${t('btnQuote')}</button></div>
+      ${o.status === ST.D ? (o.pts ? `<div style="margin-top:6px"><span class="pts-tag">${t('ptsGiven',{n:o.pts})}</span></div>` : `<button class="btn gold small" style="margin-top:8px" onclick="givePoints('${o.id}')">${t('btnGivePts',{n:o.pairs||o.models.length})}</button>`) : ''}
+      ${(o.after||[]).length ? `<div class="thumbs" style="margin-top:6px"><span class="muted" style="align-self:center;font-size:13px">${t('after')}:</span>${o.after.map(u => `<img src="${esc(u)}" onclick="zoom(this.src)" alt="">`).join('')}</div>` : ''}
+      <div class="oc-act wrap" style="margin-top:6px"><button class="btn blue small" onclick="openThread('${esc(o.phone)}')">${t('btnChat')}</button><button class="btn ghost small" onclick="openQuote('${o.id}','${esc(o.phone)}')">${t('btnQuote')}</button>
+        <label class="btn ghost small">${t('btnAfter')}<input type="file" accept="image/*" hidden onchange="addAfter(this,'${o.id}')"></label>
+        <button class="btn ghost small" onclick="openLabels('${o.id}')">${t('btnLabel')}</button>
+        ${o.pay !== PAY.PAID ? `<label class="btn ghost small">${t('btnSlipAdmin')}<input type="file" accept="image/*" hidden onchange="adminSlip(this,'${o.id}')"></label>` : ''}
+        ${o.status === ST.Y ? `<button class="btn ghost small" onclick="remindOrder('${o.id}')">${t('btnRemind')}</button>` : ''}</div>
       <div class="oc-act">${act}</div></div>`;
   }).join('') : `<div class="card center muted">${t('empty')}</div>`;
 }
@@ -1516,6 +2007,195 @@ async function setSt(id, st){
   const o = SQ.find(x => x.id === id); if (o) { o.status = st; renderStaff(); }
   try { await api('staffSetStatus', TOKEN, id, st); toast(st===ST.Y ? t('readyToast',{q:pad(o.q)}) : t('updated')); loadStaff(); }
   catch(e) { if (!authFail(e)) { toast(errMsg(e), true); loadStaff(); } }
+}
+async function addAfter(inp, oid){
+  const f = inp.files[0]; inp.value = ''; if (!f) return;
+  try { loading(true, t('upIng'), 50); const d = await compress(f, IMG_MAX, IMG_Q); await api('staffAddAfter', TOKEN, oid, d); toast(t('afterOk')); loadStaff(); }
+  catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
+}
+async function adminSlip(inp, oid){
+  const f = inp.files[0]; inp.value = ''; if (!f) return;
+  try { loading(true, t('upIng'), 50); const d = await compress(f, LIVE ? 1400 : 600, 0.85); await api('staffAttachSlip', TOKEN, oid, d); toast(t('slipAdminOk')); loadStaff(); }
+  catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
+}
+async function remindOrder(oid){
+  try { await api('staffRemind', TOKEN, oid); toast(t('remindOk')); loadStaff(); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+}
+
+/* ================= LABELS (Phomemo) ================= */
+let LBL_URLS = [], LBL_W = 50, LBL_H = 30, LBL = null;
+/* ฟอร์มสติกเกอร์: ชื่อร้าน · ชื่อลูกค้า · เบอร์ · รุ่นรองเท้า · ราคา (แก้ได้ก่อนพิมพ์) */
+async function openLabels(oid){
+  const o = SQ.find(x => x.id === oid); if (!o) return;
+  LBL_W = Number((SCFG||{}).labelW) || 50; LBL_H = Number((SCFG||{}).labelH) || 30;
+  const n = o.models.length;
+  LBL = { q:o.q, express:o.express, name:o.name, phone:fmtPhone(o.phone),
+    rows:o.models.map((m, i) => ({ model:String(m).replace(/^\d+\.\s*/, ''), price: n === 1 && o.price ? String(o.price) : '' })) };
+  $('lblForm').innerHTML = `
+    <div class="row2"><div style="flex:1"><label class="f">${t('name')}</label><input class="inp" value="${esc(LBL.name)}" oninput="LBL.name=this.value;drawLabels()"></div>
+      <div style="flex:1"><label class="f">${t('phone')}</label><input class="inp" inputmode="tel" value="${esc(LBL.phone)}" oninput="LBL.phone=this.value;drawLabels()"></div></div>
+    ${LBL.rows.map((r, i) => `<div class="row2"><div style="flex:2"><label class="f">${t('lbModel',{i:i+1})}</label><input class="inp" value="${esc(r.model)}" oninput="LBL.rows[${i}].model=this.value;drawLabels()"></div>
+      <div style="flex:1"><label class="f">${t('lbPrice')}</label><input class="inp" type="number" inputmode="numeric" value="${esc(r.price)}" placeholder="—" oninput="LBL.rows[${i}].price=this.value;drawLabels()"></div></div>`).join('')}
+    ${n > 1 && o.price ? `<p class="hint">${t('lbTotal',{x:money(o.price)})}</p>` : ''}`;
+  try { await document.fonts.ready; } catch(e) {}
+  drawLabels(); renderBtBox(); openM('mLabel');
+}
+function fitText(x, txt, maxW, size, weight){
+  let s = size; x.font = `${weight} ${Math.round(s)}px Mitr, Sarabun, sans-serif`;
+  while (x.measureText(txt).width > maxW && s > size * 0.55) { s -= 1; x.font = `${weight} ${Math.round(s)}px Mitr, Sarabun, sans-serif`; }
+  let t2 = txt; while (x.measureText(t2).width > maxW && t2.length > 2) t2 = t2.slice(0, -2) + '…';
+  return t2;
+}
+function drawLabels(){
+  if (!LBL) return;
+  const k = 8, W = Math.round(LBL_W * k), H = Math.round(LBL_H * k), n = LBL.rows.length, P = Math.round(H * 0.055);
+  LBL_URLS = LBL.rows.map((r, i) => {
+    const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+    x.fillStyle = '#fff'; x.fillRect(0, 0, W, H); x.fillStyle = '#000'; x.textBaseline = 'middle';
+    // แถบหัว: ชื่อร้าน + เลขคิว
+    const hh = H * 0.2; x.fillRect(0, 0, W, hh); x.fillStyle = '#fff';
+    x.font = `600 ${Math.round(hh * 0.62)}px Mitr, Sarabun, sans-serif`; x.textAlign = 'left';
+    x.fillText((CFG.shopName || 'PureStep') + (LBL.express ? ' ⚡' : ''), P, hh / 2);
+    x.textAlign = 'right'; x.font = `500 ${Math.round(hh * 0.5)}px Mitr, Sarabun, sans-serif`;
+    x.fillText('#' + pad(LBL.q) + (n > 1 ? '  ' + t('lbPair',{i:i+1,n}) : ''), W - P, hh / 2);
+    x.fillStyle = '#000'; x.textAlign = 'left';
+    // ชื่อ / เบอร์ / รุ่น
+    const lw = W - P * 2, lbl = (y, a, b, size, wt) => { x.font = `400 ${Math.round(size * 0.62)}px Mitr, Sarabun, sans-serif`; const aw = x.measureText(a).width + 6;
+      x.fillStyle = '#555'; x.fillText(a, P, y); x.fillStyle = '#000'; x.fillText(fitText(x, b, lw - aw, size, wt), P + aw, y); };
+    lbl(H * 0.33, t('lbName'), String(LBL.name || ''), H * 0.13, 600);
+    lbl(H * 0.49, t('lbTel'), String(LBL.phone || ''), H * 0.11, 500);
+    lbl(H * 0.65, t('lbShoe'), String(r.model || ''), H * 0.11, 500);
+    // ราคา
+    x.lineWidth = 2; x.setLineDash([6, 4]); x.beginPath(); x.moveTo(P, H * 0.76); x.lineTo(W - P, H * 0.76); x.stroke(); x.setLineDash([]);
+    x.font = `400 ${Math.round(H * 0.08)}px Mitr, Sarabun, sans-serif`; x.fillStyle = '#555'; x.fillText(t('lbPrice'), P, H * 0.88);
+    x.fillStyle = '#000'; x.textAlign = 'right'; x.font = `600 ${Math.round(H * 0.15)}px Mitr, Sarabun, sans-serif`;
+    x.fillText(r.price ? money(r.price) + ' ฿' : '__________ ฿', W - P, H * 0.88);
+    x.textAlign = 'left'; x.lineWidth = 2; x.strokeRect(1, 1, W - 2, H - 2);
+    return c.toDataURL('image/png');
+  });
+  $('lblGrid').innerHTML = LBL_URLS.map(u => `<img src="${u}" style="width:${Math.min(300, W)}px" alt="">`).join('');
+}
+function printLabels(){
+  $('pageStyle').textContent = `@page{size:${LBL_W}mm ${LBL_H}mm;margin:0}`;
+  $('printArea').innerHTML = LBL_URLS.map((u, i) => `<img src="${u}" style="display:block;width:${LBL_W}mm;height:${LBL_H}mm;${i < LBL_URLS.length-1 ? 'page-break-after:always;' : ''}">`).join('');
+  closeM('mLabel');
+  setTimeout(() => { try { window.print(); } catch(e) { toast(t('prBlocked'), true); } setTimeout(() => { $('pageStyle').textContent = '@page{size:A4 landscape;margin:9mm}'; }, 1500); }, 300);
+}
+/* ===== พิมพ์ตรงไป Phomemo M110 ผ่าน Bluetooth (Android Chrome / iPhone ผ่านแอป Bluefy) ===== */
+let BT = { dev:null, ch:null, busy:false };
+const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
+function renderBtBox(){
+  const ok = !!(navigator.bluetooth && navigator.bluetooth.requestDevice);
+  $('btBox').innerHTML = ok
+    ? `<button class="btn primary big" id="btBtn" onclick="btPrint()">${BT.ch ? t('btPrintOn',{n:BT.dev.name || 'M110'}) : t('btPrint')}</button>
+       <div class="row2" style="align-items:center"><label class="muted" style="font-size:13px;flex:1">${t('btDark')}</label>
+       <input id="btDark" type="range" min="1" max="15" value="${store('btDark') || 8}" style="flex:1.4" onchange="store('btDark',+this.value)"></div>`
+    : `<div class="g-note" style="text-align:left">${isIOS() ? t('btIos') : t('btNo')}</div>`;
+}
+async function btConnect(){
+  if (BT.ch && BT.dev && BT.dev.gatt.connected) return BT.ch;
+  if (!BT.dev) BT.dev = await navigator.bluetooth.requestDevice({ acceptAllDevices:true, optionalServices:[0xff00] });
+  const srv = await (await BT.dev.gatt.connect()).getPrimaryService(0xff00);
+  BT.ch = await srv.getCharacteristic(0xff02);
+  BT.dev.addEventListener('gattserverdisconnected', () => { BT.ch = null; });
+  return BT.ch;
+}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function btWrite(bytes){
+  let size = BT.chunk || 128;
+  for (let i = 0; i < bytes.length; i += size) {
+    const part = bytes.slice(i, i + size);
+    try { await (BT.ch.writeValueWithoutResponse ? BT.ch.writeValueWithoutResponse(part) : BT.ch.writeValue(part)); }
+    catch(e) { if (size > 20) { BT.chunk = size = 20; i -= size; await sleep(30); continue; } throw e; }
+    await sleep(size > 20 ? 25 : 12);
+  }
+}
+/* แปลงรูปป้ายเป็นจุดขาว/ดำ 384 จุด (หัวพิมพ์ 48 มม.) */
+async function labelBitmap(url){
+  const img = await new Promise((r, j) => { const im = new Image(); im.onload = () => r(im); im.onerror = j; im.src = url; });
+  const W = 384, H = Math.round(LBL_H * 8), c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  const k = Math.min(W / img.width, H / img.height), w = img.width * k, h = img.height * k;
+  x.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+  const d = x.getImageData(0, 0, W, H).data, bpr = W / 8, out = new Uint8Array(bpr * H);
+  for (let y = 0; y < H; y++) for (let xx = 0; xx < W; xx++) {
+    const p = (y * W + xx) * 4, lum = d[p] * 0.3 + d[p+1] * 0.59 + d[p+2] * 0.11;
+    if (lum < 150) out[y * bpr + (xx >> 3)] |= 0x80 >> (xx & 7);
+  }
+  return { bpr, H, out };
+}
+async function btPrint(){
+  if (BT.busy) return; BT.busy = true;
+  const btn = $('btBtn');
+  try {
+    if (btn) btn.textContent = t('btConnecting');
+    await btConnect();
+    const dark = Math.min(15, Math.max(1, Number(($('btDark') || {}).value) || 8));
+    for (let i = 0; i < LBL_URLS.length; i++) {
+      if (btn) btn.textContent = t('btPrinting',{a:i+1,b:LBL_URLS.length});
+      const { bpr, H, out } = await labelBitmap(LBL_URLS[i]);
+      await btWrite(new Uint8Array([0x1b,0x4e,0x0d,0x03, 0x1b,0x4e,0x04,dark, 0x1f,0x11,0x0a]));          // ความเร็ว, ความเข้ม, กระดาษแบบมีช่องว่าง (gap)
+      await sleep(60);
+      await btWrite(new Uint8Array([0x1d,0x76,0x30,0x00, bpr & 255, bpr >> 8, H & 255, H >> 8]));             // GS v 0 (ภาพ raster)
+      await btWrite(out);
+      await btWrite(new Uint8Array([0x1f,0xf0,0x05,0x00, 0x1f,0xf0,0x03,0x00]));                             // จบงาน / ป้อนไปป้ายถัดไป
+      await sleep(1500);
+    }
+    toast(t('btDone')); sparkle(8);
+  } catch(e) {
+    const m = String(e && (e.name || e.message) || e);
+    if (/NotFoundError|cancel/i.test(m)) toast(t('btCancel'), true);
+    else { toast(t('btFail') + ' ' + m, true); BT.ch = null; }
+  }
+  BT.busy = false; renderBtBox();
+}
+async function shareLabels(){
+  try {
+    const files = await Promise.all(LBL_URLS.map(async (u, i) => new File([await (await fetch(u)).blob()], `label-${i+1}.png`, { type:'image/png' })));
+    if (navigator.canShare && navigator.canShare({ files })) { await navigator.share({ files, title:'PureStep labels' }); return; }
+  } catch(e) {}
+  toast(t('longPress'));
+}
+
+/* ================= DASHBOARD ================= */
+let D_RANGE = 'month';
+function rangeOf(k){
+  const n = new Date(), d0 = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  if (k === 'today') return [d0.getTime(), d0.getTime() + 864e5];
+  if (k === '7') return [d0.getTime() - 6*864e5, d0.getTime() + 864e5];
+  if (k === 'month') return [new Date(n.getFullYear(), n.getMonth(), 1).getTime(), d0.getTime() + 864e5];
+  if (k === 'last') return [new Date(n.getFullYear(), n.getMonth()-1, 1).getTime(), new Date(n.getFullYear(), n.getMonth(), 1).getTime()];
+  return [0, d0.getTime() + 864e5];
+}
+async function loadStats(){
+  const R = [['today',t('dToday')],['7',t('d7')],['month',t('dMonth')],['last',t('dLast')],['all',t('dAll')]];
+  $('dRange').innerHTML = R.map(([k,l]) => `<button class="${D_RANGE===k?'on':''}" onclick="D_RANGE='${k}';loadStats()">${l}</button>`).join('');
+  const [from, to] = rangeOf(D_RANGE);
+  try { const s = await api('staffStats', TOKEN, from, to); renderStats(s, from, to); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+}
+function renderStats(s, from, to){
+  const K = [['kPaid', money(s.paid) + ' ฿'],['kUnpaid', money(s.unpaid) + ' ฿'],['kOrders', s.orders],['kPairs', s.pairs],
+             ['kExpress', s.express + ' · ' + money(s.expressFee) + ' ฿'],['kNew', s.newC],['kOld', s.oldC],['kStaff', s.staffAdded]];
+  let days = Object.keys(s.days).sort();
+  if (D_RANGE !== 'all' && D_RANGE !== 'today') { days = []; for (let t2 = from; t2 < Math.min(to, Date.now() + 864e5); t2 += 864e5) { const d = new Date(t2); days.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')); } }
+  days = days.slice(-31);
+  const mx = Math.max(1, ...days.map(d => (s.days[d] || {}).paid || 0));
+  const svcMax = Math.max(1, ...Object.values(s.svc));
+  $('dBody').innerHTML = !s.orders && !s.stale.length ? `<div class="card center muted">${t('dNone')}</div>` : `
+    <div class="kpis">${K.map(([k, v]) => `<div class="kpi"><small>${t(k)}</small><b>${v}</b></div>`).join('')}</div>
+    ${days.length > 1 ? `<div class="card"><h2>${t('dDaily')}</h2><div class="bars">${days.map(d => { const v = (s.days[d] || {}).paid || 0, o = (s.days[d] || {}).orders || 0;
+      return `<div style="height:${Math.max(2, v / mx * 100)}%" data-t="${d.slice(5)} · ${money(v)} ฿ · ${o}"></div>`; }).join('')}</div>
+      <div class="bar-lbl"><span>${days[0].slice(5)}</span><span>${days[days.length-1].slice(5)}</span></div></div>` : ''}
+    <div class="card"><h2>${t('dSvc')}</h2>${['clean','spa','sole','repair','none'].map(k => `<div class="hrow"><span>${t('svc_'+k)}</span><i style="width:${s.svc[k]/svcMax*70}%"></i><b>${s.svc[k]}</b></div>`).join('')}</div>
+    <div class="card"><h2>${t('dStatus')}</h2><div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">${['R','Y','D'].map(k => `<div class="kpi"><small>${t('st_'+k)}</small><b>${s.status[k]}</b></div>`).join('')}</div></div>
+    ${s.stale.length ? `<div class="card"><h2>${t('dStale')}</h2>${s.stale.map(x => `<div class="hrow" style="justify-content:space-between"><span style="width:auto"><b>${pad(x.q)}</b> ${esc(x.name)} <span class="stale">${t('staleTag',{n:x.days})}</span></span><button class="btn ghost small" style="width:auto;margin:0" onclick="remindOrder('${x.id}');setTimeout(loadStats,800)">${t('btnRemind')}</button></div>`).join('')}</div>` : ''}`;
+}
+
+async function givePoints(oid){
+  try { const p = await api('staffGivePoints', TOKEN, oid); toast(t('givePtsOk',{n:p.bal})); sparkle(10); if (sTab === 'q') loadStaff(); if (TH.phone) loadThread(true); }
+  catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 async function confirmPay(oid){
   try { await api('staffConfirmPay', TOKEN, oid); toast(t('updated')); if (sTab === 'q') loadStaff(); if (TH.phone) loadThread(true); }
@@ -1531,7 +2211,7 @@ function renderThreads(){
   const b = $('staffChatBadge'); b.textContent = total; b.classList.toggle('on', total > 0);
   if (TH.phone) return;
   $('thList').innerHTML = THREADS.length ? THREADS.map(x => {
-    const pv = x.type === 'sys' ? t('sys_'+x.preview,{q:pad(x.q||'')}) : x.type === 'quote' ? '💰 ' + t('quoteH') : (x.type === 'img' || x.type === 'slip') && !x.preview ? t('picSent') : x.preview;
+    const pv = x.type === 'sys' ? t('sys_'+x.preview,{q:pad(x.q||''), n:''}) : x.type === 'sticker' ? t('stickerPv') : x.type === 'quote' ? '💰 ' + t('quoteH') : (x.type === 'img' || x.type === 'slip') && !x.preview ? t('picSent') : x.preview;
     return `<div class="th-item" onclick="openThread('${esc(x.phone)}')"><div class="avatar" style="width:44px;height:44px;font-size:20px">${esc(String(x.name).charAt(0).toUpperCase())}</div>
       <div style="flex:1;min-width:0"><div style="font-weight:700">${esc(x.name)} <span class="chip-sm">${x.reg ? t('regTag') : t('guestTag')}</span></div>
       <div class="pv">${x.from==='S'?'↩ ':''}${esc(pv)}</div></div><div class="muted" style="font-size:12px;align-self:flex-start;margin-right:${x.unread?26:0}px">${fmtTime(x.lastTs)}</div>
@@ -1554,17 +2234,18 @@ async function loadThread(force){
     if (force) TH.msgs = [];
     const add = (r.msgs || []).filter(m => !TH.msgs.some(x => x.id === m.id));
     TH.msgs = TH.msgs.concat(add); if (TH.msgs.length) TH.last = TH.msgs[TH.msgs.length-1].ts;
-    TH.orders = r.orders || []; TH.name = r.name; TH.reg = r.reg;
+    TH.orders = r.orders || []; TH.name = r.name; TH.reg = r.reg; TH.points = r.points;
     renderThread(force || add.length > 0);
   } catch(e) { authFail(e); }
   thBusy = false;
 }
 function renderThread(scroll){
-  $('thName').textContent = TH.name || TH.phone; $('thPhone').innerHTML = `📞 <a href="tel:${esc(TH.phone)}">${esc(fmtPhone(TH.phone))}</a> · ${TH.reg ? t('regTag') : t('guestTag')}`;
+  $('thName').textContent = TH.name || TH.phone; $('thPhone').innerHTML = `📞 <a href="tel:${esc(TH.phone)}">${esc(fmtPhone(TH.phone))}</a> · ${TH.reg ? t('regTag') : t('guestTag')}${TH.points ? ` · <span class="pts-tag">${t('custPts',{n:TH.points.bal})}</span>` : ''}`;
   $('thReset').style.display = TH.reg ? '' : 'none';
-  $('thOrders').innerHTML = TH.orders.filter(o => o.status !== ST.D || o.pay === PAY.SENT).map(o => `<div class="th-o"><b>${pad(o.q)}</b> ${o.express?'⚡':''} · ${stLabel(o.status)}<br>${o.models.map(esc).join(', ')}
+  $('thOrders').innerHTML = TH.orders.filter(o => o.status !== ST.D || o.pay === PAY.SENT || !o.pts).slice(0, 8).map(o => `<div class="th-o"><b>${pad(o.q)}</b> ${o.express?'⚡':''} · ${stLabel(o.status)}<br>${o.models.map(esc).join(', ')}
     ${o.price ? `<div>${money(o.price)} ฿ ${payPill(o.pay)}</div>` : ''}
-    ${o.pay === PAY.SENT ? `<button class="btn green small" onclick="confirmPay('${o.id}')">${t('btnConfirmPay')}</button>` : o.pay !== PAY.PAID ? `<button class="btn ghost small" onclick="openQuote('${o.id}','${esc(TH.phone)}')">${t('btnQuote')}</button>` : ''}</div>`).join('') || '';
+    ${o.pay === PAY.SENT || (o.pay === PAY.WAIT && o.src === 'staff') ? `<button class="btn green small" onclick="confirmPay('${o.id}')">${t('btnConfirmPay')}</button>` : o.pay !== PAY.PAID && o.status !== ST.D ? `<button class="btn ghost small" onclick="openQuote('${o.id}','${esc(TH.phone)}')">${t('btnQuote')}</button>` : ''}
+    ${o.status === ST.D && !o.pts ? `<button class="btn gold small" onclick="givePoints('${o.id}')">${t('btnGivePts',{n:o.pairs||o.models.length})}</button>` : ''}</div>`).join('') || '';
   $('thOrders').style.display = $('thOrders').innerHTML ? '' : 'none';
   const box = $('sChatList');
   const atBottom = scroll || box.scrollHeight - box.scrollTop - box.clientHeight < 80;
@@ -1576,13 +2257,63 @@ function openQuote(oid, phone){
   const o = SQ.find(x => x.id === oid) || TH.orders.find(x => x.id === oid); if (!o) return;
   Q_OID = oid; Q_PHONE = phone;
   $('qOrderTxt').innerHTML = `${pad(o.q)} · ${esc(o.name)} · ${o.models.map(m => esc(String(m).replace(/^\d+\.\s*/,''))).join(', ')}${o.express ? `<br>⚡ ${t('exInc',{x:o.fee})}` : ''}`;
-  $('qAmt').value = o.price || ''; $('qNote').value = '';
-  openM('mQuote'); $('qAmt').focus();
+  $('qAmt').value = o.price || ''; $('qNote').value = ''; $('qUse').checked = false; $('qRewardBox').style.display = 'none'; $('qReward').style.display = 'none';
+  Q_PAIRS = o.pairs || o.models.length || 1; Q_PTS = null;
+  Q_WANT = [...new Set((o.services || []).flat())]; Q_LINES = []; Q_EX = o.express ? (o.fee || 0) : 0;
+  const G = guide(); Q_TAB = (G.find(g => Q_WANT.includes(g.key)) || G[0] || {}).key;
+  renderGuide(); renderQLines();
+  openM('mQuote');
+  api('staffPoints', TOKEN, phone).then(p => { Q_PTS = p; const need = Number(CFG.rewardNeed) || 5;
+    if (p.bal >= need) { $('qReward').style.display = ''; $('qUseTxt').innerHTML = '🎁 ' + t('useReward',{pct:Number(CFG.rewardPct)||10, need, n:p.bal}); } }).catch(() => {});
+}
+let Q_PAIRS = 1, Q_PTS = null, Q_WANT = [], Q_LINES = [], Q_TAB = '', Q_EX = 0;
+const guide = () => (SCFG && SCFG.priceGuide) || DEFAULT_GUIDE;
+function renderGuide(){
+  const G = guide(), g = G.find(x => x.key === Q_TAB) || G[0]; if (!g) { $('qgTabs').innerHTML = ''; $('qgBody').innerHTML = ''; return; }
+  $('qgTabs').innerHTML = G.map(x => `<button class="${x.key === g.key ? 'on' : ''}${Q_WANT.includes(x.key) ? ' want' : ''}" onclick="Q_TAB='${esc(x.key)}';renderGuide()">${esc(x.name)}</button>`).join('');
+  let last = '';
+  $('qgBody').innerHTML = `<div class="muted" style="font-size:13px;margin-bottom:4px">${t('gPick')}</div>` + (g.note ? `<div class="g-note">💡 ${esc(g.note)}</div>` : '') +
+    g.items.map((it, i) => { const grp = it.g !== last ? `<div class="g-grp">${esc(it.g)}</div>` : ''; last = it.g;
+      const on = Q_LINES.some(l => l.k === g.key + ':' + i);
+      return grp + `<div class="g-item${on ? ' on' : ''}" onclick="addLine('${esc(g.key)}',${i})"><span>${on ? '✅' : '➕'} ${esc(it.n)}</span><span class="pr">${it.p2 ? money(it.p) + '–' + money(it.p2) : money(it.p)} ฿</span></div>`; }).join('');
+}
+function addLine(key, i){
+  const g = guide().find(x => x.key === key), it = g.items[i], k = key + ':' + i, j = Q_LINES.findIndex(l => l.k === k);
+  if (j > -1) Q_LINES.splice(j, 1); else Q_LINES.push({ k, name: it.n, full: (it.g && it.g !== it.n ? it.g + ' · ' : '') + it.n, cat: g.name, price: it.p, qty: 1 });
+  renderGuide(); renderQLines(true);
+}
+function renderQLines(fill){
+  const lines = Q_LINES.map((l, j) => `<div class="q-line"><span>${esc(l.name)} <small class="muted">· ${esc(l.cat)}</small></span>
+    <input class="qty" type="number" min="1" value="${l.qty}" oninput="Q_LINES[${j}].qty=Math.max(1,+this.value||1);sumLines()"><span style="flex:none">×</span>
+    <input type="number" min="0" value="${l.price}" oninput="Q_LINES[${j}].price=+this.value||0;sumLines()"><button onclick="Q_LINES.splice(${j},1);renderGuide();renderQLines(true)">✕</button></div>`).join('');
+  const ex = Q_EX ? `<div class="q-line"><span>⚡ ${t('gExpress')}</span><b>${money(Q_EX)} ฿</b></div>` : '';
+  $('qLines').innerHTML = (lines || ex) ? lines + ex + `<div class="q-sum" id="qSum"></div>` : '';
+  $('qLines').style.display = (lines || ex) ? '' : 'none';
+  sumLines(fill);
+}
+function sumLines(fill){
+  const tot = Q_LINES.reduce((a, l) => a + l.price * l.qty, 0) + (Q_LINES.length ? Q_EX : 0);
+  if ($('qSum')) $('qSum').textContent = t('gSum',{x:money(tot)});
+  if (Q_LINES.length) {
+    $('qAmt').value = tot;
+    $('qNote').value = Q_LINES.map(l => '• ' + (l.full || l.name) + (l.qty > 1 ? ' ×' + l.qty : '')).join('\n') + (Q_EX ? '\n• ' + t('gExpress') : '');
+  } else if (fill) { $('qNote').value = ''; }
+  calcReward();
+}
+function calcReward(){
+  const use = $('qUse').checked; $('qRewardBox').style.display = use ? '' : 'none'; if (!use) return;
+  const amt = Math.round(Number($('qAmt').value) || 0);
+  if (!$('qBase').value && amt) $('qBase').value = Math.round(amt / Q_PAIRS);
+  const base = Math.round(Number($('qBase').value) || 0), d = Math.round(base * (Number(CFG.rewardPct) || 10) / 100);
+  $('qCalc').innerHTML = amt ? t('rewardCalc',{d:money(d), f:money(Math.max(0, amt - d))}) : '';
 }
 async function sendQuote(){
   const amt = Math.round(Number($('qAmt').value) || 0); if (amt <= 0) { toast(t('badAmt'), true); return; }
   try { loading(true, t('saving'), 60);
-    await api('staffSend', TOKEN, Q_PHONE, { type:'quote', oid:Q_OID, amount:amt, text:$('qNote').value.trim() });
+    const use = $('qUse').checked && $('qReward').style.display !== 'none';
+    const d = use ? Math.round((Number($('qBase').value) || 0) * (Number(CFG.rewardPct) || 10) / 100) : 0;
+    await api('staffSend', TOKEN, Q_PHONE, { type:'quote', oid:Q_OID, amount:Math.max(1, amt - d), text:$('qNote').value.trim(), useReward:use, discount:d });
+    $('qBase').value = '';
     loading(false); closeM('mQuote'); toast(t('updated'));
     if (TH.phone === Q_PHONE) loadThread(true); if (sTab === 'q') loadStaff();
   } catch(e) { loading(false); if (!authFail(e)) toast(errMsg(e), true); }
@@ -1600,12 +2331,28 @@ const NOQR_SVG = () => 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="h
 function fillSettings(){
   const c = SCFG;
   $('sLogo').src = c.logo || DEFAULT_LOGO; $('sQr').src = c.lineQr || NOQR_SVG(); $('sPayQr').src = c.payQr || NOQR_SVG();
-  const map = { sShop:'shopName', sTag:'tagline', sTagEn:'taglineEn', sAnn:'announcement', sAnnEn:'announcementEn', sExFee:'expressFee', sPayName:'payName',
+  QUICK = (c.quickReplies || QUICK || []).slice(); renderQuickEdit(); renderQuickBar();
+  const map = { sShop:'shopName', sTag:'tagline', sTagEn:'taglineEn', sTagMy:'taglineMy', sAnn:'announcement', sAnnEn:'announcementEn', sAnnMy:'announcementMy', sExFee:'expressFee', sPayName:'payName',
+    sRNeed:'rewardNeed', sRPct:'rewardPct', sLineTitleMy:'lineTitleMy', sLineSubMy:'lineSubMy', sLineBodyMy:'lineBodyMy',
     sLineUrl:'lineUrl', sLineId:'lineId', sLineTitle:'lineTitle', sLineTitleEn:'lineTitleEn', sLineSub:'lineSub', sLineSubEn:'lineSubEn', sLineBody:'lineBody', sLineBodyEn:'lineBodyEn' };
   for (const id in map) $(id).value = c[map[id]] ?? '';
-  $('sGallery').innerHTML = (c.gallery||[]).map(g => `<div class="ph"><img src="${esc(g.url)}" onclick="zoom(this.src)" alt=""><button onclick="rmImg('gallery','${esc(g.id)}')">×</button></div>`).join('') || `<span class="muted" style="grid-column:1/-1">${t('noGal')}</span>`;
+  const G = c.gallery || [];
+  $('sGallery').innerHTML = G.map((g, i) => `<div class="ph"><img src="${esc(g.url)}" onclick="zoom(this.src)" alt=""><span class="no">${i+1}</span><button onclick="rmImg('gallery','${esc(g.id)}')">×</button>
+    ${i > 0 ? `<button class="mv l" onclick="moveGal(${i},-1)">◀</button>` : ''}${i < G.length-1 ? `<button class="mv r" onclick="moveGal(${i},1)">▶</button>` : ''}</div>`).join('') || `<span class="muted" style="grid-column:1/-1">${t('noGal')}</span>`;
   $('sNextQ').value = c.nextQueue || '';
+  $('sRemindDays').value = c.remindDays || 3; $('sAutoRemind').checked = c.autoRemind !== false;
+  $('sLabelW').value = c.labelW || 50; $('sLabelH').value = c.labelH || 30; $('sAppUrl').value = c.appUrl || '';
+  const ln = Object.assign({}, DEFAULT_LN, c.lineNotify || {});
+  $('lnToggles').innerHTML = Object.keys(DEFAULT_LN).map(k => `<label class="tog"><input type="checkbox" data-ln="${k}" ${ln[k] ? 'checked' : ''}><span>${t('ln_'+k)}</span></label>`).join('');
+  GEDIT = JSON.parse(JSON.stringify(c.priceGuide || DEFAULT_GUIDE)); renderGuideEdit();
+  loadLineStatus();
   $('sSheet').innerHTML = c.sheetUrl ? `${t('sheet')} <a href="${esc(c.sheetUrl)}" target="_blank">Google Sheet</a>` : '';
+}
+async function moveGal(i, d){
+  const ids = (SCFG.gallery || []).map(g => g.id), j = i + d; if (j < 0 || j >= ids.length) return;
+  [ids[i], ids[j]] = [ids[j], ids[i]];
+  const old = SCFG.gallery.slice(); [SCFG.gallery[i], SCFG.gallery[j]] = [SCFG.gallery[j], SCFG.gallery[i]]; fillSettings();
+  try { afterCfg(await api('staffSetGallery', TOKEN, ids)); } catch(e) { SCFG.gallery = old; fillSettings(); if (!authFail(e)) toast(errMsg(e), true); }
 }
 function afterCfg(c){ SCFG = c; fillSettings(); CFG = c; cfgVer = c.ver; applyConfig(); updExpress(); }
 async function upImg(inp, kind){
@@ -1630,11 +2377,44 @@ async function rmImg(kind, id){
   try { afterCfg(await api('staffRemoveImage', TOKEN, kind, id || '')); toast(t('updated')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
 }
 async function saveSettings(){
-  const p = { shopName:$('sShop').value, tagline:$('sTag').value, taglineEn:$('sTagEn').value, announcement:$('sAnn').value, announcementEn:$('sAnnEn').value,
+  const p = { shopName:$('sShop').value, tagline:$('sTag').value, taglineEn:$('sTagEn').value, taglineMy:$('sTagMy').value, announcement:$('sAnn').value, announcementEn:$('sAnnEn').value,
+    announcementMy:$('sAnnMy').value, lineTitleMy:$('sLineTitleMy').value, lineSubMy:$('sLineSubMy').value, lineBodyMy:$('sLineBodyMy').value,
+    rewardNeed:$('sRNeed').value, rewardPct:$('sRPct').value,
     expressFee:$('sExFee').value, payName:$('sPayName').value, lineUrl:$('sLineUrl').value.trim(), lineId:$('sLineId').value,
     lineTitle:$('sLineTitle').value, lineTitleEn:$('sLineTitleEn').value, lineSub:$('sLineSub').value, lineSubEn:$('sLineSubEn').value,
-    lineBody:$('sLineBody').value, lineBodyEn:$('sLineBodyEn').value };
+    lineBody:$('sLineBody').value, lineBodyEn:$('sLineBodyEn').value,
+    remindDays:$('sRemindDays').value, autoRemind:$('sAutoRemind').checked, labelW:$('sLabelW').value, labelH:$('sLabelH').value, appUrl:$('sAppUrl').value,
+    lineNotify: Object.fromEntries([...document.querySelectorAll('[data-ln]')].map(x => [x.dataset.ln, x.checked])) };
   try { loading(true, t('saving'), 60); afterCfg(await api('staffSaveConfig', TOKEN, p)); toast(t('saved')); }
+  catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
+}
+/* LINE settings */
+async function loadLineStatus(){ try { renderLineStatus(await api('staffLineStatus', TOKEN)); } catch(e) { authFail(e); } }
+function renderLineStatus(st){
+  $('lnStatus').innerHTML = (st.hasToken ? t('lnOn',{n:st.customers}) : t('lnOff')) + `<br><small>${t('lnWebhook')}</small><br><code style="font-size:12px">${esc(st.webhook)}</code>`;
+  $('lnAdmin').innerHTML = `<label class="f">${t('lnAdminCode')}</label><span class="code">${esc(st.adminCode)}</span> <button class="btn ghost small" style="width:auto;display:inline-flex" onclick="copyText('${esc(st.adminCode)}')">${t('copyCode')}</button>
+    ${st.adminLinked ? `<div class="muted" style="margin-top:4px">${t('lnAdminOn',{n:st.adminLinked})}</div>` : ''}`;
+}
+async function saveLineToken(){
+  try { loading(true, t('saving'), 60); renderLineStatus(await api('staffSaveLine', TOKEN, $('lnToken').value.trim())); $('lnToken').value = ''; toast(t('updated')); }
+  catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
+  loading(false);
+}
+async function lineTest(){ try { await api('staffLineTest', TOKEN); toast(t('lnTestOk')); } catch(e) { if (!authFail(e)) toast(errMsg(e), true); } }
+/* price guide editor */
+let GEDIT = [];
+function renderGuideEdit(){
+  $('gEdit').innerHTML = GEDIT.map((g, gi) => `<div class="ge-tab"><b style="font-family:'Mitr',sans-serif">${esc(g.name)}</b>
+    <input class="inp" style="margin:6px 0;font-size:14px" value="${esc(g.note || '')}" placeholder="${esc(t('gNote'))}" oninput="GEDIT[${gi}].note=this.value">
+    <div class="ge-row muted" style="font-size:12px"><span>${t('gGroup')}</span><span>${t('gName')}</span><span>${t('gFrom')}</span><span>${t('gTo')}</span><span></span></div>
+    ${g.items.map((it, ii) => `<div class="ge-row"><input value="${esc(it.g)}" oninput="GEDIT[${gi}].items[${ii}].g=this.value"><input value="${esc(it.n)}" oninput="GEDIT[${gi}].items[${ii}].n=this.value">
+      <input type="number" value="${it.p}" oninput="GEDIT[${gi}].items[${ii}].p=+this.value"><input type="number" value="${it.p2 || ''}" oninput="GEDIT[${gi}].items[${ii}].p2=+this.value">
+      <button onclick="GEDIT[${gi}].items.splice(${ii},1);renderGuideEdit()">✕</button></div>`).join('')}
+    <button class="btn ghost small" onclick="GEDIT[${gi}].items.push({g:'${esc(g.items.length ? g.items[g.items.length-1].g : '')}',n:'',p:0});renderGuideEdit()">${t('gAdd')}</button></div>`).join('');
+}
+async function saveGuide(){
+  try { loading(true, t('saving'), 60); const g = await api('staffSaveGuide', TOKEN, GEDIT); SCFG.priceGuide = g; GEDIT = JSON.parse(JSON.stringify(g)); renderGuideEdit(); toast(t('gSaved')); }
   catch(e) { if (!authFail(e)) toast(errMsg(e), true); }
   loading(false);
 }
@@ -1656,6 +2436,7 @@ $('lPinBox').innerHTML = pinHTML('lPin', 'doLoginPin');
 $('rPinBox').innerHTML = pinHTML('rPin', 'regPin1');
 $('rPin2Box').innerHTML = pinHTML('rPin2', 'regPin2');
 document.querySelectorAll('.pin').forEach(b => b.addEventListener('click', () => b.querySelector('input').focus()));
+renderStickerGrids();
 if (!LIVE) $('demoLine').style.display = 'block';
 if (isStandalone()) $('installBtn').style.display = 'none';
 setLang(LANG); loadConfig(); poll(); custSync();
